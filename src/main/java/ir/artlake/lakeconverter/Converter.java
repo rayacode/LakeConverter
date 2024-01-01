@@ -9,14 +9,13 @@ import ws.schild.jave.encode.EncodingAttributes;
 import java.io.File;
 
 public class Converter {
-    boolean succeeded = true;
     ConvertProgressListener listener;
 
     public Converter(ConvertProgressListener listener){
         this.listener = listener;
     }
 
-    public void convert(){
+    public Boolean convert(){
         try {
             File source = new File("30sal.mp3");
             File target = new File("30sal");
@@ -36,10 +35,11 @@ public class Converter {
             //Encode
             Encoder encoder = new Encoder();
             encoder.encode(new MultimediaObject(source), target, attrs, listener);
+            return true;
 
         } catch (Exception ex) {
             ex.printStackTrace();
-            succeeded = false;
+            return false;
         }
     }
 }

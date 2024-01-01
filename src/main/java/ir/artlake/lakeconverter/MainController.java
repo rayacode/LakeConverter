@@ -21,9 +21,7 @@ public class MainController implements Initializable {
     private Label messageLabel;
     @FXML
     private Label progressLabel;
-    public MainController(){
-
-    }
+    public MainController(){}
     @FXML
     protected void onHelloButtonClick() {
         ConversionProgressTask task = new ConversionProgressTask();
@@ -36,40 +34,48 @@ public class MainController implements Initializable {
                 progressLabel.setText(String.format("%.0f%%", newProgress.doubleValue() * 100));
             });
         });
-        Thread thread = new Thread(() -> {
-            converter.convert();
-            Platform.runLater(() -> {
-                FadeTransition fadeIn = new FadeTransition(Duration.seconds(2), messageLabel);
-                fadeIn.setFromValue(0);
-                fadeIn.setToValue(1);
-                fadeIn.setCycleCount(1);
 
-                // Create a fade out transition
-                FadeTransition fadeOut = new FadeTransition(Duration.seconds(2), messageLabel);
-                fadeOut.setFromValue(1);
-                fadeOut.setToValue(0);
-                fadeOut.setCycleCount(1);
-
-                // Show the message with the fade in transition
-                messageLabel.setText("The file has been successfully converted!");
-                fadeIn.play();
-
-                // Start the fade out transition after the fade in transition finishes
-                fadeIn.setOnFinished(event -> {
-                    fadeOut.play();
-                });
-
-                // Clear the message after the fade out transition finishes
-                fadeOut.setOnFinished(event -> {
-                    messageLabel.setText("");
-                    progBar.progressProperty().unbind();
-                    progBar.setProgress(0);
-                });
-            });
-        });
-
+        ConversionThreadTask conversionTask = new ConversionThreadTask(converter, task, this::onConversionComplete);
+        Thread thread = new Thread(conversionTask);
         thread.start();
     }
+
+    private void onConversionComplete(boolean success) {
+        if (success) {
+            // Show a success message
+            showFadeTransition("The file has been successfully converted!");
+        } else {
+            // Show an error message
+            showFadeTransition("An error occurred during conversion.");
+        }
+    }
+
+    private void showFadeTransition(String message) {
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(2), messageLabel);
+        fadeIn.setFromValue(0);
+        fadeIn.setToValue(1);
+        fadeIn.setCycleCount(1);
+
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(2), messageLabel);
+        fadeOut.setFromValue(1);
+        fadeOut.setToValue(0);
+        fadeOut.setCycleCount(1);
+
+        messageLabel.setText(message);
+        fadeIn.play();
+
+        fadeIn.setOnFinished(event -> {
+            fadeOut.play();
+        });
+
+        fadeOut.setOnFinished(event -> {
+            messageLabel.setText("");
+            progBar.progressProperty().unbind();
+            progBar.setProgress(0);
+        });
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         convertBtt.getStyleClass().setAll("btn","btn-danger");
