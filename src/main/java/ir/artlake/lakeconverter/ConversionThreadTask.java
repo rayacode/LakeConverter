@@ -10,6 +10,7 @@ public class ConversionThreadTask implements Runnable {
     private final ConversionProgressTask task;
     private final Consumer<Boolean> onConversionComplete;
 
+
     public ConversionThreadTask(Converter converter, ConversionProgressTask task, Consumer<Boolean> onConversionComplete) {
         this.converter = converter;
         this.task = task;

@@ -17,6 +17,13 @@
          <Label fx:id="progressLabel" />
       </children>
    </HBox>
+   <HBox prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <Button fx:id="choosingFiles" mnemonicParsing="false" onAction="#onChoosingFileAction" text="Choosing Files" />
+         <Button fx:id="choosingTarget" mnemonicParsing="false" onAction="#onChoosingTargetAction" text="Choosing Target" />
+      </children>
+   </HBox>
+   <VBox fx:id="convWidgetsContainer" prefHeight="200.0" prefWidth="200.0" />
    <Label fx:id="messageLabel" />
     <Button fx:id="convertBtt" onAction="#onHelloButtonClick" text="Convert" />
 </VBox>
