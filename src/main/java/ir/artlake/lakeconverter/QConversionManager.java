@@ -3,19 +3,23 @@ package ir.artlake.lakeconverter;
 import java.util.Iterator;
 import java.util.List;
 
+import java.util.concurrent.*;
+
+import java.util.concurrent.*;
+
+import java.util.concurrent.*;
+
 public class QConversionManager {
-    private int activeConversions = 0;
-    private static final int MAX_CONCURRENT_CONVERSIONS = 3;
-    List<FileConverterInit> fileConverterInitList;
+
+    private final List<FileConverterInit> fileConverterInitList;
+
     public QConversionManager(List<FileConverterInit> fileConverterInitList) {
         this.fileConverterInitList = fileConverterInitList;
     }
+
     public void startConversions() {
-        Iterator<FileConverterInit> fci_it = fileConverterInitList.iterator();
-        while (activeConversions < MAX_CONCURRENT_CONVERSIONS && fci_it.hasNext()) {
-            FileConverterInit fileConverterInit = fci_it.next();
+        for (FileConverterInit fileConverterInit : fileConverterInitList) {
             fileConverterInit.startConversion();
-            activeConversions++;
         }
     }
 }

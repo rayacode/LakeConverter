@@ -21,22 +21,24 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.Semaphore;
 
 public class MainController implements Initializable {
-    @FXML
-    private ProgressBar progBar;
+
     @FXML
     private Button convertBtt;
     @FXML
     private Label messageLabel;
-    @FXML
-    private Label progressLabel;
+
     @FXML
     private Button choosingFiles;
     @FXML
     private Button choosingTarget;
     @FXML
     private VBox convWidgetsContainer;
+
+    private static final int MAX_CONCURRENT_CONVERSIONS = 3;
+    private final Semaphore semaphore = new Semaphore(MAX_CONCURRENT_CONVERSIONS);
     List<File> selectedFiles;
     File selectedTarget;
     ThumbnailGenerator thumbnailGenerator;
@@ -52,7 +54,7 @@ public class MainController implements Initializable {
         System.out.println(selectedFiles.get(0).exists());
         fileConverterInitList = new LinkedList<>();
         for (File file : selectedFiles) {
-            fileConverterInitList.add(new FileConverterInit(this::onConversionComplete, file.getAbsolutePath(), selectedTarget.getAbsolutePath()));
+            fileConverterInitList.add(new FileConverterInit(this::onConversionComplete, file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore));
         }
         System.out.println(fileConverterInitList);
         handleFileSelection(selectedFiles, fileConverterInitList);
@@ -83,14 +85,6 @@ public class MainController implements Initializable {
                 = new QConversionManager(fileConverterInitList);
 
         qConversionManager.startConversions();
-
-        /*progBar.progressProperty().bind(fileConverterInit.getTask().progressProperty());
-        fileConverterInit.getTask().progressProperty().addListener((obs, oldProgress, newProgress) -> {
-            Platform.runLater(() -> {
-                progressLabel.setText(String.format("%.0f%%", newProgress.doubleValue() * 100));
-            });
-        });*/
-
     }
 
 
@@ -124,8 +118,7 @@ public class MainController implements Initializable {
 
         fadeOut.setOnFinished(event -> {
             messageLabel.setText("");
-            progBar.progressProperty().unbind();
-            progBar.setProgress(0);
+
         });
     }
 
@@ -135,7 +128,7 @@ public class MainController implements Initializable {
         thumbnailGenerator = new ThumbnailGenerator();
 
         convertBtt.getStyleClass().setAll("btn","btn-danger");
-        progressLabel.getStyleClass().setAll("lbl","lbl-primary");
+
         choosingFiles.getStyleClass().setAll("btn","btn-info");
         choosingTarget.getStyleClass().setAll("btn","btn-info");
     }

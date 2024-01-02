@@ -1,5 +1,8 @@
 package ir.artlake.lakeconverter;
 
+import javafx.application.Platform;
+
+import java.util.concurrent.Semaphore;
 import java.util.function.Consumer;
 
 public class FileConverterInit {
@@ -7,17 +10,35 @@ public class FileConverterInit {
     private final ConvertProgressListener listener;
     private final Converter converter;
     private final Consumer<Boolean> onConversionComplete;
-    public FileConverterInit(Consumer<Boolean> onConversionComplete, String source, String target) {
+    private  Semaphore semaphore;
+
+    public FileConverterInit(Consumer<Boolean> onConversionComplete, String source, String target, Semaphore semaphore) {
         task = new ConversionProgressTask();
         listener = new ConvertProgressListener(task);
         converter = new Converter(listener,source,target);
         this.onConversionComplete = onConversionComplete;
+        this.semaphore = semaphore;
+
     }
+
     public void startConversion() {
-        ConversionThreadTask conversionTask = new ConversionThreadTask(converter, task, onConversionComplete);
-        Thread thread = new Thread(conversionTask, "ConversionThread" + System.currentTimeMillis());
-        thread.start();
+        new Thread(() -> {
+            try {
+                semaphore.acquire();
+                boolean success = converter.convert();
+                Platform.runLater(() -> onConversionComplete.accept(success));
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt(); // restore interrupt status
+            } finally {
+                semaphore.release();
+            }
+        }).start();
     }
+
+    public void setSemaphore(Semaphore semaphore) {
+        this.semaphore = semaphore;
+    }
+
     public ConversionProgressTask getTask() {
         return task;
     }
@@ -32,5 +53,9 @@ public class FileConverterInit {
 
     public Consumer<Boolean> getOnConversionComplete() {
         return onConversionComplete;
+    }
+
+    public Semaphore getSemaphore() {
+        return semaphore;
     }
 }
