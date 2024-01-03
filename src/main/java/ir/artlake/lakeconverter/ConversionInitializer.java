@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 
 public class ConversionInitializer {
     private final Semaphore semaphore;
+    private File selectedTarget;
 
     public ConversionInitializer(Semaphore semaphore) {
         this.semaphore = semaphore;
@@ -16,9 +17,9 @@ public class ConversionInitializer {
     public List<FileConverterInit> initializeConversions(List<File> selectedFiles, File selectedTarget, Consumer<Boolean> onConversionComplete) {
         List<FileConverterInit> fileConverterInitList = new LinkedList<>();
         for (File file : selectedFiles) {
-            if(selectedTarget == null){
-
-                selectedTarget = FileUtils.createDirectory(selectedFiles.get(0).getParent() + "\\converted");
+            if(selectedTarget == null || this.selectedTarget != selectedTarget ){
+                this.selectedTarget = selectedTarget;
+                selectedTarget = FileUtils.createDirectory(file.getParent() + "\\converted");
 
 
                 fileConverterInitList.add(new FileConverterInit(onConversionComplete, file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore));

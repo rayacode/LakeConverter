@@ -2,6 +2,7 @@ package ir.artlake.lakeconverter;
 
 import javafx.application.Platform;
 
+import java.io.File;
 import java.util.concurrent.Semaphore;
 import java.util.function.Consumer;
 

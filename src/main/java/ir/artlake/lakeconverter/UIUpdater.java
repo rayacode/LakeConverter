@@ -2,10 +2,12 @@ package ir.artlake.lakeconverter;
 
 import javafx.animation.FadeTransition;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UIUpdater {
@@ -19,10 +21,19 @@ public class UIUpdater {
     public void setMessageLabel(Label messageLabel) {
         this.messageLabel = messageLabel;
     }
+    // List to keep track of the File objects that have already been added
+    private List<File> addedFiles = new ArrayList<>();
+
     public void handleFileSelection(List<File> sourceFiles, List<FileConverterInit> fileConverterInitList) throws Exception {
         for (int i = 0; i < sourceFiles.size() && i < fileConverterInitList.size(); i++) {
-            ConvertWidgetBox fileBox = new ConvertWidgetBox(fileConverterInitList.get(i), sourceFiles.get(i));
-            convWidgetsContainer.getChildren().add(fileBox);
+            File file = sourceFiles.get(i);
+            // Only add the fileBox if the file hasn't been added before
+            if (!addedFiles.contains(file)) {
+                ConvertWidgetBox fileBox = new ConvertWidgetBox(fileConverterInitList.get(i), file);
+                VBox.setVgrow(fileBox, Priority.ALWAYS);
+                convWidgetsContainer.getChildren().add(fileBox);
+                addedFiles.add(file);
+            }
         }
     }
 

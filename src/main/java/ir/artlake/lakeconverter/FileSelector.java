@@ -28,12 +28,12 @@ public class FileSelector {
     public File chooseTargetDirectory(Stage stage) {
         targetChooser = new DirectoryChooser();
 
-        if (lastFileDirectory != null) {
-            targetChooser.setInitialDirectory(lastFileDirectory);
+        if (lastTargetDirectory != null) {
+            targetChooser.setInitialDirectory(lastTargetDirectory);
         }
         File selectedDirectory = targetChooser.showDialog(stage);
         if (selectedDirectory != null) {
-            lastFileDirectory = selectedDirectory;
+            lastTargetDirectory = selectedDirectory;
         }
         return selectedDirectory;
     }
