@@ -19,7 +19,9 @@ public class Converter {
     public Converter(ConvertProgressListener listener, String source, String target){
         this.listener = listener;
         this.source = new File(source);
-        this.target = new File(target  + this.source.getName() + ".mp3");
+        String sourceName = this.source.getName();
+        String baseName = sourceName.substring(0, sourceName.lastIndexOf('.'));
+        this.target = new File(target, baseName + ".mp3");
 
     }
 

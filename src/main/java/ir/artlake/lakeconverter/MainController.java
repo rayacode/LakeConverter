@@ -1,35 +1,23 @@
 package ir.artlake.lakeconverter;
 
-import javafx.animation.FadeTransition;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.Semaphore;
 
 public class MainController implements Initializable {
-
     @FXML
-    private Button convertBtt;
+    private Button convertButton;
     @FXML
     private Label messageLabel;
-
     @FXML
     private Button choosingFiles;
     @FXML
@@ -39,97 +27,55 @@ public class MainController implements Initializable {
 
     private static final int MAX_CONCURRENT_CONVERSIONS = 3;
     private final Semaphore semaphore = new Semaphore(MAX_CONCURRENT_CONVERSIONS);
-    List<File> selectedFiles;
-    File selectedTarget;
-    ThumbnailGenerator thumbnailGenerator;
-    List<FileConverterInit> fileConverterInitList;
-    QConversionManager qConversionManager;
-    public MainController(){}
+    private FileSelector fileSelector = new FileSelector();
+    private ConversionInitializer conversionInitializer = new ConversionInitializer(semaphore);
+    private UIUpdater uiUpdater = new UIUpdater();
+    private List<File> selectedFiles;
+    private File selectedTarget;
+    private List<FileConverterInit> fileConverterInitList;
+    private QConversionManager qConversionManager;
+
     @FXML
     protected void onChoosingFileAction() throws Exception {
-        FileChooser sourceChooser = new FileChooser();
-        // Get the Stage from any control (like a Button)
         Stage stage = (Stage) choosingFiles.getScene().getWindow();
-        selectedFiles = sourceChooser.showOpenMultipleDialog(stage);
-        System.out.println(selectedFiles.get(0).exists());
-        fileConverterInitList = new LinkedList<>();
-        for (File file : selectedFiles) {
-            fileConverterInitList.add(new FileConverterInit(this::onConversionComplete, file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore));
+        selectedFiles = fileSelector.chooseSourceFiles(stage);
+        if(selectedFiles != null) {
+            fileConverterInitList = conversionInitializer.initializeConversions(selectedFiles, selectedTarget, this::onConversionComplete);
+            uiUpdater.handleFileSelection(selectedFiles, fileConverterInitList);
         }
-        System.out.println(fileConverterInitList);
-        handleFileSelection(selectedFiles, fileConverterInitList);
-
-
-
-    }
-    public void handleFileSelection( List<File> sourceFiles, List<FileConverterInit> fileConverterInit) throws Exception {
-        for (int i = 0; i < sourceFiles.size() && i < fileConverterInit.size(); i++) {
-
-            ConvertWidgetBox fileBox = new ConvertWidgetBox(fileConverterInit.get(i), sourceFiles.get(i));
-            convWidgetsContainer.getChildren().add(fileBox);
+        else {
+            uiUpdater.showFadeTransition("No file selected!");
         }
     }
+
     @FXML
-    protected void onChoosingTargetAction(){
-        DirectoryChooser targetChooser = new DirectoryChooser();
-        // Get the Stage from any control (like a Button)
+    protected void onChoosingTargetAction() {
         Stage stage = (Stage) choosingFiles.getScene().getWindow();
-        selectedTarget = targetChooser.showDialog(stage);
-        if (selectedTarget != null) {
-            System.out.println(selectedTarget.getPath());
-        }
+        selectedTarget = fileSelector.chooseTargetDirectory(stage);
     }
-    @FXML
-    protected void onHelloButtonClick() throws Exception {
-        qConversionManager
-                = new QConversionManager(fileConverterInitList);
 
+    @FXML
+    protected void onConvertAction() {
+        qConversionManager = new QConversionManager(fileConverterInitList);
         qConversionManager.startConversions();
     }
 
-
     private void onConversionComplete(boolean success) {
         if (success) {
-            // Show a success message
-            showFadeTransition("The file has been successfully converted!");
+            uiUpdater.showFadeTransition("The file has been successfully converted!");
         } else {
-            // Show an error message
-            showFadeTransition("An error occurred during conversion.");
+            uiUpdater.showFadeTransition("An error occurred during conversion.");
         }
     }
 
-    private void showFadeTransition(String message) {
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(2), messageLabel);
-        fadeIn.setFromValue(0);
-        fadeIn.setToValue(1);
-        fadeIn.setCycleCount(1);
-
-        FadeTransition fadeOut = new FadeTransition(Duration.seconds(2), messageLabel);
-        fadeOut.setFromValue(1);
-        fadeOut.setToValue(0);
-        fadeOut.setCycleCount(1);
-
-        messageLabel.setText(message);
-        fadeIn.play();
-
-        fadeIn.setOnFinished(event -> {
-            fadeOut.play();
-        });
-
-        fadeOut.setOnFinished(event -> {
-            messageLabel.setText("");
-
-        });
-    }
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        thumbnailGenerator = new ThumbnailGenerator();
+        uiUpdater.setConvWidgetsContainer(convWidgetsContainer);
+        uiUpdater.setMessageLabel(messageLabel);
 
-        convertBtt.getStyleClass().setAll("btn","btn-danger");
-
+        convertButton.getStyleClass().setAll("btn","btn-danger");
         choosingFiles.getStyleClass().setAll("btn","btn-info");
         choosingTarget.getStyleClass().setAll("btn","btn-info");
+
     }
 }
