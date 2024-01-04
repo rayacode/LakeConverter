@@ -11,8 +11,12 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 import java.io.File;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main extends Application {
+
+    public static ExecutorService executorService;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -26,6 +30,8 @@ public class Main extends Application {
 
     }
     public static void main(String[] args) {
+        executorService= Executors.newFixedThreadPool(10);
         launch();
+
     }
 }

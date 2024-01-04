@@ -6,6 +6,8 @@ import java.io.File;
 import java.util.concurrent.Semaphore;
 import java.util.function.Consumer;
 
+import static ir.artlake.lakeconverter.Main.executorService;
+
 public class FileConverterInit {
     private final ConversionProgressTask task;
     private final ConvertProgressListener listener;
@@ -28,7 +30,7 @@ public class FileConverterInit {
 
     public void startConversion() {
         if (convertAgain) {
-            new Thread(() -> {
+            executorService.submit(() -> {
                 try {
                     semaphore.acquire();
                     boolean success = converter.convert();
@@ -38,7 +40,7 @@ public class FileConverterInit {
                 } finally {
                     semaphore.release();
                 }
-            }).start();
+            });
             convertAgain = false;
         }
 

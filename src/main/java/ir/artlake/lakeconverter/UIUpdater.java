@@ -2,8 +2,7 @@ package ir.artlake.lakeconverter;
 
 import javafx.animation.FadeTransition;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.ListView;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -11,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UIUpdater {
-    private VBox convWidgetsContainer;
+    private ListView convListView;
     private Label messageLabel;
 
-    public void setConvWidgetsContainer(VBox convWidgetsContainer) {
-        this.convWidgetsContainer = convWidgetsContainer;
+    public void setConvWidgetsContainer(ListView convWidgetsContainer) {
+        this.convListView = convWidgetsContainer;
     }
 
     public void setMessageLabel(Label messageLabel) {
@@ -30,8 +29,8 @@ public class UIUpdater {
             // Only add the fileBox if the file hasn't been added before
             if (!addedFiles.contains(file)) {
                 ConvertWidgetBox fileBox = new ConvertWidgetBox(fileConverterInitList.get(i), file);
-                VBox.setVgrow(fileBox, Priority.ALWAYS);
-                convWidgetsContainer.getChildren().add(fileBox);
+
+                convListView.getItems().add(fileBox);
                 addedFiles.add(file);
             }
         }

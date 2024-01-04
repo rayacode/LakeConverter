@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -25,8 +26,10 @@ public class MainController implements Initializable {
     private Button choosingFiles;
     @FXML
     private Button choosingTarget;
+    /*@FXML
+    private VBox convWidgetsContainer;*/
     @FXML
-    private VBox convWidgetsContainer;
+    private ListView convListView;
     @FXML
     private SplitPane splitPane;
 
@@ -83,7 +86,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        uiUpdater.setConvWidgetsContainer(convWidgetsContainer);
+        uiUpdater.setConvWidgetsContainer(convListView);
         uiUpdater.setMessageLabel(messageLabel);
         splitPane.getDividers().get(0).positionProperty().addListener((observable, oldvalue, newvalue) -> {
             splitPane.setDividerPositions(0.1);
