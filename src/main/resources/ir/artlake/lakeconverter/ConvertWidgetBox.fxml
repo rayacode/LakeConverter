@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="convertWidgetBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.2">
+    <children>
+      <ImageView fx:id="thumbnailView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="fileNameLabel" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets left="10" />
+            </HBox.margin>
+        </Label>
+        <ProgressBar fx:id="progressBar" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets left="10" />
+            </HBox.margin>
+        </ProgressBar>
+        <Label fx:id="progressLabel" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets left="10" />
+            </HBox.margin>
+        </Label>
+        <Label fx:id="convertStatusLabel" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets left="10" />
+            </HBox.margin>
+        </Label>
+    </children>
+</HBox>

@@ -6,6 +6,7 @@ module ir.artlake.lakeconverter {
     requires jave.core;
     requires org.jetbrains.annotations;
     requires org.slf4j;
+    requires jaudiotagger;
 
     opens ir.artlake.lakeconverter to javafx.fxml;
     exports ir.artlake.lakeconverter;
