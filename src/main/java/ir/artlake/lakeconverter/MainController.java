@@ -23,38 +23,20 @@ public class MainController implements Initializable {
     private Button choosingFiles;
     @FXML
     private Button choosingTarget;
-    /*@FXML
-    private VBox convWidgetsContainer;*/
     @FXML
     private ListView convListView;
     @FXML
     private SplitPane splitPane;
 
-    private static final int MAX_CONCURRENT_CONVERSIONS = 3;
-    private final Semaphore semaphore = new Semaphore(MAX_CONCURRENT_CONVERSIONS);
-    private FileSelector fileSelector = new FileSelector();
-    private ConversionInitializer conversionInitializer = new ConversionInitializer(semaphore);
     private UIUpdater uiUpdater = new UIUpdater();
-    private List<File> selectedFiles = new ArrayList<>();
-    private File selectedTarget;
-    private Map<File, FileConverterInit> fileConverterInitMap = new HashMap<>();
-    private QConversionManager qConversionManager;
+    private FileService fileService = new FileService();
 
     @FXML
     protected void onChoosingFileAction() throws Exception {
         Stage stage = (Stage) choosingFiles.getScene().getWindow();
-        List<File> tempSelector = fileSelector.chooseSourceFiles(stage);
-
-        if(tempSelector != null) {
-            List<File> tempMutableList = new ArrayList<>(tempSelector);
-            selectedFiles.addAll(tempMutableList);
-            Set<File> removeDuplicates = Set.copyOf(selectedFiles);
-            selectedFiles = new ArrayList<>(removeDuplicates);
-
-            List<FileConverterInit> newFileConverterInitList = conversionInitializer.initializeConversions(selectedFiles, selectedTarget, this::onConversionComplete);
-            for (FileConverterInit init : newFileConverterInitList) {
-                fileConverterInitMap.put(init.getSource(), init);
-            }
+        List<File> selectedFiles = fileService.chooseSourceFiles(stage);
+        if(selectedFiles != null) {
+            List<FileConverterInit> newFileConverterInitList = fileService.initializeConversions();
             uiUpdater.handleFileSelection(selectedFiles, newFileConverterInitList);
         }
         else {
@@ -65,31 +47,18 @@ public class MainController implements Initializable {
     // ...
 
     public void deleteFile(File file) {
-        FileConverterInit init = fileConverterInitMap.get(file);
-        if (init != null) {
-            init.getTask().cancel();
-            fileConverterInitMap.remove(file);
-        }
+        fileService.deleteFile(file);
     }
 
     @FXML
     protected void onChoosingTargetAction() {
         Stage stage = (Stage) choosingFiles.getScene().getWindow();
-        selectedTarget = fileSelector.chooseTargetDirectory(stage);
+        fileService.chooseTargetDirectory(stage);
     }
 
     @FXML
     protected void onConvertAction() {
-        qConversionManager = new QConversionManager(fileConverterInitMap);
-        qConversionManager.startConversions();
-    }
-
-    private void onConversionComplete(boolean success) {
-        if (success) {
-            uiUpdater.showFadeTransition("The file has been successfully converted!");
-        } else {
-            uiUpdater.showFadeTransition("An error occurred during conversion.");
-        }
+        fileService.startConversions();
     }
 
     @Override

@@ -24,4 +24,17 @@ public class QConversionManager {
             fileConverterInit.startConversion();
         }
     }
+
+    public void restartConversion(File file){
+        FileConverterInit service = fileConverterInitMap.get(file);
+        service.restartConversion();
+    }
+    public void startSingleConversion(File file){
+        FileConverterInit service = fileConverterInitMap.get(file);
+        service.startConversion();
+    }
+    public void deleteOrCancelConvertFileThread(File file){
+        FileConverterInit service = fileConverterInitMap.get(file);
+        service.deleteOrCancelConvertFileThread();
+    }
 }

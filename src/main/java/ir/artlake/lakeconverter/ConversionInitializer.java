@@ -14,7 +14,7 @@ public class ConversionInitializer {
         this.semaphore = semaphore;
     }
 
-    public List<FileConverterInit> initializeConversions(List<File> selectedFiles, File selectedTarget, Consumer<Boolean> onConversionComplete) {
+    public List<FileConverterInit> initializeConversions(List<File> selectedFiles, File selectedTarget) {
         List<FileConverterInit> fileConverterInitList = new LinkedList<>();
         for (File file : selectedFiles) {
             if(selectedTarget == null || this.selectedTarget != selectedTarget ){
@@ -22,9 +22,9 @@ public class ConversionInitializer {
                 selectedTarget = FileUtils.createDirectory(file.getParent() + "\\converted");
 
 
-                fileConverterInitList.add(new FileConverterInit(onConversionComplete, file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore));
+                fileConverterInitList.add(new FileConverterInit( file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore));
             }else {
-                fileConverterInitList.add(new FileConverterInit(onConversionComplete, file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore));
+                fileConverterInitList.add(new FileConverterInit( file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore));
             }
 
         }
