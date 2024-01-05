@@ -11,10 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.Semaphore;
 
 public class MainController implements Initializable {
@@ -40,7 +37,7 @@ public class MainController implements Initializable {
     private UIUpdater uiUpdater = new UIUpdater();
     private List<File> selectedFiles = new ArrayList<>();
     private File selectedTarget;
-    private List<FileConverterInit> fileConverterInitList = new ArrayList<>();
+    private Map<File, FileConverterInit> fileConverterInitMap = new HashMap<>();
     private QConversionManager qConversionManager;
 
     @FXML
@@ -55,11 +52,23 @@ public class MainController implements Initializable {
             selectedFiles = new ArrayList<>(removeDuplicates);
 
             List<FileConverterInit> newFileConverterInitList = conversionInitializer.initializeConversions(selectedFiles, selectedTarget, this::onConversionComplete);
-            fileConverterInitList.addAll(newFileConverterInitList);
+            for (FileConverterInit init : newFileConverterInitList) {
+                fileConverterInitMap.put(init.getSource(), init);
+            }
             uiUpdater.handleFileSelection(selectedFiles, newFileConverterInitList);
         }
         else {
             uiUpdater.showFadeTransition("No file selected!");
+        }
+    }
+
+    // ...
+
+    public void deleteFile(File file) {
+        FileConverterInit init = fileConverterInitMap.get(file);
+        if (init != null) {
+            init.getTask().cancel();
+            fileConverterInitMap.remove(file);
         }
     }
 
@@ -71,7 +80,7 @@ public class MainController implements Initializable {
 
     @FXML
     protected void onConvertAction() {
-        qConversionManager = new QConversionManager(fileConverterInitList);
+        qConversionManager = new QConversionManager(fileConverterInitMap);
         qConversionManager.startConversions();
     }
 
