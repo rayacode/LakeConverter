@@ -1,5 +1,8 @@
 package ir.artlake.lakeconverter;
 
+import javafx.concurrent.Service;
+import javafx.concurrent.Worker;
+
 import java.io.File;
 import java.util.Iterator;
 import java.util.List;
@@ -24,17 +27,35 @@ public class QConversionManager {
             fileConverterInit.startConversion();
         }
     }
+    public void resetConversions() {
+        for (FileConverterInit fileConverterInit : fileConverterInitMap.values()) {
+            fileConverterInit.restartConversion();
+        }
+    }
+    public void deleteOrCanselConversions() {
+        for (FileConverterInit fileConverterInit : fileConverterInitMap.values()) {
+            fileConverterInit.deleteOrCancelConvertFileThread();
+        }
+    }
 
-    public void restartConversion(File file){
+
+    public void restartSingleConversion(File file){
         FileConverterInit service = fileConverterInitMap.get(file);
         service.restartConversion();
     }
     public void startSingleConversion(File file){
         FileConverterInit service = fileConverterInitMap.get(file);
-        service.startConversion();
+        if(service.getTask().getState() == Worker.State.READY) {
+            service.startConversion();
+        }
     }
-    public void deleteOrCancelConvertFileThread(File file){
+    public void deleteOrCancelSingleConversion(File file){
         FileConverterInit service = fileConverterInitMap.get(file);
+
         service.deleteOrCancelConvertFileThread();
+    }
+
+    public Worker.State getFileThreadState(File file){
+        return fileConverterInitMap.get(file).getTask().getState();
     }
 }

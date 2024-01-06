@@ -1,6 +1,9 @@
 package ir.artlake.lakeconverter;
 
+import javafx.concurrent.Worker;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.Semaphore;
 import java.util.function.Consumer;
 
@@ -24,7 +27,9 @@ public class FileConverterInit {
     }
 
     public void startConversion() {
-            service.start();
+            if(service.getState() == Worker.State.READY) {
+                service.start();
+            }
     }
     public void restartConversion(){
 
@@ -34,7 +39,13 @@ public class FileConverterInit {
         service.start();
     }
     public void deleteOrCancelConvertFileThread(){
+
         service.cancel();
+        service.getHeadServiceConvertClass().getEncoder().abortEncoding();
+
+
+
+
     }
     public ConversionService getTask() {
         return service;

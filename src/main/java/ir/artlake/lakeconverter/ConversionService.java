@@ -8,6 +8,7 @@ import java.util.concurrent.Semaphore;
 
 public class ConversionService extends Service<Boolean> {
     private String name;
+    private Converter headServiceConvertClass;
     private ConvertProgressListener listener;
     private String source;
     private String target;
@@ -27,18 +28,23 @@ public class ConversionService extends Service<Boolean> {
 
     }
     class ConversionTask extends Task<Boolean> {
-
+        Converter converter;
         @Override
         protected Boolean call() throws Exception {
             ConvertProgressListener listener = new ConvertProgressListener(this::updateProgress);
             semaphore.acquire();
             try {
-                Converter converter = new Converter(listener, source, target);
+                converter = new Converter(listener, source, target);
+                headServiceConvertClass = converter;
+
                 return converter.convert();
-            } finally {
+            }
+            finally {
                 semaphore.release();
             }
         }
+
+
     }
 
     public String getName() {
@@ -47,5 +53,9 @@ public class ConversionService extends Service<Boolean> {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Converter getHeadServiceConvertClass() {
+        return headServiceConvertClass;
     }
 }

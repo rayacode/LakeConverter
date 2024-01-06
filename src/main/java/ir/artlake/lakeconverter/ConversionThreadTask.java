@@ -5,6 +5,7 @@ import javafx.application.Platform;
 
 import java.util.function.Consumer;
 
+/*
 public class ConversionThreadTask implements Runnable {
     private final Converter converter;
     private final ConversionProgressTask task;
@@ -22,4 +23,4 @@ public class ConversionThreadTask implements Runnable {
         boolean success = converter.convert();
         Platform.runLater(() -> onConversionComplete.accept(success));
     }
-}
+}*/

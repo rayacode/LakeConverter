@@ -1,10 +1,12 @@
 package ir.artlake.lakeconverter;
 
 import javafx.application.Platform;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -28,7 +30,13 @@ public class ConvertWidgetBox extends HBox implements Initializable {
     private Label convertStatusLabel;
     @FXML
     private ImageView thumbnailView;
+    @FXML
+    private Button convertCRButton;
 
+    @FXML
+    private Label stateLabel;
+    private File file;
+    private FileConverterInit fileConverterInit;
     ThumbnailGenerator thumbnailGenerator;
 
     public ConvertWidgetBox(FileConverterInit fileConverterInit, File file) throws Exception {
@@ -45,7 +53,8 @@ public class ConvertWidgetBox extends HBox implements Initializable {
         thumbnailView.setImage(new Image(thumbnailPath));
         File tempDirectoryPath = new File(System.getProperty("java.io.tmpdir") + "\\lakeConverter\\thumbnails");
         deleteDirectory(tempDirectoryPath);
-
+        this.file = file;
+        this.fileConverterInit = fileConverterInit;
         thumbnailView.setFitHeight(100);
         thumbnailView.setFitWidth(100);
         thumbnailView.setPreserveRatio(true);
@@ -56,15 +65,55 @@ public class ConvertWidgetBox extends HBox implements Initializable {
         fileConverterInit.getTask().progressProperty().addListener((obs, oldProgress, newProgress) -> {
             Platform.runLater(() -> {
                 progressLabel.setText(String.format("%.0f%%", newProgress.doubleValue() * 100));
-                if (newProgress.doubleValue() < 1.0 && newProgress.doubleValue() > 0.0) {
-                    String dots = new String(new char[dotCount[0] % 3 + 1]).replace("\0", ".");
-                    convertStatusLabel.setText("Converting" + dots);
-                    dotCount[0]++;
-                } else {
-                    convertStatusLabel.setText("Done!");
-                }
+
+
                 System.out.println("Progress property for file " + file.getName() + " changed, new progress: " + newProgress);
             });
+        });
+        fileConverterInit.getTask().stateProperty().addListener((observable, oldState, newState) -> {
+            Platform.runLater(() -> {
+                switch (newState) {
+                    case READY:
+                        convertCRButton.setText("Convert");
+                        break;
+                    case SUCCEEDED:
+                        convertCRButton.setText("Restart");
+                        break;
+                    case FAILED:
+                    case CANCELLED:
+                        convertCRButton.setText("Retry");
+                        break;
+                    default:
+                        convertCRButton.setText("Cancel");
+                        break;
+                }
+            });
+        });
+
+
+
+        fileConverterInit.getTask().stateProperty().addListener((observable, oldState, newState) -> {
+            // Update the label text based on the new state
+            switch (newState) {
+                case READY:
+                    convertStatusLabel.setText("Ready");
+                    break;
+                case SCHEDULED:
+                    convertStatusLabel.setText("Scheduled");
+                    break;
+                case RUNNING:
+                    convertStatusLabel.setText("Running");
+                    break;
+                case SUCCEEDED:
+                    convertStatusLabel.setText("Succeeded");
+                    break;
+                case CANCELLED:
+                    convertStatusLabel.setText("Cancelled");
+                    break;
+                case FAILED:
+                    convertStatusLabel.setText("Failed");
+                    break;
+            }
         });
     }
 
@@ -76,7 +125,22 @@ public class ConvertWidgetBox extends HBox implements Initializable {
             subFile.delete();
         }
     }
-
+    @FXML
+    protected void onConvertAction(){
+        switch (convertCRButton.getText()){
+            case "Convert":
+                FileService.qConversionManager.startSingleConversion(file);
+                break;
+            case "Retry":
+            case "Restart":
+                FileService.qConversionManager.restartSingleConversion(file);
+                break;
+            case "Cancel":
+                FileService.qConversionManager.deleteOrCancelSingleConversion(file);
+                System.out.println(fileConverterInit.getTask().getState());
+                break;
+        }
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

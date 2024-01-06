@@ -43,13 +43,6 @@ public class MainController implements Initializable {
             uiUpdater.showFadeTransition("No file selected!");
         }
     }
-
-    // ...
-
-    public void deleteFile(File file) {
-        fileService.deleteFile(file);
-    }
-
     @FXML
     protected void onChoosingTargetAction() {
         Stage stage = (Stage) choosingFiles.getScene().getWindow();

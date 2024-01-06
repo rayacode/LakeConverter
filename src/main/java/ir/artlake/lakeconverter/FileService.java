@@ -14,7 +14,7 @@ public class FileService {
     private List<File> selectedFiles = new ArrayList<>();
     private File selectedTarget;
     private Map<File, FileConverterInit> fileConverterInitMap = new HashMap<>();
-    private QConversionManager qConversionManager;
+    public static QConversionManager qConversionManager;
     private UIUpdater uiUpdater = new UIUpdater();
 
     public List<File> chooseSourceFiles(Stage stage) {
@@ -25,6 +25,7 @@ public class FileService {
             Set<File> removeDuplicates = Set.copyOf(selectedFiles);
             selectedFiles = new ArrayList<>(removeDuplicates);
         }
+        qConversionManager = new QConversionManager(fileConverterInitMap);
         return selectedFiles;
     }
 
@@ -42,7 +43,7 @@ public class FileService {
     }
 
     public void startConversions() {
-        qConversionManager = new QConversionManager(fileConverterInitMap);
+
         qConversionManager.startConversions();
     }
 

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="convertWidgetBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.2">
+<HBox fx:id="convertWidgetBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <ImageView fx:id="thumbnailView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
         <Label fx:id="fileNameLabel" HBox.hgrow="ALWAYS">
@@ -29,5 +30,7 @@
                 <Insets left="10" />
             </HBox.margin>
         </Label>
+      <Button fx:id="convertCRButton" mnemonicParsing="false" onAction="#onConvertAction" text="Convert" />
+      <Label fx:id="stateLabel" text="Label" />
     </children>
 </HBox>

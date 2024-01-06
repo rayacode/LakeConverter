@@ -3,6 +3,8 @@ package ir.artlake.lakeconverter;
 
 import org.jetbrains.annotations.NotNull;
 import ws.schild.jave.Encoder;
+import ws.schild.jave.EncoderException;
+import ws.schild.jave.InputFormatException;
 import ws.schild.jave.MultimediaObject;
 import ws.schild.jave.encode.AudioAttributes;
 import ws.schild.jave.encode.EncodingAttributes;
@@ -15,6 +17,7 @@ public class Converter {
     @NotNull
     File target;
     ConvertProgressListener listener;
+    private Encoder encoder;
 
     public Converter(ConvertProgressListener listener, String source, String target){
         this.listener = listener;
@@ -50,14 +53,19 @@ public class Converter {
                 System.out.println("im listener " + listener.toString());
             }
             //Encode
-            Encoder encoder = new Encoder();
-            encoder.encode(new MultimediaObject( source), target , attrs, listener);
+
+                encoder = new Encoder();
+                encoder.encode(new MultimediaObject(source), target, attrs, listener);
+
             return true;
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-
+        } catch (EncoderException ex){
+            //ex.printStackTrace();
             return false;
         }
+    }
+
+    public Encoder getEncoder(){
+         return encoder;
     }
 }

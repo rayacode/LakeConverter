@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
 
@@ -27,6 +28,10 @@ public class Main extends Application {
         stage.setTitle("LakeConverter");
         stage.setScene(scene);
         stage.show();
+
+        stage.setOnCloseRequest(event -> {
+            executorService.shutdown(); // Shutdown the ExecutorService
+        });
 
     }
     public static void main(String[] args) {
