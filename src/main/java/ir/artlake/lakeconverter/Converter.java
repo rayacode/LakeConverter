@@ -55,6 +55,11 @@ public class Converter {
             //Encode
 
                 encoder = new Encoder();
+            int counter = 0;
+            while (target.exists()) {
+                counter++;
+                target = new File(target.getPath() + "_" + counter  );
+            }
                 encoder.encode(new MultimediaObject(source), target, attrs, listener);
 
             return true;

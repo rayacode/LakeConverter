@@ -36,6 +36,7 @@ public class ConvertWidgetBox extends HBox implements Initializable {
     @FXML
     private Label stateLabel;
     private File file;
+
     private FileConverterInit fileConverterInit;
     ThumbnailGenerator thumbnailGenerator;
 
@@ -54,7 +55,7 @@ public class ConvertWidgetBox extends HBox implements Initializable {
         File tempDirectoryPath = new File(System.getProperty("java.io.tmpdir") + "\\lakeConverter\\thumbnails");
         deleteDirectory(tempDirectoryPath);
         this.file = file;
-        this.fileConverterInit = FileService.fileConverterInitMap.get(file);
+        this.fileConverterInit = fileConverterInit;
         thumbnailView.setFitHeight(100);
         thumbnailView.setFitWidth(100);
         thumbnailView.setPreserveRatio(true);
@@ -107,14 +108,14 @@ public class ConvertWidgetBox extends HBox implements Initializable {
     protected void onConvertAction(){
         switch (convertCRButton.getText()){
             case "Convert":
-                FileService.qConversionManager.startSingleConversion(file);
+                FileService.qConversionManager.startSingleConversion(fileConverterInit);
                 break;
             case "Retry":
             case "Restart":
-                FileService.qConversionManager.restartSingleConversion(file);
+                FileService.qConversionManager.restartSingleConversion(fileConverterInit);
                 break;
             case "Cancel":
-                FileService.qConversionManager.deleteOrCancelSingleConversion(file);
+                FileService.qConversionManager.deleteOrCancelSingleConversion(fileConverterInit);
                 System.out.println(fileConverterInit.getTask().getState());
                 break;
         }

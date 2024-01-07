@@ -9,7 +9,7 @@ import java.util.concurrent.Semaphore;
 public class ConversionService extends Service<Boolean> {
     private String name;
     private Converter headServiceConvertClass;
-    private ConvertProgressListener listener;
+
     private String source;
     private String target;
     private Semaphore semaphore;
@@ -28,15 +28,15 @@ public class ConversionService extends Service<Boolean> {
 
     }
     class ConversionTask extends Task<Boolean> {
-
+        Converter converter;
 
 
         @Override
         protected Boolean call() throws Exception {
-            listener = new ConvertProgressListener(this::updateProgress);
+            ConvertProgressListener listener= new ConvertProgressListener(this::updateProgress);
             semaphore.acquire();
             try {
-                Converter converter = new Converter(listener, source, target);
+                converter = new Converter(listener, source, target);
                 headServiceConvertClass = converter;
 
                 return converter.convert();

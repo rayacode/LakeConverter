@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -37,31 +36,40 @@ public class MainController implements Initializable {
 
     private boolean isSelected;
     private boolean isStarted;
-    List<File> selectedFiles;
+
     private UIUpdater uiUpdater = new UIUpdater();
+
     private FileService fileService = new FileService();
+
+
+    //private File selectedTarget;
+    ////private List<FileConverterInit> fileConverterInitList = new ArrayList<>();
+
+
 
     @FXML
     protected void onChoosingFileAction() throws Exception {
         Stage stage = (Stage) choosingFiles.getScene().getWindow();
-        selectedFiles = fileService.chooseSourceFiles(stage);
-        if(selectedFiles.size() > 0) {
+        List<File> selectedFiles = fileService.chooseSourceFiles(stage);
+        if(!selectedFiles.isEmpty()) {
             System.out.println("i'm played");
-            List<FileConverterInit> values = new ArrayList<>();
-            for (File key : selectedFiles) {
-                if (FileService.fileConverterInitMap.containsKey(key)) {
-                    values.add(FileService.fileConverterInitMap.get(key));
-                }
-            }
-
-            uiUpdater.handleFileSelection(selectedFiles, values);
+            List<FileConverterInit> newFileConverterInit = fileService.initializeConversions();
+            fileService.addButtonListenersToList(convertButton);
+            uiUpdater.handleFileSelection(selectedFiles, newFileConverterInit);
             isSelected = true;
             convertButton.setDisable(false);
+            convertButton.setText("Convert All");
         }
         else {
             uiUpdater.showFadeTransition("No file selected!");
         }
     }
+
+
+
+
+
+
     @FXML
     protected void onChoosingTargetAction() {
         Stage stage = (Stage) choosingFiles.getScene().getWindow();
@@ -70,23 +78,18 @@ public class MainController implements Initializable {
 
     @FXML
     protected void onConvertAction() {
+        switch (convertButton.getText()){
+            case ConvertButtonStatuses.CONVERT_ALL:
+                FileService.qConversionManager.startConversions();
+                break;
+            case ConvertButtonStatuses.CANCEL_ALL:
+                FileService.qConversionManager.deleteOrCanselConversions();
+                break;
+            case ConvertButtonStatuses.RESTART_ALL:
+                FileService.qConversionManager.resetConversions();
+                break;
 
-        if(isSelected){
-            FileService.qConversionManager.startConversions();
-            for (FileConverterInit fileConverterInit :
-                    FileService.qConversionManager.getFileConverterInitMap().values()) {
-                fileConverterInit.getTask().stateProperty().addListener((observable, oldState, newState) -> {
-                    if (newState == Worker.State.RUNNING) {
-                        convertButton.setText("Cancel All");
-                    } else if (newState == Worker.State.SUCCEEDED || newState == Worker.State.CANCELLED) {
-                        convertButton.setText("Restart All");
-                    } /*else if (newState == Worker.State.READY) {
-                        convertButton.setText("Start All");
-                    }*/
-                });
-            }
         }
-
 
     }
 

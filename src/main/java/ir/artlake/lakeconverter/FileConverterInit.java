@@ -13,6 +13,7 @@ import static ir.artlake.lakeconverter.Main.executorService;
 public class FileConverterInit {
     private final ConversionService service;
 
+    private boolean isConverted;
 
     private Semaphore semaphore;
 
@@ -23,14 +24,15 @@ public class FileConverterInit {
         service = new ConversionService(source, target, semaphore);
         this.source = new File(source);
         service.setExecutor(executorService);
+        this.isConverted = false;
 
 
     }
 
     public void startConversion() {
-            if(service.getState() == Worker.State.READY) {
+            if(service.getState() == Worker.State.READY && isConverted == false) {
                 service.start();
-                System.out.println(service.getName());
+                isConverted = true;
             }
     }
     public void restartConversion(){

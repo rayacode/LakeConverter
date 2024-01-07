@@ -30,7 +30,7 @@ public class Main extends Application {
         stage.show();
 
         stage.setOnCloseRequest(event -> {
-            executorService.shutdown(); // Shutdown the ExecutorService
+            executorService.shutdownNow(); // Shutdown the ExecutorService
         });
 
     }

@@ -1,6 +1,9 @@
 package ir.artlake.lakeconverter;
 
+import javafx.concurrent.Worker;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.apache.commons.collections4.map.ListOrderedMap;
 
 import java.io.File;
 import java.util.*;
@@ -13,8 +16,8 @@ public class FileService {
     private ConversionInitializer conversionInitializer = new ConversionInitializer(semaphore);
     private List<File> selectedFiles = new ArrayList<>();
     private File selectedTarget;
-    public static Map<File, FileConverterInit> fileConverterInitMap = new HashMap<>();
-    public static QConversionManager qConversionManager = new QConversionManager(fileConverterInitMap);
+    public static List<FileConverterInit> fileConverterInitMap = new ArrayList<>();
+    public static QConversionManager qConversionManager = new QConversionManager();
     private UIUpdater uiUpdater = new UIUpdater();
 
     public List<File> chooseSourceFiles(Stage stage) {
@@ -22,14 +25,10 @@ public class FileService {
 
         if (!tempSelector.isEmpty()) {
             List<File> tempMutableList = new ArrayList<>(tempSelector);
+            selectedFiles = new ArrayList<>();
             selectedFiles.addAll(tempMutableList);
             Set<File> removeDuplicates = Set.copyOf(selectedFiles);
             selectedFiles = new ArrayList<>(removeDuplicates);
-
-            List<FileConverterInit> newFileConverterInitList = conversionInitializer.initializeConversions(selectedFiles, selectedTarget);
-            for (FileConverterInit init : newFileConverterInitList) {
-                fileConverterInitMap.put(init.getSource(), init);
-            }
         }
         return selectedFiles;
     }
@@ -42,9 +41,27 @@ public class FileService {
 
     public List<FileConverterInit> initializeConversions() {
         List<FileConverterInit> newFileConverterInitList = conversionInitializer.initializeConversions(selectedFiles, selectedTarget);
-        for (FileConverterInit init : newFileConverterInitList) {
-            fileConverterInitMap.put(init.getSource(), init);
-        }
+        fileConverterInitMap.addAll(newFileConverterInitList);
         return newFileConverterInitList;
     }
+    public void addButtonListenersToList( Button convertButton){
+        for (FileConverterInit fileConverterInit : fileConverterInitMap) {
+            fileConverterInit.getTask().stateProperty().addListener((observable, oldState, newState) -> {
+                boolean anyRunning = fileConverterInitMap.stream()
+                        .anyMatch(init -> init.getTask().getState() == Worker.State.RUNNING);
+                boolean anyReady = fileConverterInitMap.stream()
+                        .anyMatch(init -> init.getTask().getState() == Worker.State.READY);
+                if (anyRunning) {
+                    convertButton.setText(ConvertButtonStatuses.CONVERT_ALL);
+                } else {
+                    convertButton.setText(ConvertButtonStatuses.RESTART_ALL);
+                }
+
+
+
+            });
+        }
+    }
+
+
 }
