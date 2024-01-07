@@ -54,14 +54,14 @@ public class ConvertWidgetBox extends HBox implements Initializable {
         File tempDirectoryPath = new File(System.getProperty("java.io.tmpdir") + "\\lakeConverter\\thumbnails");
         deleteDirectory(tempDirectoryPath);
         this.file = file;
-        this.fileConverterInit = fileConverterInit;
+        this.fileConverterInit = FileService.fileConverterInitMap.get(file);
         thumbnailView.setFitHeight(100);
         thumbnailView.setFitWidth(100);
         thumbnailView.setPreserveRatio(true);
         thumbnailView.setSmooth(true);
         thumbnailView.setCache(true);
         progressBar.progressProperty().bind(fileConverterInit.getTask().progressProperty());
-        int[] dotCount = {0}; // Array to hold the dot count
+
         fileConverterInit.getTask().progressProperty().addListener((obs, oldProgress, newProgress) -> {
             Platform.runLater(() -> {
                 progressLabel.setText(String.format("%.0f%%", newProgress.doubleValue() * 100));
@@ -74,13 +74,16 @@ public class ConvertWidgetBox extends HBox implements Initializable {
             Platform.runLater(() -> {
                 switch (newState) {
                     case READY:
+                        convertStatusLabel.setText("Ready");
                         convertCRButton.setText("Convert");
                         break;
                     case SUCCEEDED:
+
                         convertCRButton.setText("Restart");
                         break;
                     case FAILED:
                     case CANCELLED:
+                        convertStatusLabel.setText("Cancelled");
                         convertCRButton.setText("Retry");
                         break;
                     default:
@@ -90,31 +93,6 @@ public class ConvertWidgetBox extends HBox implements Initializable {
             });
         });
 
-
-
-        fileConverterInit.getTask().stateProperty().addListener((observable, oldState, newState) -> {
-            // Update the label text based on the new state
-            switch (newState) {
-                case READY:
-                    convertStatusLabel.setText("Ready");
-                    break;
-                case SCHEDULED:
-                    convertStatusLabel.setText("Scheduled");
-                    break;
-                case RUNNING:
-                    convertStatusLabel.setText("Running");
-                    break;
-                case SUCCEEDED:
-                    convertStatusLabel.setText("Succeeded");
-                    break;
-                case CANCELLED:
-                    convertStatusLabel.setText("Cancelled");
-                    break;
-                case FAILED:
-                    convertStatusLabel.setText("Failed");
-                    break;
-            }
-        });
     }
 
     public void deleteDirectory(File file) {

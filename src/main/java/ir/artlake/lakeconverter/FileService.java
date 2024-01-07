@@ -13,19 +13,24 @@ public class FileService {
     private ConversionInitializer conversionInitializer = new ConversionInitializer(semaphore);
     private List<File> selectedFiles = new ArrayList<>();
     private File selectedTarget;
-    private Map<File, FileConverterInit> fileConverterInitMap = new HashMap<>();
-    public static QConversionManager qConversionManager;
+    public static Map<File, FileConverterInit> fileConverterInitMap = new HashMap<>();
+    public static QConversionManager qConversionManager = new QConversionManager(fileConverterInitMap);
     private UIUpdater uiUpdater = new UIUpdater();
 
     public List<File> chooseSourceFiles(Stage stage) {
         List<File> tempSelector = fileSelector.chooseSourceFiles(stage);
-        if(tempSelector != null) {
+
+        if (!tempSelector.isEmpty()) {
             List<File> tempMutableList = new ArrayList<>(tempSelector);
             selectedFiles.addAll(tempMutableList);
             Set<File> removeDuplicates = Set.copyOf(selectedFiles);
             selectedFiles = new ArrayList<>(removeDuplicates);
+
+            List<FileConverterInit> newFileConverterInitList = conversionInitializer.initializeConversions(selectedFiles, selectedTarget);
+            for (FileConverterInit init : newFileConverterInitList) {
+                fileConverterInitMap.put(init.getSource(), init);
+            }
         }
-        qConversionManager = new QConversionManager(fileConverterInitMap);
         return selectedFiles;
     }
 
@@ -34,32 +39,12 @@ public class FileService {
         return selectedTarget;
     }
 
+
     public List<FileConverterInit> initializeConversions() {
         List<FileConverterInit> newFileConverterInitList = conversionInitializer.initializeConversions(selectedFiles, selectedTarget);
         for (FileConverterInit init : newFileConverterInitList) {
             fileConverterInitMap.put(init.getSource(), init);
         }
         return newFileConverterInitList;
-    }
-
-    public void startConversions() {
-
-        qConversionManager.startConversions();
-    }
-
-    public void deleteFile(File file) {
-        FileConverterInit init = fileConverterInitMap.get(file);
-        if (init != null) {
-            init.getTask().cancel();
-            fileConverterInitMap.remove(file);
-        }
-    }
-
-    private void onConversionComplete(boolean success) {
-        if (success) {
-            uiUpdater.showFadeTransition("The file has been successfully converted!");
-        } else {
-            uiUpdater.showFadeTransition("An error occurred during conversion.");
-        }
     }
 }

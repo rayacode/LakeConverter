@@ -28,13 +28,15 @@ public class ConversionService extends Service<Boolean> {
 
     }
     class ConversionTask extends Task<Boolean> {
-        Converter converter;
+
+
+
         @Override
         protected Boolean call() throws Exception {
-            ConvertProgressListener listener = new ConvertProgressListener(this::updateProgress);
+            listener = new ConvertProgressListener(this::updateProgress);
             semaphore.acquire();
             try {
-                converter = new Converter(listener, source, target);
+                Converter converter = new Converter(listener, source, target);
                 headServiceConvertClass = converter;
 
                 return converter.convert();

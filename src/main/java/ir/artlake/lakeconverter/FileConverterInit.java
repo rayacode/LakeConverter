@@ -1,5 +1,6 @@
 package ir.artlake.lakeconverter;
 
+import javafx.application.Platform;
 import javafx.concurrent.Worker;
 
 import java.io.File;
@@ -29,6 +30,7 @@ public class FileConverterInit {
     public void startConversion() {
             if(service.getState() == Worker.State.READY) {
                 service.start();
+                System.out.println(service.getName());
             }
     }
     public void restartConversion(){

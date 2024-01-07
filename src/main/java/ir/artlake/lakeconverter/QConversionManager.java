@@ -4,6 +4,7 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Worker;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -55,6 +56,17 @@ public class QConversionManager {
         service.deleteOrCancelConvertFileThread();
     }
 
+    public List<Worker.State> calculateTotalStates(){
+        List<Worker.State> stateList = new ArrayList<>();
+        for (FileConverterInit fileConverterInit : fileConverterInitMap.values()) {
+            stateList.add(fileConverterInit.getTask().getState());
+        }
+
+        return stateList;
+    }
+    public Map<File, FileConverterInit> getFileConverterInitMap(){
+        return fileConverterInitMap;
+    }
     public Worker.State getFileThreadState(File file){
         return fileConverterInitMap.get(file).getTask().getState();
     }
