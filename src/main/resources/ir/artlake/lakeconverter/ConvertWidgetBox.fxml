@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="convertWidgetBox" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="convertWidgetBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <ImageView fx:id="thumbnailView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
         <Label fx:id="fileNameLabel" HBox.hgrow="ALWAYS">
@@ -31,6 +31,5 @@
             </HBox.margin>
         </Label>
       <Button fx:id="convertCRButton" mnemonicParsing="false" onAction="#onConvertAction" text="Convert" />
-      <Label fx:id="stateLabel" text="Label" />
     </children>
 </HBox>

@@ -1,12 +1,9 @@
 package ir.artlake.lakeconverter;
 
-import javafx.application.Platform;
 import javafx.concurrent.Worker;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.Semaphore;
-import java.util.function.Consumer;
 
 import static ir.artlake.lakeconverter.Main.executorService;
 

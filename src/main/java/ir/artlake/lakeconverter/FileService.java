@@ -49,10 +49,9 @@ public class FileService {
             fileConverterInit.getTask().stateProperty().addListener((observable, oldState, newState) -> {
                 boolean anyRunning = fileConverterInitMap.stream()
                         .anyMatch(init -> init.getTask().getState() == Worker.State.RUNNING);
-                boolean anyReady = fileConverterInitMap.stream()
-                        .anyMatch(init -> init.getTask().getState() == Worker.State.READY);
+
                 if (anyRunning) {
-                    convertButton.setText(ConvertButtonStatuses.CONVERT_ALL);
+                    convertButton.setText(ConvertButtonStatuses.CANCEL_ALL);
                 } else {
                     convertButton.setText(ConvertButtonStatuses.RESTART_ALL);
                 }
