@@ -7,6 +7,7 @@ import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.images.Artwork;
 import ws.schild.jave.Encoder;
 import ws.schild.jave.MultimediaObject;
+import ws.schild.jave.ScreenExtractor;
 import ws.schild.jave.encode.EncodingAttributes;
 
 
@@ -21,7 +22,7 @@ public class ThumbnailGenerator {
     public String generateThumbnail(String mediaPath) throws Exception {
         // Create a new encoder object
         Encoder encoder = new Encoder();
-
+        ScreenExtractor screenExtractor = new ScreenExtractor();
         // Create the encoding attributes
         EncodingAttributes attrs = new EncodingAttributes();
         attrs.setOutputFormat("image2");
@@ -59,7 +60,8 @@ public class ThumbnailGenerator {
                 }
             } else {
                 // Encode and save the image
-                encoder.encode(src, thumbnailPath.toFile(), attrs);
+                //encoder.encode(src, thumbnailPath.toFile(), attrs);
+                screenExtractor.renderOneImage(src,1080,1080,1000,thumbnailPath.toFile(),1);
             }
         }catch (InvalidAudioFrameException e){
             System.out.println("InvalidAudioFrameException in ThumbnailGenerator.generateThumbnail()" + e.getMessage());

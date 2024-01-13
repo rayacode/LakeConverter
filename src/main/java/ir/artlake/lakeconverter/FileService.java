@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.concurrent.Semaphore;
 
 public class FileService {
-    private static final int MAX_CONCURRENT_CONVERSIONS = 3;
+    private static final int MAX_CONCURRENT_CONVERSIONS = 2;
     private final Semaphore semaphore = new Semaphore(MAX_CONCURRENT_CONVERSIONS);
     private FileSelector fileSelector = new FileSelector();
     private ConversionInitializer conversionInitializer = new ConversionInitializer(semaphore);

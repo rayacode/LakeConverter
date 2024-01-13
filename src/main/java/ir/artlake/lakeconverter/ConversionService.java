@@ -39,7 +39,7 @@ public class ConversionService extends Service<Boolean> {
                 converter = new Converter(listener, source, target);
                 headServiceConvertClass = converter;
 
-                return converter.convert();
+                return converter.convertVideo();
             }
             finally {
                 semaphore.release();
