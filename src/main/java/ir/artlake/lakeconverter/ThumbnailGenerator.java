@@ -18,15 +18,13 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class ThumbnailGenerator {
-    private File imageFile;
+
     public String generateThumbnail(String mediaPath) throws Exception {
-        // Create a new encoder object
-        Encoder encoder = new Encoder();
+
+
         ScreenExtractor screenExtractor = new ScreenExtractor();
-        // Create the encoding attributes
-        EncodingAttributes attrs = new EncodingAttributes();
-        attrs.setOutputFormat("image2");
-        attrs.setOffset(1f); // offset for the frame to extract in seconds
+
+
 
         // Create the input source from the filename
         MultimediaObject src = new MultimediaObject(new File(mediaPath));

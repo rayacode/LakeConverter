@@ -1,4 +1,4 @@
-package ir.artlake.lakeconverter;
+package ir.artlake.lakeconverter.conversion;
 
 public class ConvertButtonStatuses {
     public static final String CONVERT_ALL = "Convert All";

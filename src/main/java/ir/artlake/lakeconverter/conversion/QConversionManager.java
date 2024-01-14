@@ -1,6 +1,7 @@
-package ir.artlake.lakeconverter;
+package ir.artlake.lakeconverter.conversion;
 
 
+import ir.artlake.lakeconverter.Main;
 import javafx.concurrent.Worker;
 
 import java.io.File;
@@ -9,13 +10,6 @@ import java.io.File;
 import static ir.artlake.lakeconverter.FileService.fileConverterInitMap;
 
 public class QConversionManager {
-
-    /*private final Map<File, FileConverterInit> fileConverterInitMap;
-
-    public QConversionManager(Map<File, FileConverterInit> fileConverterInitMap) {
-        this.fileConverterInitMap = fileConverterInitMap;
-    }*/
-
     public void startConversions() {
         for (FileConverterInit fileConverterInit : fileConverterInitMap) {
             fileConverterInit.startConversion();
@@ -30,6 +24,7 @@ public class QConversionManager {
         for (FileConverterInit fileConverterInit : fileConverterInitMap) {
             fileConverterInit.deleteOrCancelConvertFileThread();
         }
+
     }
 
 

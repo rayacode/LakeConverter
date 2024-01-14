@@ -1,5 +1,7 @@
 package ir.artlake.lakeconverter;
 
+import ir.artlake.lakeconverter.conversion.ConvertButtonStatuses;
+import ir.artlake.lakeconverter.conversion.FileConverterInit;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -35,34 +37,22 @@ public class MainController implements Initializable {
 
     private FileService fileService = new FileService();
 
-
-    //private File selectedTarget;
-    ////private List<FileConverterInit> fileConverterInitList = new ArrayList<>();
-
-
-
     @FXML
     protected void onChoosingFileAction() throws Exception {
         Stage stage = (Stage) choosingFiles.getScene().getWindow();
         List<File> selectedFiles = fileService.chooseSourceFiles(stage);
-        if(!selectedFiles.isEmpty()) {
-            System.out.println("i'm played");
+        if (selectedFiles != null && !selectedFiles.isEmpty()) {
+            System.out.println("I'm played");
             List<FileConverterInit> newFileConverterInit = fileService.initializeConversions();
             fileService.addButtonListenersToList(convertButton);
             uiUpdater.handleFileSelection(selectedFiles, newFileConverterInit);
             isSelected = true;
             convertButton.setDisable(false);
             convertButton.setText("Convert All");
-        }
-        else {
+        } else {
             uiUpdater.showFadeTransition("No file selected!");
         }
     }
-
-
-
-
-
 
     @FXML
     protected void onChoosingTargetAction() {
@@ -72,7 +62,7 @@ public class MainController implements Initializable {
 
     @FXML
     protected void onConvertAction() {
-        switch (convertButton.getText()){
+        switch (convertButton.getText()) {
             case ConvertButtonStatuses.CONVERT_ALL:
                 FileService.qConversionManager.startConversions();
                 break;
@@ -82,9 +72,7 @@ public class MainController implements Initializable {
             case ConvertButtonStatuses.RESTART_ALL:
                 FileService.qConversionManager.resetConversions();
                 break;
-
         }
-
     }
 
     public boolean isSelected() {
@@ -97,8 +85,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        isSelected =false;
+        isSelected = false;
         isStarted = false;
         convertButton.setDisable(true);
         uiUpdater.setConvWidgetsContainer(convListView);
@@ -106,9 +93,8 @@ public class MainController implements Initializable {
         splitPane.getDividers().get(0).positionProperty().addListener((observable, oldvalue, newvalue) -> {
             splitPane.setDividerPositions(0.1);
         });
-        convertButton.getStyleClass().setAll("btn","btn-danger");
-        choosingFiles.getStyleClass().setAll("btn","btn-info");
-        choosingTarget.getStyleClass().setAll("btn","btn-info");
-
+        convertButton.getStyleClass().setAll("btn", "btn-danger");
+        choosingFiles.getStyleClass().setAll("btn", "btn-info");
+        choosingTarget.getStyleClass().setAll("btn", "btn-info");
     }
 }

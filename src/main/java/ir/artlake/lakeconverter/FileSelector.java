@@ -22,6 +22,7 @@ public class FileSelector {
         if (selectedFiles != null) {
             lastFileDirectory = selectedFiles.get(0).getParentFile();
         }
+        
         return selectedFiles;
     }
 

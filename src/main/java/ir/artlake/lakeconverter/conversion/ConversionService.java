@@ -1,9 +1,11 @@
-package ir.artlake.lakeconverter;
+package ir.artlake.lakeconverter.conversion;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import ws.schild.jave.Encoder;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
 public class ConversionService extends Service<Boolean> {
@@ -28,15 +30,18 @@ public class ConversionService extends Service<Boolean> {
 
     }
     class ConversionTask extends Task<Boolean> {
-        Converter converter;
 
+        ConvertProgressListener listener= new ConvertProgressListener(this::updateProgress);
+        Converter converter = new Converter(listener, source, target);
+        boolean permitReleased = false;
 
         @Override
         protected Boolean call() throws Exception {
-            ConvertProgressListener listener= new ConvertProgressListener(this::updateProgress);
+
             semaphore.acquire();
+
             try {
-                converter = new Converter(listener, source, target);
+
                 headServiceConvertClass = converter;
 
                 return converter.convertVideo();
@@ -44,6 +49,30 @@ public class ConversionService extends Service<Boolean> {
             finally {
                 semaphore.release();
             }
+
+        }
+        private void releasePermit() {
+
+                semaphore.release();
+
+
+        }
+        @Override
+        public boolean cancel(boolean mayInterruptIfRunning) {
+            boolean cancelled = super.cancel(mayInterruptIfRunning);
+
+
+                if(converter.getEncoder() != null){
+                    converter.getEncoder().abortEncoding();
+                    //converter.setEncoder(new Encoder());
+                }
+
+
+
+
+            //releasePermit();
+
+            return cancelled;
         }
 
 

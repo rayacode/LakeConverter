@@ -1,12 +1,7 @@
-package ir.artlake.lakeconverter;
+package ir.artlake.lakeconverter.conversion;
 
-import javafx.application.Platform;
 import javafx.concurrent.Task;
-import ws.schild.jave.info.MultimediaInfo;
-import ws.schild.jave.progress.EncoderProgressListener;
 
-import java.io.File;
-import java.nio.file.Files;
 import java.util.concurrent.Semaphore;
 
 public class ConversionProgressTask extends Task<Boolean> {

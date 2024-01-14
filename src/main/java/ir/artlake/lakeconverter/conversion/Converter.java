@@ -1,15 +1,15 @@
-package ir.artlake.lakeconverter;
+package ir.artlake.lakeconverter.conversion;
 
 
 import org.jetbrains.annotations.NotNull;
 import ws.schild.jave.Encoder;
 import ws.schild.jave.EncoderException;
-import ws.schild.jave.InputFormatException;
 import ws.schild.jave.MultimediaObject;
 import ws.schild.jave.encode.AudioAttributes;
 import ws.schild.jave.encode.EncodingAttributes;
 import ws.schild.jave.encode.VideoAttributes;
 import ws.schild.jave.encode.enums.X264_PROFILE;
+import ws.schild.jave.process.ProcessWrapper;
 
 import java.io.File;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class Converter {
     @NotNull
     File target;
     ConvertProgressListener listener;
-    private Encoder encoder;
+    private Encoder encoder = new Encoder();
 
     public Converter(ConvertProgressListener listener, String source, String target){
         this.listener = listener;
@@ -111,20 +111,19 @@ public class Converter {
             }
             //Encode
 
-            encoder = new Encoder();
+
             int counter = 0;
+            String path = target.getPath();
+            String base = path.substring(0, path.lastIndexOf("."));
+            String extension = path.substring(path.lastIndexOf("."));
+
             while (target.exists()) {
                 counter++;
-                target = new File(target.getPath() + "_" + counter  );
+                target = new File(base + "_" + counter + extension);
             }
-            System.out.println("getVideoEncoders:\n " + Arrays.toString(encoder.getSupportedEncodingFormats()));
-            System.out.println("getSupportedEncodingFormats:\n " + Arrays.toString(encoder.getSupportedEncodingFormats()));
-            System.out.println("getVideoDecoders:\n " + Arrays.toString(encoder.getVideoDecoders()));
-            System.out.println("getSupportedDecodingFormats:\n " + Arrays.toString(encoder.getSupportedDecodingFormats()));
-            System.out.println("AudioEncoders:\n " + Arrays.toString(encoder.getAudioEncoders()));
-            System.out.println("getAudioDecoders:\n " + Arrays.toString(encoder.getAudioDecoders()));
-            attrs.setDecodingThreads(4);
-            attrs.setEncodingThreads(4);
+
+           // attrs.setDecodingThreads(4);
+            //attrs.setEncodingThreads(4);
             encoder.encode(new MultimediaObject(source), target, attrs, listener);
 
             return true;
@@ -137,6 +136,12 @@ public class Converter {
     }
 
     public Encoder getEncoder(){
-         return encoder;
+        if(encoder != null) {
+            return encoder;
+        }else return null;
+    }
+
+    public void setEncoder(Encoder encoder) {
+        this.encoder = encoder;
     }
 }

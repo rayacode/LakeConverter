@@ -1,10 +1,11 @@
-package ir.artlake.lakeconverter;
+package ir.artlake.lakeconverter.conversion;
+
+import ir.artlake.lakeconverter.FileUtils;
 
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
-import java.util.function.Consumer;
 
 public class ConversionInitializer {
     private final Semaphore semaphore;
@@ -28,6 +29,7 @@ public class ConversionInitializer {
             }
 
         }
+
         return fileConverterInitList;
     }
 }

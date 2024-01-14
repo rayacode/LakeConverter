@@ -1,4 +1,4 @@
-package ir.artlake.lakeconverter;
+package ir.artlake.lakeconverter.conversion;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -7,6 +7,7 @@ import javafx.concurrent.Worker;
 import java.io.File;
 import java.util.Map;
 
+/*
 public class StateCheckService extends Service<Boolean> {
     private final Map<File, FileConverterInit> fileConverterInitMap;
 
@@ -37,3 +38,4 @@ public class StateCheckService extends Service<Boolean> {
         };
     }
 }
+*/

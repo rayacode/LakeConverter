@@ -1,5 +1,6 @@
 package ir.artlake.lakeconverter;
 
+import ir.artlake.lakeconverter.conversion.FileConverterInit;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,9 +10,7 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class UIUpdater {
     private ListView convListView;
