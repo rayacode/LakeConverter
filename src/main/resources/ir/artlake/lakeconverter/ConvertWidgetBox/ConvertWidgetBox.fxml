@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root stylesheets="@ConvertWidgetBox.css" type="HBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="convertWidgetBox" alignment="CENTER" fillHeight="false">
+    <children>
+         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="NEVER">
+            <children>
+              <Label fx:id="fileNameLabel" styleClass="allLabelsTextColor" />
+            <ImageView fx:id="thumbnailView" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
+               <Label fx:id="formatLabel" styleClass="allLabelsTextColor" />
+            </children>
+         </VBox>
+        <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="400.0" HBox.hgrow="NEVER">
+            <HBox.margin>
+                <Insets left="10" />
+            </HBox.margin>
+        </ProgressBar>
+        <Label fx:id="progressLabel" prefHeight="17.0" prefWidth="31.0" styleClass="allLabelsTextColor" HBox.hgrow="NEVER">
+            <HBox.margin>
+                <Insets left="10.0" right="10.0" />
+            </HBox.margin>
+        </Label>
+        <Label fx:id="convertStatusLabel" prefHeight="17.0" prefWidth="78.0" styleClass="allLabelsTextColor" HBox.hgrow="NEVER">
+            <HBox.margin>
+                <Insets left="10" />
+            </HBox.margin>
+        </Label>
+         <Pane prefHeight="200.0" prefWidth="0.0" HBox.hgrow="NEVER" />
+         <GridPane id="gridPanBox" fx:id="gridPanBox" prefHeight="200.0" HBox.hgrow="NEVER">
+           <columnConstraints>
+             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
+            <Button id="convertCRButton" fx:id="convertCRButton" mnemonicParsing="false" onAction="#onConvertAction" text="Convert" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               <Button id="removeButton" fx:id="removeButton" mnemonicParsing="false" onAction="#onRemoveButtonAction" GridPane.columnIndex="2" />
+            </children>
+         </GridPane>
+    </children>
+</HBox>
+</fx:root>

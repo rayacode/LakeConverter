@@ -16,10 +16,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ConvertWidgetBox extends HBox implements Initializable {
+    @FXML
+    private Button removeButton;
+    @FXML
+    private Label formatLabel;
     @FXML
     private Label fileNameLabel;
     @FXML
@@ -36,16 +41,42 @@ public class ConvertWidgetBox extends HBox implements Initializable {
     @FXML
     private Label stateLabel;
     private File file;
+    private UIUpdater uiUpdater;
 
     private FileConverterInit fileConverterInit;
     ThumbnailGenerator thumbnailGenerator;
+    public ConvertWidgetBox(){
+        super();
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(
+                        getClass().
+                                getResource("ConvertWidgetBox/ConvertWidgetBox.fxml"));
 
-    public ConvertWidgetBox(FileConverterInit fileConverterInit, File file) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ConvertWidgetBox.fxml"));
+        ;
         fxmlLoader.setController(this);
-        Parent root = fxmlLoader.load();
-        this.getChildren().add(root);
-        fileNameLabel.setText(file.getName().substring(0, file.getName().lastIndexOf('.')));
+        fxmlLoader.setRoot(this);
+
+
+        try {
+            fxmlLoader.load();
+            uiUpdater = new UIUpdater();
+
+        } catch ( IOException e ) {
+            throw new RuntimeException( e );
+        }
+    }
+    public void setConvertWidgetBox(FileConverterInit fileConverterInit, File file) throws Exception {
+
+        String fileNameBase = file.getName().substring(0, file.getName().lastIndexOf('.'));
+        String fileName = String.format("%-18s", fileNameBase).replace(' ', ' ');
+        if (fileName.length() > 18) {
+            fileName = fileName.substring(0, 15) + "...";
+        }
+        fileNameLabel.setText(fileName);
+
+        String format = file.getName().substring(file.getName().lastIndexOf('.'), file.getName().length());
+        formatLabel.setText(format);
+
         thumbnailGenerator = new ThumbnailGenerator();
         String thumbnailPath = thumbnailGenerator.generateThumbnail(file.getPath());
         System.out.println(thumbnailPath);
@@ -125,8 +156,24 @@ public class ConvertWidgetBox extends HBox implements Initializable {
         }
     }
 
+    @FXML
+    protected synchronized void onRemoveButtonAction(){
+        FileService.fileConverterInitMap.remove(this.fileConverterInit);
+        uiUpdater.removeFromList(this, this.file);
+        fileConverterInit = null;
+
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Image importImageI = new Image(String.valueOf(Main.class.getResource("icons/trash-off.png")));
 
+        // Create an ImageView
+        ImageView importImage = new ImageView(importImageI);
+        importImage.setFitWidth(15);
+        importImage.setFitHeight(15);
+        // Create a button and set the graphic
+        removeButton.setGraphic(importImage);
     }
 }

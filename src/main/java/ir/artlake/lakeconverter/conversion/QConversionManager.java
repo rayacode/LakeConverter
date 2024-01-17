@@ -17,7 +17,9 @@ public class QConversionManager {
     }
     public void resetConversions() {
         for (FileConverterInit fileConverterInit : fileConverterInitMap) {
-            fileConverterInit.restartConversion();
+
+                fileConverterInit.restartConversion();
+
         }
     }
     public void deleteOrCanselConversions() {

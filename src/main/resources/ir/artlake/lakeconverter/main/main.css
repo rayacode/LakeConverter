@@ -1,0 +1,75 @@
+
+.split-pane {
+    -fx-background-color: #3C3F41;
+    -fx-pref-width: 900.0;
+    -fx-pref-height: 400.0;
+
+    -fx-padding: 20 20 0 0;
+
+}
+.split-pane-divider {
+    -fx-background-color: #3C3F41; /* Change 'black' to your desired color */
+}
+#convertButton{
+    -fx-background-color:#499C54 ;
+    -fx-text-fill: #AFB1B3;
+}
+#convertButton:hover {
+    /* Hover state */
+    -fx-background-color: #4C5052;
+    -fx-text-fill: #499C54 ;
+}
+
+#convertButton:pressed {
+    /* Pressed state */
+    -fx-background-color: #5C6164;
+    -fx-text-fill: #499C70;
+}
+#convListView{
+    -fx-background-color: #2B2B2B;
+    -fx-pref-height: 600.0;
+
+    -fx-min-height: 600.0;
+
+}
+#convListView .list-cell{
+    -fx-background-color: #2B2B2B;
+    -fx-pref-height: 140.0;
+    -fx-max-height: 140.0;
+    -fx-min-height: 140.0;
+    -fx-text-fill: #AFB1B3;
+    -fx-border-color: #5C6164;
+    -fx-border-width: 0 0 1 0;
+
+}
+#convListView .list-cell:empty {
+    -fx-border-width: 0;
+}
+#convertBar{
+    -fx-background-color: #323232;
+    -fx-pref-height: 40.0;
+    -fx-pref-width: 200.0;
+}
+.convertButClass{
+    -fx-background-color:#323232 ;
+    -fx-text-fill: #CACCCF;
+}
+
+.convertButClass {
+    /* Normal state */
+    -fx-background-color: #323232;
+}
+
+.convertButClass:hover {
+    /* Hover state */
+    -fx-background-color: #4C5052;
+}
+
+.convertButClass:pressed {
+    /* Pressed state */
+    -fx-background-color: #5C6164;
+}
+#mergeAllLabel{
+    -fx-text-fill: #499C54 ;
+}
+

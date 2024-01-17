@@ -1,12 +1,15 @@
 package ir.artlake.lakeconverter;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.kordamp.bootstrapfx.BootstrapFX;
+
 
 import java.io.File;
 
@@ -21,12 +24,31 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main.fxml"));
+        //Application.setUserAgentStylesheet(new NordDark().getUserAgentStylesheet());
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main/main.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 1100, 700);
-        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+
         stage.setTitle("LakeConverter");
         stage.setScene(scene);
+        stage.setResizable(false);
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.xProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() < screenBounds.getMinX()) {
+                stage.setX(screenBounds.getMinX());
+            } else if (newVal.doubleValue() > screenBounds.getMaxX() - stage.getWidth()) {
+                stage.setX(screenBounds.getMaxX() - stage.getWidth());
+            }
+        });
+
+        stage.yProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() < screenBounds.getMinY()) {
+                stage.setY(screenBounds.getMinY());
+            } else if (newVal.doubleValue() > screenBounds.getMaxY() - stage.getHeight()) {
+                stage.setY(screenBounds.getMaxY() - stage.getHeight());
+            }
+        });
+
         stage.show();
 
         stage.setOnCloseRequest(event -> {

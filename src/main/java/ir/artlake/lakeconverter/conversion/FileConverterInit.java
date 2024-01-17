@@ -40,9 +40,11 @@ public class FileConverterInit {
     public synchronized  void restartConversion(){
 
         //service.cancel();
-        service.reset();
 
-        service.start();
+            service.reset();
+
+            service.start();
+
     }
     public synchronized void deleteOrCancelConvertFileThread(){
         if (service.getState() == Worker.State.RUNNING || service.getState() == Worker.State.SCHEDULED) {

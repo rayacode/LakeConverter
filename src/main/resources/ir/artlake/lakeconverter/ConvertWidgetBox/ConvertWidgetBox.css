@@ -1,0 +1,37 @@
+.allLabelsTextColor{
+    -fx-text-fill: #499C54 ;
+}
+#gridPanBox{
+    -fx-pref-height: 120.0;
+    -fx-max-height: 120.0;
+    -fx-min-height: 120.0;
+
+}
+#removeButton{
+    -fx-background-color: #2B2B2B;
+}
+
+#removeButton:hover {
+    /* Hover state */
+    -fx-background-color: #4C5052;
+}
+
+#removeButton:pressed {
+    /* Pressed state */
+    -fx-background-color: #5C6164;
+}
+#convertCRButton{
+    -fx-background-color:#367D97 ;
+    -fx-text-fill: #AFB1B3;
+}
+#convertCRButton:hover {
+    /* Hover state */
+    -fx-background-color: #4C5052;
+    -fx-text-fill: #499C54 ;
+}
+
+#convertCRButton:pressed {
+    /* Pressed state */
+    -fx-background-color: #5C6164;
+    -fx-text-fill: #499C70;
+}

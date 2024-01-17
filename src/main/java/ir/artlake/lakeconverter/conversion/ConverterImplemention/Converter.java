@@ -35,7 +35,7 @@ public class Converter<S extends Format, T extends Format> {
 
 
 
-    public Boolean convertVideo(){
+    public Boolean convert(){
         try {
 
 

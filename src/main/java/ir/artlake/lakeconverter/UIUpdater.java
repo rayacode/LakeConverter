@@ -29,9 +29,9 @@ public class UIUpdater {
         this.messageLabel = messageLabel;
     }
     // List to keep track of the File objects that have already been added
-    private List<File> addedFiles = new ArrayList<>();
+    public static List<File> addedFiles = new ArrayList<>();
     // Create an ObservableList to back your items
-    ObservableList<ConvertWidgetBox> items = FXCollections.observableArrayList();
+    public static ObservableList<ConvertWidgetBox> items = FXCollections.observableArrayList();
 
 
 
@@ -42,15 +42,20 @@ public class UIUpdater {
             if (!addedFiles.contains(file)) {
                 // Retrieve the FileConverterInit for this file, or create a new one if it doesn't exist
 
-                ConvertWidgetBox fileBox = new ConvertWidgetBox(fileConverterInitList.get(i), file);
-
-                items.add(fileBox);
-                addedFiles.add(file);
+                ConvertWidgetBox fileBox = new ConvertWidgetBox();
+                fileBox.setConvertWidgetBox(fileConverterInitList.get(i), file);
+                UIUpdater.items.add(fileBox);
+                UIUpdater.addedFiles.add(file);
 
             }
         }
     }
-
+    public void removeFromList(ConvertWidgetBox fileBox, File file){
+        FileService.everSelectedFiles.remove(file);
+        items.remove(fileBox);
+        addedFiles.remove(file);
+        //convListView.refresh();
+    }
     public void showFadeTransition(String message) {
         FadeTransition fadeIn = new FadeTransition(Duration.seconds(2), messageLabel);
         fadeIn.setFromValue(0);

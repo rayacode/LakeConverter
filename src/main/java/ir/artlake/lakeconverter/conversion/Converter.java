@@ -27,7 +27,7 @@ public class Converter {
         this.source = new File(source);
         String sourceName = this.source.getName();
         String baseName = sourceName.substring(0, sourceName.lastIndexOf('.'));
-        this.target = new File(target, baseName + ".mp3");
+        this.target = new File(target, baseName + ".mkv");
 
     }
 
@@ -86,8 +86,9 @@ public class Converter {
 
 
             VideoAttributes video = new VideoAttributes();
-            video.setCodec("h264");
-            video.setX264Profile(X264_PROFILE.BASELINE);
+            video.setCodec("hevc");
+
+
 // Here 160 kbps video is 160000
             //video.setBitRate(160000);
 // More the frames more quality and size, but keep it low based on devices like mobile
@@ -97,7 +98,7 @@ public class Converter {
 
             //Encoding attributes
             EncodingAttributes attrs = new EncodingAttributes();
-            attrs.setOutputFormat("mp4");
+            attrs.setOutputFormat("matroska");
             attrs.setAudioAttributes(audio);
             attrs.setVideoAttributes(video);
             if (source != null) {
