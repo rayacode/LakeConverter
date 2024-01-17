@@ -1,21 +1,19 @@
-package ir.artlake.lakeconverter;
+package ir.artlake.lakeconverter.fileoperations;
 
+import ir.artlake.lakeconverter.Main;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.images.Artwork;
-import ws.schild.jave.Encoder;
 import ws.schild.jave.MultimediaObject;
 import ws.schild.jave.ScreenExtractor;
-import ws.schild.jave.encode.EncodingAttributes;
 
 
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 public class ThumbnailGenerator {
 
@@ -50,11 +48,11 @@ public class ThumbnailGenerator {
                         Files.write(thumbnailPath, imageData);
                     } else {
                         // Use a default image
-                        return getClass().getResource("defaultAduio.jpg").toURI().toURL().toString();
+                        return Main.class.getResource("defaultAduio.jpg").toURI().toURL().toString();
                     }
                 } else {
                     // Use a default image
-                    return getClass().getResource("defaultAduio.jpg").toURI().toURL().toString();
+                    return Main.class.getResource("defaultAduio.jpg").toURI().toURL().toString();
                 }
             } else {
                 // Encode and save the image
@@ -63,7 +61,7 @@ public class ThumbnailGenerator {
             }
         }catch (InvalidAudioFrameException e){
             System.out.println("InvalidAudioFrameException in ThumbnailGenerator.generateThumbnail()" + e.getMessage());
-            return getClass().getResource("defaultAduio.jpg").toURI().toURL().toString();
+            return Main.class.getResource("defaultAduio.jpg").toURI().toURL().toString();
         }
 
         return thumbnailPath.toUri().toURL().toString();

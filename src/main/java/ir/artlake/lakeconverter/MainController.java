@@ -3,6 +3,9 @@ package ir.artlake.lakeconverter;
 
 import ir.artlake.lakeconverter.conversion.ConvertButtonStatuses;
 import ir.artlake.lakeconverter.conversion.FileConverterInit;
+import ir.artlake.lakeconverter.fileoperations.FileService;
+import ir.artlake.lakeconverter.fileoperations.concurency.AddFiles;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -20,7 +23,12 @@ import java.util.*;
 
 public class MainController implements Initializable {
 
-
+    @FXML
+    private ProgressBar fileAddProgress;
+    @FXML
+    private Button deleteAllButton;
+    @FXML
+    private Label filesCounter;
     @FXML
     private Button convertButton;
     @FXML
@@ -49,28 +57,12 @@ public class MainController implements Initializable {
     protected void onChoosingFileAction() throws Exception {
         Stage stage = (Stage) choosingFiles.getScene().getWindow();
         List<File> selectedFiles = fileService.chooseSourceFiles(stage);
-        if (selectedFiles != null && !selectedFiles.isEmpty()) {
-            System.out.println("I'm played");
-            List<FileConverterInit> newFileConverterInit = fileService.initializeConversions();
-            fileService.addButtonListenersToList(convertButton);
-            uiUpdater.handleFileSelection(selectedFiles, newFileConverterInit);
-            isSelected = true;
-            convertButton.setDisable(false);
-            convertButton.setText("Convert All");
-            for(FileConverterInit fileConverterInit : newFileConverterInit){
-                System.out.println("testVideoInfo1");
+        AddFiles addFiles = new AddFiles(selectedFiles, fileService,
+                convertButton, isSelected,
+                uiUpdater, fileService.getSemaphore(), deleteAllButton);
+        fileAddProgress.progressProperty().bind(addFiles.progressProperty());
+        addFiles.start();
 
-                File source = new File(fileConverterInit.getSource(),"");
-                MultimediaObject mo = new MultimediaObject(source);
-                MultimediaInfo mi= mo.getInfo();
-                AudioInfo ai= mi.getAudio();
-                VideoInfo vi= mi.getVideo();
-                System.out.println(ai.toString());
-                System.out.println(vi.toString());
-            }
-        } else {
-            uiUpdater.showFadeTransition("No file selected!");
-        }
     }
 
     @FXML
@@ -105,6 +97,10 @@ public class MainController implements Initializable {
 
     }
     @FXML
+    protected void onDeleteAllButtonAction(){
+        uiUpdater.removeAllList();
+    }
+    @FXML
     protected void onConvertAction() {
         switch (convertButton.getText()) {
             case ConvertButtonStatuses.CONVERT_ALL:
@@ -132,7 +128,17 @@ public class MainController implements Initializable {
         isSelected = false;
         isStarted = false;
         convertButton.setDisable(true);
-        uiUpdater.setConvWidgetsContainer(convListView);
+        convertButton.setVisible(false);
+        deleteAllButton.setVisible(false);
+        deleteAllButton.setDisable(true);
+        convertButton.textProperty().addListener((observable, oldValue, newValue) -> {
+            if("Cancel All".equals(newValue)){
+                deleteAllButton.setDisable(true);
+            }else{
+                deleteAllButton.setDisable(false);
+            }
+        });
+        uiUpdater.setConvWidgetsContainer(convListView, fileAddProgress);
         uiUpdater.setMessageLabel(messageLabel);
 
         splitPane.getDividers().get(0).positionProperty().addListener((observable, oldvalue, newvalue) -> {
@@ -166,7 +172,8 @@ public class MainController implements Initializable {
         toggleImageView.setFitHeight(30);
         // Create a button and set the graphic
         mergeToggle.setGraphic(toggleImageView);
-
+        fileAddProgress.setDisable(true);
+        fileAddProgress.setVisible(false);
 
         /*var denseToggle = new ToggleSwitch("Dense");
         denseToggle.selectedProperty().addListener(

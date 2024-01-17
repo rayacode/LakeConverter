@@ -73,3 +73,24 @@
     -fx-text-fill: #499C54 ;
 }
 
+#messageLabel{
+    -fx-text-fill: #499C54 ;
+}
+#deleteAllButton{
+
+}
+#deleteAllButton{
+    -fx-background-color:#C75450 ;
+    -fx-text-fill: #AFB1B3;
+}
+#deleteAllButton:hover {
+    /* Hover state */
+    -fx-background-color: #4C5052;
+    -fx-text-fill: #499C54 ;
+}
+
+#deleteAllButton:pressed {
+    /* Pressed state */
+    -fx-background-color: #5C6164;
+    -fx-text-fill: #499C70;
+}

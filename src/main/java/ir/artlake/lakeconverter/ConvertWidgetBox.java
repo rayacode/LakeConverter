@@ -1,13 +1,12 @@
 package ir.artlake.lakeconverter;
 
-import ir.artlake.lakeconverter.FileService;
-import ir.artlake.lakeconverter.ThumbnailGenerator;
+import ir.artlake.lakeconverter.fileoperations.FileService;
+import ir.artlake.lakeconverter.fileoperations.ThumbnailGenerator;
 import ir.artlake.lakeconverter.conversion.FileConverterInit;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;

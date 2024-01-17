@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
+import static ir.artlake.lakeconverter.Main.executorService;
+
 public class ConversionService extends Service<Boolean> {
     private String name;
     private Converter headServiceConvertClass;
@@ -21,6 +23,7 @@ public class ConversionService extends Service<Boolean> {
         this.semaphore = semaphore;
 
         this.name = new File(source).getName();
+        this.setExecutor(executorService);
 
     }
 

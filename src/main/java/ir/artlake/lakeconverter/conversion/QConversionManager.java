@@ -1,13 +1,12 @@
 package ir.artlake.lakeconverter.conversion;
 
 
-import ir.artlake.lakeconverter.Main;
 import javafx.concurrent.Worker;
 
 import java.io.File;
 
 
-import static ir.artlake.lakeconverter.FileService.fileConverterInitMap;
+import static ir.artlake.lakeconverter.fileoperations.FileService.fileConverterInitMap;
 
 public class QConversionManager {
     public void startConversions() {

@@ -1,5 +1,6 @@
-package ir.artlake.lakeconverter;
+package ir.artlake.lakeconverter.fileoperations;
 
+import ir.artlake.lakeconverter.UIUpdater;
 import ir.artlake.lakeconverter.conversion.ConversionInitializer;
 import ir.artlake.lakeconverter.conversion.ConvertButtonStatuses;
 import ir.artlake.lakeconverter.conversion.FileConverterInit;
@@ -72,5 +73,7 @@ public class FileService {
         }
     }
 
-
+    public Semaphore getSemaphore() {
+        return semaphore;
+    }
 }

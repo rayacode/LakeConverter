@@ -57,6 +57,7 @@ public class Main extends Application {
 
     }
     public static void main(String[] args) {
+        //System.setProperty("prism.order", "sw");
         executorService= Executors.newFixedThreadPool(10);
         launch();
 
