@@ -94,3 +94,6 @@
     -fx-background-color: #5C6164;
     -fx-text-fill: #499C70;
 }
+#filesCounter{
+    -fx-text-fill: #AFB1B3;
+}

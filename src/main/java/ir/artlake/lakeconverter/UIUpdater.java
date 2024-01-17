@@ -21,6 +21,7 @@ public class UIUpdater {
     private Label messageLabel;
     private ProgressBar fileAddProgressBar;
 
+
     public UIUpdater(){
         // Bind the ListView's items to the ObservableList
 
@@ -28,6 +29,7 @@ public class UIUpdater {
     public void setConvWidgetsContainer(ListView convWidgetsContainer, ProgressBar progressBar) {
         this.convListView = convWidgetsContainer;
         this.fileAddProgressBar = progressBar;
+
         convListView.setItems(items);
     }
 
@@ -67,6 +69,7 @@ public class UIUpdater {
 
                     UIUpdater.items.add(fileBox);
                     UIUpdater.addedFiles.add(file);
+
                     addFilesProgressListener.progress(newIndex + 1, sourceFiles.size());
                 });
 
@@ -83,6 +86,8 @@ public class UIUpdater {
         FileService.everSelectedFiles.remove(file);
         items.remove(fileBox);
         addedFiles.remove(file);
+
+
 
         //convListView.refresh();
     }

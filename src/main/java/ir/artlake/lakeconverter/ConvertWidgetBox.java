@@ -41,6 +41,7 @@ public class ConvertWidgetBox extends HBox implements Initializable {
     private Label stateLabel;
     private File file;
     private UIUpdater uiUpdater;
+    private Label fileCounter;
 
     private FileConverterInit fileConverterInit;
     ThumbnailGenerator thumbnailGenerator;

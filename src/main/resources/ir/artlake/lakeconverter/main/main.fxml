@@ -53,7 +53,11 @@
                         <Insets left="10.0" />
                      </padding>
                   </ProgressBar>
-                  <Label id="filesCounter" fx:id="filesCounter" />
+                  <Label id="filesCounter" fx:id="filesCounter">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
             </HBox>
             </children>

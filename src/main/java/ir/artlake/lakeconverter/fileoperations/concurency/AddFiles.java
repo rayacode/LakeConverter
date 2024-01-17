@@ -7,11 +7,13 @@ import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import ws.schild.jave.MultimediaObject;
 import ws.schild.jave.info.MultimediaInfo;
 
 import java.io.File;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.Semaphore;
 
 public class AddFiles extends Service<Boolean> {
@@ -21,19 +23,22 @@ public class AddFiles extends Service<Boolean> {
     private Button convertButton;
     private Button deleteAllButton;
     private UIUpdater uiUpdater;
+    private Label filesCounter;
     private boolean isSelected;
     public AddFiles(List<File> selectedFiles,
                     FileService fileService ,
                     Button convertButton,
                     boolean isSelected,
-                    UIUpdater uiUpdater, Semaphore semaphore, Button deleteAllButton) {
+                    UIUpdater uiUpdater,
+                    Semaphore semaphore) {
       this.selectedFiles = selectedFiles;
       this.fileService = fileService;
       this.convertButton = convertButton;
       this.isSelected = isSelected;
       this.uiUpdater = uiUpdater;
       this.semaphore = semaphore;
-        this.deleteAllButton = deleteAllButton;
+
+
     }
 
     @Override
@@ -64,8 +69,6 @@ public class AddFiles extends Service<Boolean> {
                         convertButton.setDisable(false);
                         convertButton.setVisible(true);
                         convertButton.setText("Convert All");
-                        deleteAllButton.setDisable(false);
-                        deleteAllButton.setVisible(true);
                     });
 
                     for(FileConverterInit fileConverterInit : newFileConverterInit){

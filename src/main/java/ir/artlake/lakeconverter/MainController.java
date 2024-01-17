@@ -6,6 +6,9 @@ import ir.artlake.lakeconverter.conversion.FileConverterInit;
 import ir.artlake.lakeconverter.fileoperations.FileService;
 import ir.artlake.lakeconverter.fileoperations.concurency.AddFiles;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -59,7 +62,7 @@ public class MainController implements Initializable {
         List<File> selectedFiles = fileService.chooseSourceFiles(stage);
         AddFiles addFiles = new AddFiles(selectedFiles, fileService,
                 convertButton, isSelected,
-                uiUpdater, fileService.getSemaphore(), deleteAllButton);
+                uiUpdater, fileService.getSemaphore());
         fileAddProgress.progressProperty().bind(addFiles.progressProperty());
         addFiles.start();
 
@@ -99,6 +102,11 @@ public class MainController implements Initializable {
     @FXML
     protected void onDeleteAllButtonAction(){
         uiUpdater.removeAllList();
+        filesCounter.setText("");
+        convertButton.setDisable(true);
+        convertButton.setVisible(false);
+        deleteAllButton.setVisible(false);
+        deleteAllButton.setDisable(true);
     }
     @FXML
     protected void onConvertAction() {
@@ -136,6 +144,31 @@ public class MainController implements Initializable {
                 deleteAllButton.setDisable(true);
             }else{
                 deleteAllButton.setDisable(false);
+            }
+        });
+        convertButton.visibleProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    deleteAllButton.setDisable(false);
+                    deleteAllButton.setVisible(true);
+                }
+            }
+        });
+
+        UIUpdater.items.addListener(new ListChangeListener<ConvertWidgetBox>() {
+            @Override
+            public void onChanged(Change<? extends ConvertWidgetBox> c) {
+                if(UIUpdater.items.size() != 0){
+                    filesCounter.setText(UIUpdater.items.size() + " Files");
+                }else {
+                    filesCounter.setText("");
+                    convertButton.setDisable(true);
+                    convertButton.setVisible(false);
+                    deleteAllButton.setVisible(false);
+                    deleteAllButton.setDisable(true);
+                }
+
             }
         });
         uiUpdater.setConvWidgetsContainer(convListView, fileAddProgress);
