@@ -1,8 +1,10 @@
 package ir.artlake.lakeconverter.conversion;
 
+import ir.artlake.lakeconverter.conversion.Formats.MP4;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import ws.schild.jave.Encoder;
+import ws.schild.jave.EncoderException;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +14,7 @@ import static ir.artlake.lakeconverter.Main.executorService;
 
 public class ConversionService extends Service<Boolean> {
     private String name;
-    private Converter headServiceConvertClass;
+    private ir.artlake.lakeconverter.conversion.ConverterImplemention.Converter<MP4> headServiceConvertClass;
 
     private String source;
     private String target;
@@ -34,8 +36,11 @@ public class ConversionService extends Service<Boolean> {
     }
     class ConversionTask extends Task<Boolean> {
 
+        MP4 mp4 = MP4.defaultMP4();
+
+
         ConvertProgressListener listener= new ConvertProgressListener(this::updateProgress);
-        Converter converter = new Converter(listener, source, target);
+        ir.artlake.lakeconverter.conversion.ConverterImplemention.Converter<MP4> converter = new ir.artlake.lakeconverter.conversion.ConverterImplemention.Converter<>(listener, source, target, mp4);
         boolean permitReleased = false;
 
         @Override
@@ -46,8 +51,13 @@ public class ConversionService extends Service<Boolean> {
             try {
 
                 headServiceConvertClass = converter;
-
-                return converter.convertVideo();
+                boolean returnValue = converter.convert();
+                System.out.println("int try body im "+returnValue);
+                return returnValue;
+            }catch (Exception exception){
+                System.out.println("Strange exception got cought");
+                exception.printStackTrace();
+                return false;
             }
             finally {
                 semaphore.release();
@@ -89,7 +99,7 @@ public class ConversionService extends Service<Boolean> {
         this.name = name;
     }
 
-    public Converter getHeadServiceConvertClass() {
+    public ir.artlake.lakeconverter.conversion.ConverterImplemention.Converter getHeadServiceConvertClass() {
         return headServiceConvertClass;
     }
 }

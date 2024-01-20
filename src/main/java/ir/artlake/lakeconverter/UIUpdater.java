@@ -1,5 +1,6 @@
 package ir.artlake.lakeconverter;
 
+import ir.artlake.lakeconverter.controllers.ConvertCellController;
 import ir.artlake.lakeconverter.conversion.FileConverterInit;
 import ir.artlake.lakeconverter.fileoperations.FileService;
 import ir.artlake.lakeconverter.fileoperations.concurency.AddFilesProgressListener;
@@ -26,7 +27,7 @@ public class UIUpdater {
         // Bind the ListView's items to the ObservableList
 
     }
-    public void setConvWidgetsContainer(ListView convWidgetsContainer, ProgressBar progressBar) {
+    public void setConvWidgetsContainer(ListView<ConvertCellController> convWidgetsContainer, ProgressBar progressBar) {
         this.convListView = convWidgetsContainer;
         this.fileAddProgressBar = progressBar;
 
@@ -39,13 +40,13 @@ public class UIUpdater {
     // List to keep track of the File objects that have already been added
     public static List<File> addedFiles = new ArrayList<>();
     // Create an ObservableList to back your items
-    public static ObservableList<ConvertWidgetBox> items =
+    public static ObservableList<ConvertCellController> items =
             FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
 
 
 
 
-    public  void handleFileSelection(List<File> sourceFiles,
+    public  synchronized void handleFileSelection(List<File> sourceFiles,
                                      List<FileConverterInit> fileConverterInitList,
                                      AddFilesProgressListener addFilesProgressListener) throws Exception {
         Platform.runLater(()->{
@@ -55,6 +56,7 @@ public class UIUpdater {
 
 
         int index;
+        System.out.println("s size f size "+sourceFiles.size() + "  " + fileConverterInitList.size());
         for (int i = 0; i < sourceFiles.size() && i < fileConverterInitList.size(); i++) {
             index = i;
             File file = sourceFiles.get(i);
@@ -62,15 +64,17 @@ public class UIUpdater {
             if (!addedFiles.contains(file)) {
                 // Retrieve the FileConverterInit for this file, or create a new one if it doesn't exist
 
-                ConvertWidgetBox fileBox = new ConvertWidgetBox();
+                ConvertCellController fileBox = new ConvertCellController();
                 fileBox.setConvertWidgetBox(fileConverterInitList.get(i), file);
                 final int newIndex = index;
+
                 Platform.runLater(()->{
 
                     UIUpdater.items.add(fileBox);
                     UIUpdater.addedFiles.add(file);
 
                     addFilesProgressListener.progress(newIndex + 1, sourceFiles.size());
+
                 });
 
             }
@@ -82,7 +86,7 @@ public class UIUpdater {
 
 
     }
-    public void removeFromList(ConvertWidgetBox fileBox, File file){
+    public void removeFromList(ConvertCellController fileBox, File file){
         FileService.everSelectedFiles.remove(file);
         items.remove(fileBox);
         addedFiles.remove(file);

@@ -55,7 +55,7 @@ public class AddFiles extends Service<Boolean> {
         @Override
         protected Boolean call() throws Exception {
 
-            semaphore.acquire();
+            //semaphore.acquire();
 
             try {
 
@@ -91,7 +91,7 @@ public class AddFiles extends Service<Boolean> {
                 }
             }
             finally {
-                semaphore.release();
+                //semaphore.release();
             }
 
         }

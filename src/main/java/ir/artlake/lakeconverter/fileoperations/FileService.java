@@ -5,6 +5,7 @@ import ir.artlake.lakeconverter.conversion.ConversionInitializer;
 import ir.artlake.lakeconverter.conversion.ConvertButtonStatuses;
 import ir.artlake.lakeconverter.conversion.FileConverterInit;
 import ir.artlake.lakeconverter.conversion.QConversionManager;
+import javafx.application.Platform;
 import javafx.concurrent.Worker;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -53,23 +54,29 @@ public class FileService {
         fileConverterInitMap.addAll(newFileConverterInitList);
         everSelectedFiles.addAll(selectedFiles);
         selectedFiles = new ArrayList<>();
+
         return newFileConverterInitList;
     }
     public synchronized  void addButtonListenersToList( Button convertButton){
         for (FileConverterInit fileConverterInit : fileConverterInitMap) {
-            fileConverterInit.getTask().stateProperty().addListener((observable, oldState, newState) -> {
-                boolean anyRunning = fileConverterInitMap.stream()
-                        .anyMatch(init -> init.getTask().getState() == Worker.State.RUNNING);
+            Platform.runLater(()->{
+            try {
+                fileConverterInit.getTask().stateProperty().addListener((observable, oldState, newState) -> {
+                    boolean anyRunning = fileConverterInitMap.stream()
+                            .anyMatch(init -> init.getTask().getState() == Worker.State.RUNNING);
 
-                if (anyRunning) {
-                    convertButton.setText(ConvertButtonStatuses.CANCEL_ALL);
-                } else {
-                    convertButton.setText(ConvertButtonStatuses.RESTART_ALL);
-                }
+                    if (anyRunning) {
+                        convertButton.setText(ConvertButtonStatuses.CANCEL_ALL);
+                    } else {
+                        convertButton.setText(ConvertButtonStatuses.RESTART_ALL);
+                    }
 
 
 
-            });
+                });
+            }catch (Exception exception){
+                exception.printStackTrace();
+            }});
         }
     }
 

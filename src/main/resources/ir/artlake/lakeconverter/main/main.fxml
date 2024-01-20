@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane fx:id="splitPane" dividerPositions="0.1" stylesheets="@main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.artlake.lakeconverter.MainController">
+<SplitPane fx:id="splitPane" dividerPositions="0.1" stylesheets="@main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.artlake.lakeconverter.controllers.MainController">
     <padding>
             <Insets />
         </padding>
@@ -58,6 +58,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
+                  <Button id="convertToButton" fx:id="convertToButton" mnemonicParsing="false" onAction="#onConvertToAction" text="Convert To" />
                </children>
             </HBox>
             </children>

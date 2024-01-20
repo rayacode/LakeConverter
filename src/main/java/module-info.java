@@ -13,4 +13,6 @@ module ir.artlake.lakeconverter {
     exports ir.artlake.lakeconverter;
     exports ir.artlake.lakeconverter.fileoperations;
     opens ir.artlake.lakeconverter.fileoperations to javafx.fxml;
+    exports ir.artlake.lakeconverter.controllers;
+    opens ir.artlake.lakeconverter.controllers to javafx.fxml;
 }

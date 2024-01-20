@@ -1,0 +1,103 @@
+#motherSplitPane {
+
+}
+
+#formatCategBar {
+
+}
+
+#videoFormatsButton {
+    -fx-background-color:#367D97 ;
+    -fx-text-fill: #AFB1B3;
+    -fx-background-radius: 0;
+}
+#videoFormatsButton:hover {
+    /* Hover state */
+    -fx-background-color: #4C5052;
+    -fx-text-fill: #499C54 ;
+}
+
+#videoFormatsButton:pressed {
+    /* Pressed state */
+    -fx-background-color: #5C6164;
+    -fx-text-fill: #499C70;
+}
+
+#audioFormatsButton {
+    -fx-background-color:#367D97 ;
+    -fx-text-fill: #AFB1B3;
+    -fx-background-radius: 0;
+}
+#audioFormatsButton:hover {
+    /* Hover state */
+    -fx-background-color: #4C5052;
+    -fx-text-fill: #499C54 ;
+}
+
+#audioFormatsButton:pressed {
+    /* Pressed state */
+    -fx-background-color: #5C6164;
+    -fx-text-fill: #499C70;
+}
+
+#searchBar {
+
+}
+
+#formatSearchTField {
+    -fx-text-fill: #499C70;
+    -fx-background-color: #5C6164;
+    -fx-font-size: 16;
+    -fx-background-radius: 30;
+
+}
+
+#childSplitPane {
+
+}
+
+#formatContainers {
+
+}
+
+#formatAtrrs {
+
+}
+
+.listView{
+    -fx-background-color: #2B2B2B;
+    -fx-pref-height: 600.0;
+
+    -fx-min-height: 600.0;
+
+}
+.listView .list-cell{
+    -fx-background-color: #2B2B2B;
+    -fx-pref-height: 140.0;
+    -fx-max-height: 140.0;
+    -fx-min-height: 140.0;
+    -fx-text-fill: #AFB1B3;
+    -fx-border-color: #5C6164;
+    -fx-border-width: 0 0 1 0;
+
+}
+.listView .list-cell:empty {
+    -fx-border-width: 0;
+}
+
+
+
+
+
+.split-pane-divider {
+    -fx-background-color: #3C3F41; /* Change 'black' to your desired color */
+    -fx-padding: 0 0.1em 0 0.1em;
+}
+.split-pane {
+    -fx-background-color: #3C3F41;
+    -fx-pref-width: 500;
+    -fx-pref-height: 400.0;
+
+    -fx-padding: 0 0 0 0;
+
+}

@@ -63,6 +63,9 @@ public class Converter {
                 counter++;
                 target = new File(target.getPath() + "_" + counter  );
             }
+
+
+
                 encoder.encode(new MultimediaObject(source), target, attrs, listener);
 
             return true;

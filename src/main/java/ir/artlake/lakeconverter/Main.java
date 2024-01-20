@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
@@ -32,22 +33,7 @@ public class Main extends Application {
         stage.setTitle("LakeConverter");
         stage.setScene(scene);
         stage.setResizable(false);
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        stage.xProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal.doubleValue() < screenBounds.getMinX()) {
-                stage.setX(screenBounds.getMinX());
-            } else if (newVal.doubleValue() > screenBounds.getMaxX() - stage.getWidth()) {
-                stage.setX(screenBounds.getMaxX() - stage.getWidth());
-            }
-        });
-
-        stage.yProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal.doubleValue() < screenBounds.getMinY()) {
-                stage.setY(screenBounds.getMinY());
-            } else if (newVal.doubleValue() > screenBounds.getMaxY() - stage.getHeight()) {
-                stage.setY(screenBounds.getMaxY() - stage.getHeight());
-            }
-        });
+        ScreenUtils.lockEdges(stage);
 
         stage.show();
 
@@ -57,8 +43,16 @@ public class Main extends Application {
 
     }
     public static void main(String[] args) {
+        Thread.UncaughtExceptionHandler h = (th, ex) -> {
+            System.out.println("Uncaught exception: " + ex);
+        };
+        ThreadFactory factory = r -> {
+            Thread t = new Thread(r);
+            t.setUncaughtExceptionHandler(h);
+            return t;
+        };
         //System.setProperty("prism.order", "sw");
-        executorService= Executors.newFixedThreadPool(10);
+        executorService= Executors.newFixedThreadPool(10, factory);
         launch();
 
     }
