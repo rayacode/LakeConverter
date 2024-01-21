@@ -16,6 +16,8 @@ public class MP4 extends VideoFormat{
     VideoAttributes videoAttributes;
     EncodingAttributes encodingAttributes;
 
+    //format container
+    public static String formatContainerName = "mp4";
 
     //audio encoders can be used in mp4 container
     public static String AC_3= "ac3";
@@ -90,9 +92,10 @@ public class MP4 extends VideoFormat{
 
     public void setH264Based(){}
     public void setNoneh264Based(){}
+
+
     @Override
     public String getFileExtension() {
-
         return ".mp4";
     }
 

@@ -55,10 +55,19 @@
                   </ProgressBar>
                   <Label id="filesCounter" fx:id="filesCounter">
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0" right="50.0" />
                      </HBox.margin>
                   </Label>
-                  <Button id="convertToButton" fx:id="convertToButton" mnemonicParsing="false" onAction="#onConvertToAction" text="Convert To" />
+                  <Label id="allConvertToLabel" fx:id="allConvertToLabel" text="All to">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button id="convertToButton" fx:id="convertToButton" mnemonicParsing="false" onAction="#onConvertToAction" text="MP4 720P">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
             </children>

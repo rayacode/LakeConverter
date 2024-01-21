@@ -1,5 +1,6 @@
 package ir.artlake.lakeconverter.conversion;
 
+import ir.artlake.lakeconverter.conversion.Formats.Format;
 import ir.artlake.lakeconverter.conversion.Formats.MP4;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -19,6 +20,7 @@ public class ConversionService extends Service<Boolean> {
     private String source;
     private String target;
     private Semaphore semaphore;
+    private Format targetFormat;
     public ConversionService(String source, String target, Semaphore semaphore) {
         this.source = source;
         this.target = target;

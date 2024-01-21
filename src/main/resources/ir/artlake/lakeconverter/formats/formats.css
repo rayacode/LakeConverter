@@ -73,9 +73,9 @@
 }
 .listView .list-cell{
     -fx-background-color: #2B2B2B;
-    -fx-pref-height: 140.0;
-    -fx-max-height: 140.0;
-    -fx-min-height: 140.0;
+    -fx-pref-height: 30.0;
+    -fx-max-height: 30.0;
+    -fx-min-height: 30.0;
     -fx-text-fill: #AFB1B3;
     -fx-border-color: #5C6164;
     -fx-border-width: 0 0 1 0;
@@ -84,7 +84,30 @@
 .listView .list-cell:empty {
     -fx-border-width: 0;
 }
-
+.listView .list-cell:empty:hover {
+    -fx-border-width: 0;
+    -fx-background-color: #2B2B2B;
+}
+.listView .list-cell:empty:pressed {
+    -fx-background-color: #2B2B2B;
+    -fx-border-width: 0;
+}
+.listView .list-cell:empty:selected {
+    -fx-background-color: #2B2B2B;
+    -fx-border-width: 0;
+}
+.listView .list-cell:hover {
+    -fx-background-color: #4C5052;
+    -fx-text-fill: #499C54 ;
+}
+.listView .list-cell:pressed {
+    -fx-background-color: #5C6164;
+    -fx-text-fill: #499C70;
+}
+.listView .list-cell:selected {
+    -fx-background-color: #4E5254;
+    -fx-text-fill: #499C78;
+}
 
 
 

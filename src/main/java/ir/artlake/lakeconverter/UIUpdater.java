@@ -1,6 +1,5 @@
 package ir.artlake.lakeconverter;
 
-import ir.artlake.lakeconverter.controllers.ConvertCellController;
 import ir.artlake.lakeconverter.conversion.FileConverterInit;
 import ir.artlake.lakeconverter.fileoperations.FileService;
 import ir.artlake.lakeconverter.fileoperations.concurency.AddFilesProgressListener;
@@ -27,7 +26,7 @@ public class UIUpdater {
         // Bind the ListView's items to the ObservableList
 
     }
-    public void setConvWidgetsContainer(ListView<ConvertCellController> convWidgetsContainer, ProgressBar progressBar) {
+    public void setConvWidgetsContainer(ListView<ConvertCellWidget> convWidgetsContainer, ProgressBar progressBar) {
         this.convListView = convWidgetsContainer;
         this.fileAddProgressBar = progressBar;
 
@@ -40,7 +39,7 @@ public class UIUpdater {
     // List to keep track of the File objects that have already been added
     public static List<File> addedFiles = new ArrayList<>();
     // Create an ObservableList to back your items
-    public static ObservableList<ConvertCellController> items =
+    public static ObservableList<ConvertCellWidget> items =
             FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
 
 
@@ -64,8 +63,8 @@ public class UIUpdater {
             if (!addedFiles.contains(file)) {
                 // Retrieve the FileConverterInit for this file, or create a new one if it doesn't exist
 
-                ConvertCellController fileBox = new ConvertCellController();
-                fileBox.setConvertWidgetBox(fileConverterInitList.get(i), file);
+                ConvertCellWidget fileBox = new ConvertCellWidget();
+                fileBox.setConvertCell(fileConverterInitList.get(i), file);
                 final int newIndex = index;
 
                 Platform.runLater(()->{
@@ -86,7 +85,7 @@ public class UIUpdater {
 
 
     }
-    public void removeFromList(ConvertCellController fileBox, File file){
+    public void removeFromList(ConvertCellWidget fileBox, File file){
         FileService.everSelectedFiles.remove(file);
         items.remove(fileBox);
         addedFiles.remove(file);

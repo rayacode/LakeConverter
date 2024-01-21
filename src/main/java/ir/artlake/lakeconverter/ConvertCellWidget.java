@@ -1,4 +1,4 @@
-package ir.artlake.lakeconverter.controllers;
+package ir.artlake.lakeconverter;
 
 import ir.artlake.lakeconverter.Main;
 import ir.artlake.lakeconverter.UIUpdater;
@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ConvertCellController extends HBox implements Initializable {
+public class ConvertCellWidget extends HBox implements Initializable {
     @FXML
     private Button removeButton;
     @FXML
@@ -47,12 +47,12 @@ public class ConvertCellController extends HBox implements Initializable {
 
     private FileConverterInit fileConverterInit;
     ThumbnailGenerator thumbnailGenerator;
-    public ConvertCellController(){
+    public ConvertCellWidget(){
         super();
         FXMLLoader fxmlLoader =
                 new FXMLLoader(
                         getClass().
-                                getResource("ConvertWidgetBox/ConvertWidgetBox.fxml"));
+                                getResource("ConvertWidgetBox/ConvertCellWidget.fxml"));
 
 
         fxmlLoader.setController(this);
@@ -67,7 +67,7 @@ public class ConvertCellController extends HBox implements Initializable {
             throw new RuntimeException( e );
         }
     }
-    public void setConvertWidgetBox(FileConverterInit fileConverterInit, File file) throws Exception {
+    public void setConvertCell(FileConverterInit fileConverterInit, File file) throws Exception {
 
         String fileNameBase = file.getName().substring(0, file.getName().lastIndexOf('.'));
         String fileName = String.format("%-18s", fileNameBase).replace(' ', ' ');

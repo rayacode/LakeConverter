@@ -12,8 +12,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root stylesheets="@ConvertWidgetBox.css" type="HBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-<HBox fx:id="convertWidgetBox" alignment="CENTER" fillHeight="false">
+<fx:root stylesheets="@ConvertCellWidget.css" type="HBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="convertCell" alignment="CENTER" fillHeight="false">
     <children>
          <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="NEVER">
             <children>

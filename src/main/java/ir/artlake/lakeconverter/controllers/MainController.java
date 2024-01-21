@@ -1,6 +1,7 @@
 package ir.artlake.lakeconverter.controllers;
 
 
+import ir.artlake.lakeconverter.ConvertCellWidget;
 import ir.artlake.lakeconverter.Main;
 import ir.artlake.lakeconverter.ScreenUtils;
 import ir.artlake.lakeconverter.UIUpdater;
@@ -13,19 +14,15 @@ import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -134,25 +131,8 @@ public class MainController implements Initializable {
 
     @FXML
     protected void onConvertToAction(){
-        try {
-            // Load the FXML file
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("formats/formats.fxml"));
 
-            Parent root = fxmlLoader.load();
-            // Create a new stage
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(new Scene(root));
-            stage.setResizable(false);
-            // Add an event filter to hide the stage when user clicks outside
-            ScreenUtils.lockEdges(stage);
-
-
-            // Show the stage and wait
-            stage.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        formatChoosStage.showAndWait();
     }
     public boolean isSelected() {
         return isSelected;
@@ -161,9 +141,28 @@ public class MainController implements Initializable {
     public void setSelected(boolean selected) {
         isSelected = selected;
     }
-
+    Stage formatChoosStage;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            // Load the FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("formats/formats.fxml"));
+
+            Parent root = fxmlLoader.load();
+            // Create a new stage
+            formatChoosStage = new Stage();
+            formatChoosStage.initModality(Modality.APPLICATION_MODAL);
+            formatChoosStage.setScene(new Scene(root));
+            formatChoosStage.setResizable(false);
+            // Add an event filter to hide the stage when user clicks outside
+            ScreenUtils.lockEdges(formatChoosStage);
+
+
+            // Show the stage and wait
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         isSelected = false;
         isStarted = false;
         convertButton.setDisable(true);
@@ -187,9 +186,9 @@ public class MainController implements Initializable {
             }
         });
 
-        UIUpdater.items.addListener(new ListChangeListener<ConvertCellController>() {
+        UIUpdater.items.addListener(new ListChangeListener<ConvertCellWidget>() {
             @Override
-            public void onChanged(Change<? extends ConvertCellController> c) {
+            public void onChanged(Change<? extends ConvertCellWidget> c) {
                 if(UIUpdater.items.size() != 0){
                     filesCounter.setText(UIUpdater.items.size() + " Files");
                 }else {

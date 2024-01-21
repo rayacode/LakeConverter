@@ -97,6 +97,9 @@
 #filesCounter{
     -fx-text-fill: #AFB1B3;
 }
+#allConvertToLabel{
+    -fx-text-fill: #AFB1B3;
+}
 #convertToButton{
     -fx-background-color:#367D97 ;
     -fx-text-fill: #AFB1B3;
