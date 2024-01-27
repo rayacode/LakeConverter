@@ -1,5 +1,6 @@
 package ir.artlake.lakeconverter.conversion;
 
+import ir.artlake.lakeconverter.conversion.Formats.Format;
 import ir.artlake.lakeconverter.fileoperations.FileUtils;
 
 import java.io.File;
@@ -15,7 +16,7 @@ public class ConversionInitializer {
         this.semaphore = semaphore;
     }
 
-    public List<FileConverterInit> initializeConversions(List<File> selectedFiles, File selectedTarget) {
+    public List<FileConverterInit> initializeConversions(List<File> selectedFiles, File selectedTarget, Format format) {
         List<FileConverterInit> fileConverterInitList = new LinkedList<>();
         for (File file : selectedFiles) {
             if(selectedTarget == null || this.selectedTarget != selectedTarget ){
@@ -23,9 +24,9 @@ public class ConversionInitializer {
                 selectedTarget = FileUtils.createDirectory(file.getParent() + "\\converted");
 
 
-                fileConverterInitList.add(new FileConverterInit( file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore));
+                fileConverterInitList.add(new FileConverterInit( file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore, format));
             }else {
-                fileConverterInitList.add(new FileConverterInit( file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore));
+                fileConverterInitList.add(new FileConverterInit( file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore, format));
             }
 
         }

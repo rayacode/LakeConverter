@@ -1,10 +1,17 @@
 package ir.artlake.lakeconverter.controllers;
 
+import ir.artlake.lakeconverter.ConvertCellWidget;
+import ir.artlake.lakeconverter.Main;
+import ir.artlake.lakeconverter.conversion.Formats.Format;
 import ir.artlake.lakeconverter.conversion.Formats.MP4;
 import ir.artlake.lakeconverter.conversion.Formats.MP4Attr;
+import ir.artlake.lakeconverter.conversion.QConversionManager;
+import ir.artlake.lakeconverter.fileoperations.FileService;
 import ir.artlake.lakeconverter.models.FormatsModel;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -12,12 +19,16 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class FormatsController implements Initializable {
 
+    public static boolean isUsed = false;
     @FXML
     private SplitPane motherSplitPane;
 
@@ -44,25 +55,17 @@ public class FormatsController implements Initializable {
 
     @FXML
     private ListView<String> formatAtrrs;
+    private ConvertCellWidget convertCellWidget;
 
     @FXML
     void onAudioFormatLIstAction() {
         // TODO: Implement your logic here
     }
-
+    Format format;
     @FXML
     void onVideoFormatLIstAction() {
-        // TODO: Implement your logic here
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+        FormatsModel.formatContainers.clear();
         FormatsModel.formatContainers.add(MP4.formatContainerName.toUpperCase());
-        FormatsModel.formatContainers.add("MKV");
-
-
-        formatContainers.setItems(FormatsModel.formatContainers);
-        formatAtrrs.setItems(FormatsModel.formatAttrs);
 
         formatContainers.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
@@ -70,14 +73,76 @@ public class FormatsController implements Initializable {
                         case "MP4":
                             FormatsModel.formatAttrs.clear();
                             FormatsModel.formatAttrs.setAll(MP4Attr.getMinimalSettingMap().values());
+                            FileService.format = new MP4();
+                            format = new MP4();
+                            FileService.format.setDefault();
                             break;
-                        case "MKV":
-                            FormatsModel.formatAttrs.clear();
-                            FormatsModel.formatAttrs.add("MKV 480p 720*480");
-                            break;
+
                     }
 
                 }
         );
+        formatAtrrs.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    MainController mainController =
+                            Main.mainControllerFxmlLoader.getController();
+                    ConvertCellWidget convertCellWidget = mainController.
+                            getConvertCellWidgetListView().
+                            getSelectionModel().getSelectedItem();
+                isUsed = true;
+                    for (Map.Entry<String, String> entry : MP4Attr.getMinimalSettingMap().entrySet()) {
+                        if (Objects.equals(newValue, entry.getValue())) {
+
+                            switch (entry.getKey()){
+                                case "8K":
+                                        ((MP4) FileService.format).set8k();
+                                        FileService.qConversionManager.changeFormats(FileService.format);
+                                        Platform.runLater(() -> {
+                                            String input = entry.getValue();
+                                            String[] parts = input.split(" ");
+                                            String result = String.format("%s %s", parts[0], parts[1]);
+                                            mainController.getConvertToButton().setText(result);
+                                        });
+                                    break;
+                                case "4K":
+                                    ((MP4)FileService.format).set4k();
+                                    FileService.qConversionManager.changeFormats(FileService.format);
+                                    break;
+                                case "1080p":
+                                    ((MP4)FileService.format).set1080p();
+                                    FileService.qConversionManager.changeFormats(FileService.format);
+                                    break;
+                                case "720p":
+                                    ((MP4)FileService.format).set720p();
+                                    FileService.qConversionManager.changeFormats(FileService.format);
+                                    break;
+                                case "640p":
+                                    ((MP4)FileService.format).set640p();
+                                    FileService.qConversionManager.changeFormats(FileService.format);
+                                    break;
+                                case "480p":
+                                    ((MP4)FileService.format).set480p();
+                                    FileService.qConversionManager.changeFormats(FileService.format);
+                                    break;
+                            }
+                        }
+                    }
+        });
+
+    }
+
+    public ConvertCellWidget getConvertCellWidget() {
+        return convertCellWidget;
+    }
+
+    public void setConvertCellWidget(ConvertCellWidget convertCellWidget) {
+        this.convertCellWidget = convertCellWidget;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        videoFormatsButton.setFocusTraversable(true);
+        formatContainers.setItems(FormatsModel.formatContainers);
+        formatAtrrs.setItems(FormatsModel.formatAttrs);
     }
 }

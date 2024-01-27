@@ -1,9 +1,12 @@
 package ir.artlake.lakeconverter.fileoperations;
 
 import ir.artlake.lakeconverter.UIUpdater;
+import ir.artlake.lakeconverter.controllers.ConvertCellWidgetFormatSelector;
 import ir.artlake.lakeconverter.conversion.ConversionInitializer;
 import ir.artlake.lakeconverter.conversion.ConvertButtonStatuses;
 import ir.artlake.lakeconverter.conversion.FileConverterInit;
+import ir.artlake.lakeconverter.conversion.Formats.Format;
+import ir.artlake.lakeconverter.conversion.Formats.MP4;
 import ir.artlake.lakeconverter.conversion.QConversionManager;
 import javafx.application.Platform;
 import javafx.concurrent.Worker;
@@ -28,6 +31,8 @@ public class FileService {
     public static QConversionManager qConversionManager = new QConversionManager();
     private UIUpdater uiUpdater = new UIUpdater();
 
+    public static Format format = new MP4();
+
     public synchronized  List<File> chooseSourceFiles(Stage stage) {
         List<File> tempSelector = fileSelector.chooseSourceFiles(stage);
 
@@ -49,7 +54,10 @@ public class FileService {
 
 
     public synchronized  List<FileConverterInit> initializeConversions() {
-        List<FileConverterInit> newFileConverterInitList = conversionInitializer.initializeConversions(selectedFiles, selectedTarget);
+        if(!ConvertCellWidgetFormatSelector.isUsed){
+            format.setDefault();
+        }
+        List<FileConverterInit> newFileConverterInitList = conversionInitializer.initializeConversions(selectedFiles, selectedTarget, format);
 
         fileConverterInitMap.addAll(newFileConverterInitList);
         everSelectedFiles.addAll(selectedFiles);
@@ -61,9 +69,9 @@ public class FileService {
         for (FileConverterInit fileConverterInit : fileConverterInitMap) {
             Platform.runLater(()->{
             try {
-                fileConverterInit.getTask().stateProperty().addListener((observable, oldState, newState) -> {
+                fileConverterInit.getService().stateProperty().addListener((observable, oldState, newState) -> {
                     boolean anyRunning = fileConverterInitMap.stream()
-                            .anyMatch(init -> init.getTask().getState() == Worker.State.RUNNING);
+                            .anyMatch(init -> init.getService().getState() == Worker.State.RUNNING);
 
                     if (anyRunning) {
                         convertButton.setText(ConvertButtonStatuses.CANCEL_ALL);

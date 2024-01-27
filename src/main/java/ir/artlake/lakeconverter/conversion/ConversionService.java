@@ -15,20 +15,21 @@ import static ir.artlake.lakeconverter.Main.executorService;
 
 public class ConversionService extends Service<Boolean> {
     private String name;
-    private ir.artlake.lakeconverter.conversion.ConverterImplemention.Converter<MP4> headServiceConvertClass;
+    private ir.artlake.lakeconverter.conversion.ConverterImplemention.Converter<Format> headServiceConvertClass;
 
     private String source;
     private String target;
     private Semaphore semaphore;
     private Format targetFormat;
-    public ConversionService(String source, String target, Semaphore semaphore) {
+    private boolean isSingleFormatChanged;
+    public ConversionService(String source, String target, Semaphore semaphore, Format format) {
         this.source = source;
         this.target = target;
         this.semaphore = semaphore;
-
+        this.targetFormat = format;
         this.name = new File(source).getName();
         this.setExecutor(executorService);
-
+        this.isSingleFormatChanged = false;
     }
 
     @Override
@@ -36,13 +37,22 @@ public class ConversionService extends Service<Boolean> {
         return new ConversionTask();
 
     }
+
+    public boolean isSingleFormatChanged() {
+        return isSingleFormatChanged;
+    }
+
+    public void setSingleFormatChanged(boolean singleFormatChanged) {
+        isSingleFormatChanged = singleFormatChanged;
+    }
+
     class ConversionTask extends Task<Boolean> {
 
-        MP4 mp4 = MP4.defaultMP4();
+
 
 
         ConvertProgressListener listener= new ConvertProgressListener(this::updateProgress);
-        ir.artlake.lakeconverter.conversion.ConverterImplemention.Converter<MP4> converter = new ir.artlake.lakeconverter.conversion.ConverterImplemention.Converter<>(listener, source, target, mp4);
+        ir.artlake.lakeconverter.conversion.ConverterImplemention.Converter<Format> converter = new ir.artlake.lakeconverter.conversion.ConverterImplemention.Converter<>(listener, source, target, targetFormat);
         boolean permitReleased = false;
 
         @Override
@@ -103,5 +113,13 @@ public class ConversionService extends Service<Boolean> {
 
     public ir.artlake.lakeconverter.conversion.ConverterImplemention.Converter getHeadServiceConvertClass() {
         return headServiceConvertClass;
+    }
+
+    public Format getTargetFormat() {
+        return targetFormat;
+    }
+
+    public void setTargetFormat(Format targetFormat) {
+        this.targetFormat = targetFormat;
     }
 }

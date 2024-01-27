@@ -22,13 +22,14 @@ import java.util.concurrent.TimeUnit;
 public class Main extends Application {
 
     public static ExecutorService executorService;
+    public static FXMLLoader mainControllerFxmlLoader;
 
     @Override
     public void start(Stage stage) throws IOException {
         //Application.setUserAgentStylesheet(new NordDark().getUserAgentStylesheet());
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main/main.fxml"));
+        mainControllerFxmlLoader= new FXMLLoader(Main.class.getResource("main/main.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 1100, 700);
+        Scene scene = new Scene(mainControllerFxmlLoader.load(), 1100, 700);
 
         stage.setTitle("LakeConverter");
         stage.setScene(scene);

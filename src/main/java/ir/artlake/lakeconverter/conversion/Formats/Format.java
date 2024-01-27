@@ -10,4 +10,6 @@ public interface Format {
     AudioAttributes getAudioAttributes();
     VideoAttributes getVideoAttributes();
     EncodingAttributes getEncodingAttributes();
+    void setDefault();
+
 }

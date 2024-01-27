@@ -17,16 +17,44 @@
     <children>
          <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="NEVER">
             <children>
-              <Label fx:id="fileNameLabel" styleClass="allLabelsTextColor" />
             <ImageView fx:id="thumbnailView" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
-               <Label fx:id="formatLabel" styleClass="allLabelsTextColor" />
+            </children>
+            <HBox.margin>
+               <Insets right="50.0" />
+            </HBox.margin>
+         </VBox>
+         <VBox prefHeight="200.0" prefWidth="400.0">
+            <children>
+              <Label fx:id="fileNameLabel" styleClass="allLabelsTextColor" />
+               <HBox prefHeight="100.0" prefWidth="400.0">
+                  <children>
+                     <GridPane prefWidth="400.0">
+                       <columnConstraints>
+                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                       </columnConstraints>
+                       <rowConstraints>
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
+                        <children>
+                           <Label fx:id="formatLabel" styleClass="allLabelsTextColor" />
+                           <Label fx:id="fileSizeLabel" GridPane.rowIndex="1" />
+                           <Label fx:id="resolutionLabel" GridPane.columnIndex="1" />
+                           <Label fx:id="vidLengthLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           <Label fx:id="targetFormatLabel" GridPane.columnIndex="2" />
+                           <Label fx:id="targetFileSizeLabel" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                           <Label fx:id="targetResolutionLabel" GridPane.columnIndex="3" />
+                           <Label fx:id="targetVidLengthLabel" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        </children>
+                     </GridPane>
+                  </children>
+               </HBox>
+              <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="400.0" />
             </children>
          </VBox>
-        <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="400.0" HBox.hgrow="NEVER">
-            <HBox.margin>
-                <Insets left="10" />
-            </HBox.margin>
-        </ProgressBar>
         <Label fx:id="progressLabel" prefHeight="17.0" prefWidth="31.0" styleClass="allLabelsTextColor" HBox.hgrow="NEVER">
             <HBox.margin>
                 <Insets left="10.0" right="10.0" />
@@ -51,8 +79,9 @@
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-            <Button id="convertCRButton" fx:id="convertCRButton" mnemonicParsing="false" onAction="#onConvertAction" text="Convert" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button id="convertCRButton" fx:id="convertCRButton" mnemonicParsing="false" onAction="#onConvertAction" text="Convert" GridPane.rowIndex="1" />
                <Button id="removeButton" fx:id="removeButton" mnemonicParsing="false" onAction="#onRemoveButtonAction" GridPane.columnIndex="2" />
+               <Button fx:id="convertToButton" mnemonicParsing="false" onAction="#onConvertToButtonAction" text="MP4 720p" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </children>
          </GridPane>
     </children>

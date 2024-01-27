@@ -1,5 +1,7 @@
 package ir.artlake.lakeconverter.conversion;
 
+import ir.artlake.lakeconverter.ConvertCellWidget;
+import ir.artlake.lakeconverter.conversion.Formats.Format;
 import javafx.concurrent.Worker;
 
 import java.io.File;
@@ -17,11 +19,15 @@ public class FileConverterInit {
     private Semaphore semaphore;
 
     private File source;
+    Format format;
+    private ConvertCellWidget convertCellWidget;
 
-    public FileConverterInit(String source, String target, Semaphore semaphore) {
+
+
+    public FileConverterInit(String source, String target, Semaphore semaphore, Format format) {
         this.semaphore = semaphore;
-
-        service = new ConversionService(source, target, semaphore);
+        this.format = format;
+        service = new ConversionService(source, target, semaphore, format);
         this.source = new File(source);
         service.setExecutor(executorService);
         this.isConverted = false;
@@ -51,18 +57,37 @@ public class FileConverterInit {
             service.cancel();
         }
 
-
-
-
-
+    }
+    public void changeFormat(Format format){
+        if (!service.isSingleFormatChanged()) {
+            service.setTargetFormat(format);
+            convertCellWidget.setFormat(format);
+            service.setSingleFormatChanged(true);
+        }
 
 
     }
-    public ConversionService getTask() {
+
+    public ConversionService getService() {
         return service;
     }
 
     public File getSource() {
         return source;
+    }
+
+    public Format getFormat() {
+        return format;
+    }
+
+    public void setFormat(Format format) {
+        this.format = format;
+    }
+    public ConvertCellWidget getConvertCellWidget() {
+        return convertCellWidget;
+    }
+
+    public void setConvertCellWidget(ConvertCellWidget convertCellWidget) {
+        this.convertCellWidget = convertCellWidget;
     }
 }

@@ -1,7 +1,7 @@
 package ir.artlake.lakeconverter;
 
-import ir.artlake.lakeconverter.Main;
-import ir.artlake.lakeconverter.UIUpdater;
+import ir.artlake.lakeconverter.controllers.ConvertCellWidgetFormatSelector;
+import ir.artlake.lakeconverter.conversion.Formats.Format;
 import ir.artlake.lakeconverter.fileoperations.FileService;
 import ir.artlake.lakeconverter.fileoperations.ThumbnailGenerator;
 import ir.artlake.lakeconverter.conversion.FileConverterInit;
@@ -9,12 +9,20 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import ws.schild.jave.MultimediaObject;
+import ws.schild.jave.info.AudioInfo;
+import ws.schild.jave.info.MultimediaInfo;
+import ws.schild.jave.info.VideoInfo;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,14 +49,46 @@ public class ConvertCellWidget extends HBox implements Initializable {
 
     @FXML
     private Label stateLabel;
+
+
+    @FXML
+    private Label fileSizeLabel;
+
+    @FXML
+    private Label resolutionLabel;
+
+    @FXML
+    private Label vidLengthLabel;
+
+    @FXML
+    private Label targetFormatLabel;
+
+    @FXML
+    private Label targetFileSizeLabel;
+
+    @FXML
+    private Label targetResolutionLabel;
+
+    @FXML
+    private Label targetVidLengthLabel;
+    @FXML
+    private Button convertTButton;
+    @FXML
+    private Button convertToButton;
+
     private File file;
     private UIUpdater uiUpdater;
     private Label fileCounter;
 
     private FileConverterInit fileConverterInit;
+    private boolean isSingleFormatSelected;
     ThumbnailGenerator thumbnailGenerator;
+    private FXMLLoader formatsControllerLoader;
+    private ConvertCellWidgetFormatSelector convertCellWidgetFormatSelector;
+    private Format format;
     public ConvertCellWidget(){
         super();
+        this.isSingleFormatSelected = false;
         FXMLLoader fxmlLoader =
                 new FXMLLoader(
                         getClass().
@@ -57,6 +97,7 @@ public class ConvertCellWidget extends HBox implements Initializable {
 
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
+
 
 
         try {
@@ -74,7 +115,7 @@ public class ConvertCellWidget extends HBox implements Initializable {
         if (fileName.length() > 18) {
             fileName = fileName.substring(0, 15) + "...";
         }
-        fileNameLabel.setText(fileName);
+        fileNameLabel.setText(fileNameBase);
 
         String format = file.getName().substring(file.getName().lastIndexOf('.'), file.getName().length());
         formatLabel.setText(format);
@@ -92,14 +133,14 @@ public class ConvertCellWidget extends HBox implements Initializable {
         thumbnailView.setPreserveRatio(true);
         thumbnailView.setSmooth(true);
         thumbnailView.setCache(true);
-        progressBar.progressProperty().bind(fileConverterInit.getTask().progressProperty());
-        fileConverterInit.getTask().progressProperty().addListener((obs, oldProgress, newProgress) -> {
+        progressBar.progressProperty().bind(fileConverterInit.getService().progressProperty());
+        fileConverterInit.getService().progressProperty().addListener((obs, oldProgress, newProgress) -> {
             Platform.runLater(() -> {
                 progressLabel.setText(String.format("%.0f%%", newProgress.doubleValue() * 100));
                 //System.out.println("Progress property for file " + file.getName() + " changed, new progress: " + newProgress);
             });
         });
-        fileConverterInit.getTask().stateProperty().addListener((observable, oldState, newState) -> {
+        fileConverterInit.getService().stateProperty().addListener((observable, oldState, newState) -> {
             Platform.runLater(() -> {
                 switch (newState) {
                     case READY:
@@ -128,6 +169,18 @@ public class ConvertCellWidget extends HBox implements Initializable {
                 }
             });
         });
+        MultimediaObject mo = new MultimediaObject(file);
+        MultimediaInfo mi= mo.getInfo();
+        AudioInfo ai= mi.getAudio();
+        VideoInfo vi= mi.getVideo();
+        formatLabel.setText(mi.getFormat());
+        float size = ((float) file.length()/1024/1024);
+        String sizeStr = String.format("%.2f", size); // format to 2 decimal places
+        fileSizeLabel.setText("Size: "+sizeStr + " MB");
+
+        resolutionLabel.setText(vi.getSize().getWidth() + " * " + vi.getSize().getWidth());
+        vidLengthLabel.setText(String.valueOf
+                (String.format("%.2f", (double) mi.getDuration()/60000)) + " Min");
     }
 
     public void deleteDirectory(File file) {
@@ -136,25 +189,57 @@ public class ConvertCellWidget extends HBox implements Initializable {
                 deleteDirectory(subFile);
             }
             subFile.delete();
+
         }
     }
+    Parent root = null;
+    @FXML
+    protected void onConvertToButtonAction(){
+        isSingleFormatSelected = true;
+        formatsControllerLoader =
+                new FXMLLoader(
+                        Main.class.getResource("formats/ConvertCellWidgetFormatSelector.fxml"));
 
+
+        convertCellWidgetFormatSelector = new ConvertCellWidgetFormatSelector();
+                formatsControllerLoader.setController(convertCellWidgetFormatSelector);
+
+        try {
+            root = formatsControllerLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //formatsControllerLoader.setRoot(root);
+        // Create a new stage
+        Stage formatChoosStage = new Stage();
+        formatChoosStage.initModality(Modality.APPLICATION_MODAL);
+        formatChoosStage.setScene(new Scene(root));
+        formatChoosStage.setResizable(false);
+        // Add an event filter to hide the stage when user clicks outside
+        ScreenUtils.lockEdges(formatChoosStage);
+        formatChoosStage.show();
+
+    }
+    public Button getConvertToButton(){
+        return convertToButton;
+    }
     @FXML
     protected void onConvertAction() {
         switch (convertCRButton.getText()) {
             case "Convert":
                 FileService.qConversionManager.startSingleConversion(fileConverterInit);
-                System.out.println(fileConverterInit.getTask().getState());
+                System.out.println(fileConverterInit.getService().getState());
                 break;
             case "Retry":
             case "Restart":
                 FileService.qConversionManager.restartSingleConversion(fileConverterInit);
-                System.out.println(fileConverterInit.getTask().getState());
+                System.out.println(fileConverterInit.getService().getState());
                 break;
             case "Cancel":
                 FileService.qConversionManager.deleteOrCancelSingleConversion(fileConverterInit);
-                System.out.println(fileConverterInit.getTask().getState());
+                System.out.println(fileConverterInit.getService().getState());
                 break;
+
         }
     }
 
@@ -177,5 +262,26 @@ public class ConvertCellWidget extends HBox implements Initializable {
         importImage.setFitHeight(15);
         // Create a button and set the graphic
         removeButton.setGraphic(importImage);
+
+    }
+
+    public boolean isSingleFormatSelected() {
+        return isSingleFormatSelected;
+    }
+
+    public void setSingleFormatSelected(boolean singleFormatSelected) {
+        isSingleFormatSelected = singleFormatSelected;
+    }
+
+    public FileConverterInit getFileConverterInit() {
+
+        return fileConverterInit;
+    }
+    public Format getFormat() {
+        return format;
+    }
+
+    public void setFormat(Format format) {
+        this.format = format;
     }
 }

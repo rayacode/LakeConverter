@@ -1,5 +1,6 @@
 package ir.artlake.lakeconverter.conversion.Formats;
 
+import ws.schild.jave.Encoder;
 import ws.schild.jave.encode.AudioAttributes;
 import ws.schild.jave.encode.EncodingAttributes;
 import ws.schild.jave.encode.VideoAttributes;
@@ -11,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MP4 extends VideoFormat{
+public class MP4 implements Format{
     AudioAttributes audioAttributes;
     VideoAttributes videoAttributes;
     EncodingAttributes encodingAttributes;
@@ -80,6 +81,10 @@ public class MP4 extends VideoFormat{
         encoderPixelFormats.put(MP4.HEVC_AMF, Arrays.asList("nv12", "yuv420p", "d3d11", "dxva2_vld"));
         encoderPixelFormats.put(MP4.HEVC_NVENC, Arrays.asList("yuv420p", "nv12", "p010le", "yuv444p", "p016le", "yuv444p16le", "bgr0", "rgb0", "cuda", "d3d11"));
         encoderPixelFormats.put(MP4.HEVC_QSV, Arrays.asList("nv12", "p010le", "qsv"));
+        videoAttributes = new VideoAttributes();
+        audioAttributes = new AudioAttributes();
+        encodingAttributes = new EncodingAttributes();
+
     }
     public MP4(VideoAttributes videoAttributes,
                AudioAttributes audioAttributes, EncodingAttributes encodingAttributes){
@@ -127,27 +132,71 @@ public class MP4 extends VideoFormat{
     }
 
 
-    public static MP4 defaultMP4(){
-        AudioAttributes audioAttributes = new AudioAttributes();
+    public  void setDefault(){
+        setInitMp4(VideoSize.hd720);
+    }
+    public  void set480p(){
+
+
+        setInitMp4(VideoSize.hd480);
+
+
+    }
+    public  void set640p(){
+
+        setInitMp4(new VideoSize(960, 640));
+
+
+
+    }
+    public  void set720p(){
+
+
+        setInitMp4(VideoSize.hd720);
+
+
+    }
+    public  void set1080p(){
+
+        setInitMp4(VideoSize.hd1080);
+
+
+
+    }
+    public  void set4k(){
+
+        setInitMp4(VideoSize.uhd2160);
+
+
+    }
+    public  void set8k(){
+        setInitMp4(VideoSize.uhd4320);
+
+
+
+
+
+    }
+
+    public void setInitMp4(VideoSize videoSize){
         audioAttributes.setCodec(MP4.AAC);
         audioAttributes.setChannels(2);
         audioAttributes.setSamplingRate(44100);
         audioAttributes.setBitRate(128000);
-        VideoAttributes videoAttributes = new VideoAttributes();
-        videoAttributes.setCodec(MP4.HEVC_QSV);
-        videoAttributes.setCrf(1);
-        //videoAttributes.setX264Profile(X264_PROFILE.MAIN);
-        videoAttributes.setFrameRate(30);
-        videoAttributes.setSize(VideoSize.hd1080);
-        videoAttributes.setBitRate(10000);
-        videoAttributes.setPixelFormat("nv12");
 
-        EncodingAttributes encodingAttributes = new EncodingAttributes();
+        videoAttributes.setCodec(MP4.H264);
+
+
+        videoAttributes.setFrameRate(30);
+        videoAttributes.setSize(videoSize);
+
+
+
+
         encodingAttributes.setOutputFormat("mp4");
         encodingAttributes.setVideoAttributes(videoAttributes);
         encodingAttributes.setAudioAttributes(audioAttributes);
+        
 
-
-        return new MP4(videoAttributes, audioAttributes, encodingAttributes);
     }
 }

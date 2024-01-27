@@ -28,5 +28,15 @@ public class AAC implements Format{
         return encodingAttributes;
     }
 
+    @Override
+    public void setDefault() {
+        audioAttributes.setCodec("aac");
+        audioAttributes.setBitRate(128000);
+        audioAttributes.setSamplingRate(44100);
+        audioAttributes.setChannels(2);
+
+
+    }
+
 
 }

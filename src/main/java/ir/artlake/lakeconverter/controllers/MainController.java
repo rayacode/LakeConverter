@@ -8,6 +8,7 @@ import ir.artlake.lakeconverter.UIUpdater;
 import ir.artlake.lakeconverter.conversion.ConvertButtonStatuses;
 import ir.artlake.lakeconverter.fileoperations.FileService;
 import ir.artlake.lakeconverter.fileoperations.concurency.AddFiles;
+import ir.artlake.lakeconverter.models.FormatsModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
@@ -19,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -142,13 +144,25 @@ public class MainController implements Initializable {
         isSelected = selected;
     }
     Stage formatChoosStage;
+    public Stage getFormatChoosStage(){
+        return formatChoosStage;
+    }
+
+    public Button getConvertToButton(){
+       return convertToButton;
+    }
+    public ListView<ConvertCellWidget> getConvertCellWidgetListView(){
+        return convListView;
+    }
+    public static FXMLLoader formatsFxmlLoader;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         try {
             // Load the FXML file
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("formats/formats.fxml"));
+            formatsFxmlLoader = new FXMLLoader(Main.class.getResource("formats/formats.fxml"));
 
-            Parent root = fxmlLoader.load();
+            Parent root = formatsFxmlLoader.load();
             // Create a new stage
             formatChoosStage = new Stage();
             formatChoosStage.initModality(Modality.APPLICATION_MODAL);
@@ -184,6 +198,23 @@ public class MainController implements Initializable {
                     deleteAllButton.setVisible(true);
                 }
             }
+        });
+        convListView.setCellFactory(lv -> {
+            ListCell<ConvertCellWidget> cell = new ListCell<ConvertCellWidget>() {
+                @Override
+                protected void updateItem(ConvertCellWidget item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(item); // set the HBox as the graphic of the cell
+                    }
+                }
+            };
+            cell.addEventFilter(MouseEvent.MOUSE_ENTERED, event -> {
+                convListView.getSelectionModel().select(cell.getIndex());
+            });
+            return cell;
         });
 
         UIUpdater.items.addListener(new ListChangeListener<ConvertCellWidget>() {

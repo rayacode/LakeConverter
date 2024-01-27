@@ -76,4 +76,12 @@ public class Converter<T extends Format> {
     public Encoder getEncoder() {
         return encoder;
     }
+
+    public T getTargetFormat() {
+        return targetFormat;
+    }
+
+    public void setTargetFormat(T targetFormat) {
+        this.targetFormat = targetFormat;
+    }
 }
