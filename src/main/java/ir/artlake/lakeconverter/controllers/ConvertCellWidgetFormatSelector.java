@@ -92,7 +92,7 @@ public class ConvertCellWidgetFormatSelector implements Initializable {
 
                             switch (entry.getKey()){
                                 case "8K":
-                                        ((MP4)format).set8k();
+                                        ((MP4)format).set8K();
 
                                     fileConverterInit.getService().setTargetFormat(format);
                                     fileConverterInit.getService().setSingleFormatChanged(true);
@@ -104,7 +104,7 @@ public class ConvertCellWidgetFormatSelector implements Initializable {
                                     });
                                     break;
                                 case "4K":
-                                    ((MP4)format).set4k();
+                                    ((MP4)format).setUHD2160();
                                     fileConverterInit.getService().setTargetFormat(format);
                                     fileConverterInit.getService().setSingleFormatChanged(true);
                                     Platform.runLater(() -> {

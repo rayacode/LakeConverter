@@ -1,5 +1,6 @@
 package ir.artlake.lakeconverter.conversion.Formats;
 
+import javafx.beans.value.ObservableValue;
 import ws.schild.jave.encode.AudioAttributes;
 import ws.schild.jave.encode.EncodingAttributes;
 import ws.schild.jave.encode.VideoAttributes;
@@ -36,6 +37,11 @@ public class AAC implements Format{
         audioAttributes.setChannels(2);
 
 
+    }
+
+    @Override
+    public String getCurrentConfigForTextButton() {
+        return null;
     }
 
 

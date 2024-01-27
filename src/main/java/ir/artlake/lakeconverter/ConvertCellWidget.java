@@ -1,24 +1,29 @@
 package ir.artlake.lakeconverter;
 
 import ir.artlake.lakeconverter.controllers.ConvertCellWidgetFormatSelector;
+import ir.artlake.lakeconverter.controllers.MainController;
 import ir.artlake.lakeconverter.conversion.Formats.Format;
+import ir.artlake.lakeconverter.conversion.Formats.MP4;
+import ir.artlake.lakeconverter.conversion.Formats.MP4Attr;
 import ir.artlake.lakeconverter.fileoperations.FileService;
 import ir.artlake.lakeconverter.fileoperations.ThumbnailGenerator;
 import ir.artlake.lakeconverter.conversion.FileConverterInit;
+import ir.artlake.lakeconverter.models.FormatsModel;
 import javafx.application.Platform;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import ws.schild.jave.MultimediaObject;
 import ws.schild.jave.info.AudioInfo;
 import ws.schild.jave.info.MultimediaInfo;
@@ -27,6 +32,8 @@ import ws.schild.jave.info.VideoInfo;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ConvertCellWidget extends HBox implements Initializable {
@@ -85,7 +92,7 @@ public class ConvertCellWidget extends HBox implements Initializable {
     ThumbnailGenerator thumbnailGenerator;
     private FXMLLoader formatsControllerLoader;
     private ConvertCellWidgetFormatSelector convertCellWidgetFormatSelector;
-    private Format format;
+
     public ConvertCellWidget(){
         super();
         this.isSingleFormatSelected = false;
@@ -107,8 +114,13 @@ public class ConvertCellWidget extends HBox implements Initializable {
         } catch ( IOException e ) {
             throw new RuntimeException( e );
         }
+
+
     }
     public void setConvertCell(FileConverterInit fileConverterInit, File file) throws Exception {
+
+        //convertToButton.textProperty().bind(fileConverterInit.getService().getTargetFormat().getCurrentConfigForTextButton());
+
 
         String fileNameBase = file.getName().substring(0, file.getName().lastIndexOf('.'));
         String fileName = String.format("%-18s", fileNameBase).replace(' ', ' ');
@@ -128,6 +140,7 @@ public class ConvertCellWidget extends HBox implements Initializable {
         deleteDirectory(tempDirectoryPath);
         this.file = file;
         this.fileConverterInit = fileConverterInit;
+
         thumbnailView.setFitHeight(100);
         thumbnailView.setFitWidth(100);
         thumbnailView.setPreserveRatio(true);
@@ -142,30 +155,23 @@ public class ConvertCellWidget extends HBox implements Initializable {
         });
         fileConverterInit.getService().stateProperty().addListener((observable, oldState, newState) -> {
             Platform.runLater(() -> {
-                switch (newState) {
-                    case READY:
-                        convertStatusLabel.setText("Ready");
-                        convertCRButton.setText("Convert");
-                        break;
-                    case SUCCEEDED:
-                        convertStatusLabel.setText("SUCCEEDED");
-                        convertCRButton.setText("Restart");
-                        break;
-                    case RUNNING:
-                        convertStatusLabel.setText("RUNNING");
-                        convertCRButton.setText("Cancel");
-                        break;
-                    case FAILED:
-                        convertStatusLabel.setText("FAILED");
-                        convertCRButton.setText("Retry");
-                        break;
-                    case CANCELLED:
-                        convertStatusLabel.setText("Cancelled");
-                        convertCRButton.setText("Retry");
-                        break;
-                    default:
-                        convertCRButton.setText("Cancel");
-                        break;
+                if (newState.equals(Worker.State.READY)) {
+                    convertStatusLabel.setText("Ready");
+                    convertCRButton.setText("Convert");
+                } else if (newState.equals(Worker.State.SUCCEEDED)) {
+                    convertStatusLabel.setText("SUCCEEDED");
+                    convertCRButton.setText("Restart");
+                } else if (newState.equals(Worker.State.RUNNING)) {
+                    convertStatusLabel.setText("RUNNING");
+                    convertCRButton.setText("Cancel");
+                } else if (newState.equals(Worker.State.FAILED)) {
+                    convertStatusLabel.setText("FAILED");
+                    convertCRButton.setText("Retry");
+                } else if (newState.equals(Worker.State.CANCELLED)) {
+                    convertStatusLabel.setText("Cancelled");
+                    convertCRButton.setText("Retry");
+                } else {
+                    convertCRButton.setText("Cancel");
                 }
             });
         });
@@ -195,7 +201,11 @@ public class ConvertCellWidget extends HBox implements Initializable {
     Parent root = null;
     @FXML
     protected void onConvertToButtonAction(){
-        isSingleFormatSelected = true;
+
+
+        showSplitPane();
+
+        /*isSingleFormatSelected = true;
         formatsControllerLoader =
                 new FXMLLoader(
                         Main.class.getResource("formats/ConvertCellWidgetFormatSelector.fxml"));
@@ -217,9 +227,23 @@ public class ConvertCellWidget extends HBox implements Initializable {
         formatChoosStage.setResizable(false);
         // Add an event filter to hide the stage when user clicks outside
         ScreenUtils.lockEdges(formatChoosStage);
-        formatChoosStage.show();
+        formatChoosStage.show();*/
 
     }
+    private SplitPane motherSplitPane;
+    private HBox formatCategBar;
+    private Button videoFormatsButton;
+    private Button audioFormatsButton;
+    private HBox searchBar;
+    private TextField formatSearchTField;
+    private SplitPane childSplitPane;
+    private ListView<String> formatContainers;
+    private ListView<String> formatAtrrs;
+    private Scene scene;
+    private Stage stage;
+
+
+
     public Button getConvertToButton(){
         return convertToButton;
     }
@@ -251,9 +275,236 @@ public class ConvertCellWidget extends HBox implements Initializable {
 
 
     }
+    private Format format;
+    private void showSplitPane() {
+        stage = new Stage();
+
+        motherSplitPane = new SplitPane();
+        motherSplitPane.setId("motherSplitPane");
+        motherSplitPane.setOrientation(javafx.geometry.Orientation.VERTICAL);
+        motherSplitPane.setDividerPositions(0.07);
+        motherSplitPane.setMaxHeight(Double.NEGATIVE_INFINITY);
+        motherSplitPane.setMaxWidth(Double.NEGATIVE_INFINITY);
+        motherSplitPane.setMinHeight(Double.NEGATIVE_INFINITY);
+        motherSplitPane.setMinWidth(Double.NEGATIVE_INFINITY);
+        motherSplitPane.setPrefHeight(400.0);
+        motherSplitPane.setPrefWidth(600.0);
+
+        AnchorPane topAnchorPane = new AnchorPane();
+        topAnchorPane.setMinHeight(0.0);
+        topAnchorPane.setMinWidth(0.0);
+        topAnchorPane.setPrefHeight(100.0);
+        topAnchorPane.setPrefWidth(160.0);
+        formatCategBar = new HBox();
+        formatCategBar.setId("formatCategBar");
+        formatCategBar.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+        formatCategBar.setLayoutX(199.0);
+        formatCategBar.setLayoutY(-37.0);
+        formatCategBar.setPrefHeight(100.0);
+        formatCategBar.setPrefWidth(200.0);
+        videoFormatsButton = new Button("Video");
+        videoFormatsButton.setId("videoFormatsButton");
+        videoFormatsButton.setMnemonicParsing(false);
+        // videoFormatsButton.setOnAction(event -> onVideoFormatLIstAction()); // You need to implement this method
+        HBox.setMargin(videoFormatsButton, new Insets(0.0));
+        audioFormatsButton = new Button("Audio");
+        audioFormatsButton.setId("audioFormatsButton");
+        audioFormatsButton.setMnemonicParsing(false);
+        // audioFormatsButton.setOnAction(event -> onAudioFormatLIstAction()); // You need to implement this method
+        HBox.setMargin(audioFormatsButton, new Insets(0.0));
+        formatCategBar.getChildren().addAll(videoFormatsButton, audioFormatsButton);
+        searchBar = new HBox();
+        searchBar.setId("searchBar");
+        searchBar.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
+        searchBar.setLayoutX(358.0);
+        searchBar.setLayoutY(-37.0);
+        searchBar.setPrefHeight(100.0);
+        searchBar.setPrefWidth(200.0);
+        formatSearchTField = new TextField();
+        formatSearchTField.setId("formatSearchTField");
+        formatSearchTField.setAlignment(javafx.geometry.Pos.CENTER);
+        HBox.setMargin(formatSearchTField, new Insets(0.0));
+        searchBar.getChildren().add(formatSearchTField);
+        topAnchorPane.getChildren().addAll(formatCategBar, searchBar);
+        AnchorPane.setBottomAnchor(formatCategBar, 0.0);
+        AnchorPane.setLeftAnchor(formatCategBar, 0.0);
+        AnchorPane.setRightAnchor(formatCategBar, 200.0);
+        AnchorPane.setTopAnchor(formatCategBar, 0.0);
+        AnchorPane.setBottomAnchor(searchBar, 0.0);
+        AnchorPane.setLeftAnchor(searchBar, 300.0);
+        AnchorPane.setRightAnchor(searchBar, 0.0);
+        AnchorPane.setTopAnchor(searchBar, 0.0);
+
+        AnchorPane bottomAnchorPane = new AnchorPane();
+        bottomAnchorPane.setMinHeight(0.0);
+        bottomAnchorPane.setMinWidth(0.0);
+        bottomAnchorPane.setPrefHeight(100.0);
+        bottomAnchorPane.setPrefWidth(160.0);
+        childSplitPane = new SplitPane();
+        childSplitPane.setId("childSplitPane");
+        childSplitPane.setDividerPositions(0.2);
+        childSplitPane.setLayoutX(199.0);
+        childSplitPane.setLayoutY(77.0);
+        childSplitPane.setPrefHeight(160.0);
+        childSplitPane.setPrefWidth(200.0);
+        AnchorPane leftAnchorPane = new AnchorPane();
+        leftAnchorPane.setMinHeight(0.0);
+        leftAnchorPane.setMinWidth(0.0);
+        leftAnchorPane.setPrefHeight(160.0);
+        leftAnchorPane.setPrefWidth(100.0);
+        formatContainers = new ListView<>();
+        formatContainers.setId("formatContainers");
+        formatContainers.setLayoutX(-42.0);
+        formatContainers.setLayoutY(49.0);
+        formatContainers.setPrefHeight(200.0);
+        formatContainers.setPrefWidth(200.0);
+        formatContainers.getStyleClass().add("listView");
+        leftAnchorPane.getChildren().add(formatContainers);
+        AnchorPane.setBottomAnchor(formatContainers, 0.0);
+        AnchorPane.setLeftAnchor(formatContainers, 0.0);
+        AnchorPane.setRightAnchor(formatContainers, 0.0);
+        AnchorPane.setTopAnchor(formatContainers, 0.0);
+        AnchorPane rightAnchorPane = new AnchorPane();
+        rightAnchorPane.setMinHeight(0.0);
+        rightAnchorPane.setMinWidth(0.0);
+        rightAnchorPane.setPrefHeight(160.0);
+        rightAnchorPane.setPrefWidth(100.0);
+        formatAtrrs = new ListView<>();
+        formatAtrrs.setId("formatAtrrs");
+        formatAtrrs.setLayoutX(137.0);
+        formatAtrrs.setLayoutY(64.0);
+        formatAtrrs.setPrefHeight(200.0);
+        formatAtrrs.setPrefWidth(200.0);
+        formatAtrrs.getStyleClass().add("listView");
+        rightAnchorPane.getChildren().add(formatAtrrs);
+        AnchorPane.setBottomAnchor(formatAtrrs, 0.0);
+        AnchorPane.setLeftAnchor(formatAtrrs, 0.0);
+        AnchorPane.setRightAnchor(formatAtrrs, 0.0);
+        AnchorPane.setTopAnchor(formatAtrrs, 0.0);
+        childSplitPane.getItems().addAll(leftAnchorPane, rightAnchorPane);
+        bottomAnchorPane.getChildren().add(childSplitPane);
+        AnchorPane.setBottomAnchor(childSplitPane, 0.0);
+        AnchorPane.setLeftAnchor(childSplitPane, 0.0);
+        AnchorPane.setRightAnchor(childSplitPane, 0.0);
+        AnchorPane.setTopAnchor(childSplitPane, 0.0);
+
+        motherSplitPane.getItems().addAll(topAnchorPane, bottomAnchorPane);
+
+        FormatsModel.singleFormatContainers.clear();
+        FormatsModel.singleFormatContainers.add(MP4.formatContainerName.toUpperCase());
+        formatContainers.setItems(FormatsModel.singleFormatContainers);
+        formatAtrrs.setItems(FormatsModel.singleFormatAttrs);
+
+        formatContainers.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if(newValue != null){
+                        switch (newValue){
+                            case "MP4":
+                                FormatsModel.singleFormatAttrs.clear();
+                                FormatsModel.singleFormatAttrs.setAll(MP4Attr.getMinimalSettingMap().values());
+                                if(format == null || !(format instanceof MP4)){
+                                    format = new MP4();
+                                    format.setDefault();
+                                    fileConverterInit.getService().setTargetFormat(format);
+                                    convertToButton.setText(format.getCurrentConfigForTextButton());
+                                }
+                                break;
+
+                        }
+                    }
+
+                }
+        );
+        formatAtrrs.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    MainController mainController =
+                            Main.mainControllerFxmlLoader.getController();
+
+
+                    for (Map.Entry<String, String> entry : MP4Attr.getMinimalSettingMap().entrySet()) {
+                        if (Objects.equals(newValue, entry.getValue())) {
+
+                            switch (entry.getKey()){
+                                case "8K":
+                                    ((MP4)fileConverterInit.getService().getTargetFormat()).set8K();
+
+                                    updateFormatAndCloseStage(entry);
+
+                                    break;
+                                case "4K":
+                                    ((MP4)fileConverterInit.getService().getTargetFormat()).set4K();
+
+                                    updateFormatAndCloseStage(entry);
+
+                                    break;
+                                case "UHD2160":
+                                    ((MP4)fileConverterInit.getService().getTargetFormat()).setUHD2160();
+
+                                    updateFormatAndCloseStage(entry);
+
+                                    break;
+                                case "1080p":
+                                    ((MP4)fileConverterInit.getService().getTargetFormat()).set1080p();
+
+                                    updateFormatAndCloseStage(entry);
+
+                                    break;
+                                case "720p":
+                                    ((MP4)fileConverterInit.getService().getTargetFormat()).set720p();
+
+                                    updateFormatAndCloseStage(entry);
+
+                                    break;
+                                case "640p":
+                                    ((MP4)fileConverterInit.getService().getTargetFormat()).set640p();
+
+                                    updateFormatAndCloseStage(entry);
+
+                                    break;
+                                case "480p":
+                                    ((MP4)fileConverterInit.getService().getTargetFormat()).set480p();
+
+                                    updateFormatAndCloseStage(entry);
+
+                                    break;
+                            }
+                        }
+                    }
+                });
+
+        scene = new Scene(motherSplitPane, 600, 400);
+        scene.getStylesheets().add(Main.class.getResource("formats/ConvertCellWidgetFormatSelector.css").toExternalForm());
+        stage.initStyle(StageStyle.UTILITY);  // Only closable
+        stage.setResizable(false);
+
+
+        stage.setOnCloseRequest(event -> {
+            Platform.runLater(()->FormatsModel.singleFormatAttrs.clear());
+
+        });
+        stage.setTitle("SplitPane Example");
+        stage.setScene(scene);
+
+        stage.show();
+    }
+    private void updateFormatAndCloseStage(Map.Entry<String, String> entry) {
+        fileConverterInit.getService().setSingleFormatChanged(true);
+        Platform.runLater(()->{
+
+            String input = entry.getValue();
+            String[] parts = input.split(" ");
+            String result = String.format("%s %s", parts[0], parts[1]);
+            convertToButton.setText(result);
+
+            FormatsModel.singleFormatAttrs.clear();
+
+            stage.close();
+        });
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         Image importImageI = new Image(String.valueOf(Main.class.getResource("icons/trash-off.png")));
 
         // Create an ImageView
@@ -262,6 +513,7 @@ public class ConvertCellWidget extends HBox implements Initializable {
         importImage.setFitHeight(15);
         // Create a button and set the graphic
         removeButton.setGraphic(importImage);
+
 
     }
 
@@ -277,11 +529,5 @@ public class ConvertCellWidget extends HBox implements Initializable {
 
         return fileConverterInit;
     }
-    public Format getFormat() {
-        return format;
-    }
 
-    public void setFormat(Format format) {
-        this.format = format;
-    }
 }

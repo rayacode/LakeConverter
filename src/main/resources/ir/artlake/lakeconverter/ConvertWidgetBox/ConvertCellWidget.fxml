@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -66,24 +67,28 @@
             </HBox.margin>
         </Label>
          <Pane prefHeight="200.0" prefWidth="0.0" HBox.hgrow="NEVER" />
-         <GridPane id="gridPanBox" fx:id="gridPanBox" prefHeight="200.0" HBox.hgrow="NEVER">
-           <columnConstraints>
-             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-             
-           </columnConstraints>
-           <rowConstraints>
-             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
-             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-           </rowConstraints>
+         <AnchorPane prefHeight="200.0" prefWidth="251.0">
             <children>
-            <Button id="convertCRButton" fx:id="convertCRButton" mnemonicParsing="false" onAction="#onConvertAction" text="Convert" GridPane.rowIndex="1" />
-               <Button id="removeButton" fx:id="removeButton" mnemonicParsing="false" onAction="#onRemoveButtonAction" GridPane.columnIndex="2" />
-               <Button fx:id="convertToButton" mnemonicParsing="false" onAction="#onConvertToButtonAction" text="MP4 720p" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               <GridPane id="gridPanBox" fx:id="gridPanBox" layoutX="-122.0" maxHeight="200.0" prefHeight="200.0" prefWidth="373.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-122.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                 <columnConstraints>
+                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                   
+                 </columnConstraints>
+                 <rowConstraints>
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                 </rowConstraints>
+                  <children>
+                  <Button id="convertCRButton" fx:id="convertCRButton" mnemonicParsing="false" onAction="#onConvertAction" text="Convert" GridPane.rowIndex="1" />
+                     <Button id="removeButton" fx:id="removeButton" mnemonicParsing="false" onAction="#onRemoveButtonAction" GridPane.columnIndex="2" />
+                     <Button fx:id="convertToButton" mnemonicParsing="false" onAction="#onConvertToButtonAction" text="MP4 720p" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  </children>
+               </GridPane>
             </children>
-         </GridPane>
+         </AnchorPane>
     </children>
 </HBox>
 </fx:root>

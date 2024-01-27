@@ -1,10 +1,8 @@
 package ir.artlake.lakeconverter.conversion.Formats;
 
-import ws.schild.jave.Encoder;
 import ws.schild.jave.encode.AudioAttributes;
 import ws.schild.jave.encode.EncodingAttributes;
 import ws.schild.jave.encode.VideoAttributes;
-import ws.schild.jave.encode.enums.X264_PROFILE;
 import ws.schild.jave.info.VideoSize;
 
 import java.util.Arrays;
@@ -133,50 +131,53 @@ public class MP4 implements Format{
 
 
     public  void setDefault(){
-        setInitMp4(VideoSize.hd720);
+        set720p();
     }
     public  void set480p(){
-
+        resCode="480p";
 
         setInitMp4(VideoSize.hd480);
 
 
     }
     public  void set640p(){
-
+        resCode="640p";
         setInitMp4(new VideoSize(960, 640));
 
 
 
     }
     public  void set720p(){
-
+        resCode="720p";
 
         setInitMp4(VideoSize.hd720);
 
 
     }
     public  void set1080p(){
-
+        resCode="1080p";
         setInitMp4(VideoSize.hd1080);
 
 
 
     }
-    public  void set4k(){
-
+    public  void setUHD2160(){
+        resCode="UHD2160";
         setInitMp4(VideoSize.uhd2160);
 
 
     }
-    public  void set8k(){
-        setInitMp4(VideoSize.uhd4320);
-
-
-
-
+    public void set4K(){
+        resCode="4K";
+        setInitMp4(VideoSize.FOURk);
 
     }
+
+    public  void set8K(){
+        resCode="8K";
+        setInitMp4(VideoSize.uhd4320);
+    }
+
 
     public void setInitMp4(VideoSize videoSize){
         audioAttributes.setCodec(MP4.AAC);
@@ -198,5 +199,12 @@ public class MP4 implements Format{
         encodingAttributes.setAudioAttributes(audioAttributes);
         
 
+    }
+    private String resCode = "";
+
+
+
+    public String getCurrentConfigForTextButton() {
+        return "MP4 " + resCode;
     }
 }

@@ -19,15 +19,16 @@ public class FileConverterInit {
     private Semaphore semaphore;
 
     private File source;
-    Format format;
+
     private ConvertCellWidget convertCellWidget;
 
 
 
     public FileConverterInit(String source, String target, Semaphore semaphore, Format format) {
         this.semaphore = semaphore;
-        this.format = format;
+
         service = new ConversionService(source, target, semaphore, format);
+
         this.source = new File(source);
         service.setExecutor(executorService);
         this.isConverted = false;
@@ -61,7 +62,6 @@ public class FileConverterInit {
     public void changeFormat(Format format){
         if (!service.isSingleFormatChanged()) {
             service.setTargetFormat(format);
-            convertCellWidget.setFormat(format);
             service.setSingleFormatChanged(true);
         }
 
@@ -76,13 +76,7 @@ public class FileConverterInit {
         return source;
     }
 
-    public Format getFormat() {
-        return format;
-    }
 
-    public void setFormat(Format format) {
-        this.format = format;
-    }
     public ConvertCellWidget getConvertCellWidget() {
         return convertCellWidget;
     }

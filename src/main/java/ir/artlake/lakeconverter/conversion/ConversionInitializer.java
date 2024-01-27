@@ -20,8 +20,9 @@ public class ConversionInitializer {
         List<FileConverterInit> fileConverterInitList = new LinkedList<>();
         for (File file : selectedFiles) {
             if(selectedTarget == null || this.selectedTarget != selectedTarget ){
-                this.selectedTarget = selectedTarget;
+
                 selectedTarget = FileUtils.createDirectory(file.getParent() + "\\converted");
+                this.selectedTarget = selectedTarget;
 
 
                 fileConverterInitList.add(new FileConverterInit( file.getAbsolutePath(), selectedTarget.getAbsolutePath(), semaphore, format));

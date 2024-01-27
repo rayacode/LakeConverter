@@ -3,31 +3,35 @@ package ir.artlake.lakeconverter.conversion;
 import ir.artlake.lakeconverter.conversion.Formats.Format;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import org.jetbrains.annotations.NotNull;
 import ws.schild.jave.Encoder;
 import ws.schild.jave.EncoderException;
 import ws.schild.jave.MultimediaObject;
 import ws.schild.jave.encode.EncodingAttributes;
+import ws.schild.jave.filters.FilterChain;
+import ws.schild.jave.filters.FilterGraph;
+import ws.schild.jave.filters.MediaConcatFilter;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Semaphore;
 
 import static ir.artlake.lakeconverter.Main.executorService;
 
-public class ConversionService<T extends Format> extends Service<Boolean> {
+public class ConversionMergeService<T extends Format> extends Service<Boolean> {
     private String name;
 
-    private File source;
+    List<MultimediaObject> source;
     private File target;
     private Semaphore semaphore;
     private boolean isSingleFormatChanged;
     private T targetFormat;
     ConvertProgressListener listener = new ConvertProgressListener();
     private Encoder encoder = new Encoder();
-    public ConversionService(String source, String target, Semaphore semaphore, T format) {
+    public ConversionMergeService(List<MultimediaObject> source, String target, Semaphore semaphore, T format) {
 
-        this.source = new File(source);
-        String sourceName = this.source.getName();
+        this.source = source;
+        String sourceName = this.source.get(0).getFile().getName();
         String baseName = sourceName.substring(0, sourceName.lastIndexOf('.'));
         this.targetFormat = format;
         this.target = new File(target, baseName + targetFormat.getFileExtension());
@@ -69,7 +73,11 @@ public class ConversionService<T extends Format> extends Service<Boolean> {
                     target = new File(base + "_" + counter + extension);
                 }
 
-                encoder.encode(new MultimediaObject(source), target, attrs, listener);
+                FilterGraph complexFiltergraph= new FilterGraph();
+                FilterChain fc= new FilterChain();
+                fc.addFilter(new MediaConcatFilter(source.size(), true, false));
+                complexFiltergraph.addChain(fc);
+                encoder.encode(source, target, attrs, listener);
 
                 return true;
 

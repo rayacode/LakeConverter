@@ -8,8 +8,13 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class ConvertProgressListener implements EncoderProgressListener {
-    private final BiConsumer<Double, Double> progressConsumer;
 
+
+    private BiConsumer<Double, Double> progressConsumer;
+
+    public ConvertProgressListener(){
+
+    }
     public ConvertProgressListener(BiConsumer<Double, Double> progressConsumer) {
         this.progressConsumer = progressConsumer;
     }
@@ -23,4 +28,11 @@ public class ConvertProgressListener implements EncoderProgressListener {
 
     public void message(String m) {}
     public void sourceInfo(MultimediaInfo m) {}
+    public BiConsumer<Double, Double> getProgressConsumer() {
+        return progressConsumer;
+    }
+
+    public void setProgressConsumer(BiConsumer<Double, Double> progressConsumer) {
+        this.progressConsumer = progressConsumer;
+    }
 }
