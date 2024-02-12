@@ -1,0 +1,46 @@
+.tab-pane {
+    -fx-background-color: #3C3F41;
+    -fx-pref-width: 500;
+    -fx-pref-height: 400.0;
+
+    -fx-padding: 0 0 0 0;
+
+}
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #3C3F49;
+    -fx-text-fill: #AFB1B3;
+}
+.tab-pane .tab {
+    -fx-background-color:#367D97 ;
+    -fx-text-fill: #AFB1B3; /* Change this to your desired color */
+}
+.tab-pane .tab:hover {
+    -fx-background-color: #4C5052;
+    -fx-text-fill: #499C54 ;
+}
+.tab-pane .tab:selected {
+    -fx-background-color: #5C6164;
+    -fx-text-fill: #499C70;
+}
+.label{
+    -fx-text-fill: #499C54 ;
+}
+.combo-box{
+    -fx-background-color: #2B2B2B;
+
+}
+.combo-box .list-cell{
+    -fx-background-color: #2B2B2B;
+    -fx-text-fill: #AFB1B3;
+
+}
+.combo-box-popup .list-cell {
+    -fx-background-color:#367D97 ;
+    -fx-text-fill: #AFB1B3;
+}
+.text-field{
+    -fx-text-fill: #499C70;
+    -fx-background-color: #5C6164;
+    -fx-max-height: 18px;
+    -fx-background-radius: 6;
+}

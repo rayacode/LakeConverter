@@ -1,7 +1,13 @@
 package ir.artlake.lakeconverter.conversion;
 
 
+import ir.artlake.lakeconverter.Main;
+import ir.artlake.lakeconverter.controllers.FormatsController;
+import ir.artlake.lakeconverter.controllers.MainController;
 import ir.artlake.lakeconverter.conversion.Formats.Format;
+import ir.artlake.lakeconverter.fileoperations.FileService;
+import ir.artlake.lakeconverter.models.FormatsModel;
+import javafx.application.Platform;
 import javafx.concurrent.Worker;
 
 import java.io.File;
@@ -15,6 +21,7 @@ public class QConversionManager {
         for (FileConverterInit fileConverterInit : fileConverterInitMap) {
             fileConverterInit.startConversion();
         }
+
     }
     public void resetConversions() {
         for (FileConverterInit fileConverterInit : fileConverterInitMap) {
@@ -22,12 +29,13 @@ public class QConversionManager {
                 fileConverterInit.restartConversion();
 
         }
+
     }
     public void deleteOrCanselConversions() {
         for (FileConverterInit fileConverterInit : fileConverterInitMap) {
             fileConverterInit.deleteOrCancelConvertFileThread();
         }
-
+        Platform.runLater(()->MainController.convertButtonMirror.setDisable(false));
     }
 
 
@@ -56,6 +64,12 @@ public class QConversionManager {
 
                 service.deleteOrCancelConvertFileThread();
 
+    }
+    public void startMergingConvert(){
+        ConversionMergeService conversionMergeService = new ConversionMergeService<>(FileService.mergeList,
+                fileConverterInitMap.get(0).getTargetFolder(),
+                FileService.semaphore, FileService.format);
+        conversionMergeService.start();
     }
 
 

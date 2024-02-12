@@ -6,8 +6,8 @@ import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.images.Artwork;
-import ws.schild.jave.MultimediaObject;
-import ws.schild.jave.ScreenExtractor;
+import ir.artlake.lakeconverter.jave.MultimediaObject;
+import ir.artlake.lakeconverter.jave.ScreenExtractor;
 
 
 import java.io.File;

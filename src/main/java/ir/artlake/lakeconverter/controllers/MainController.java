@@ -6,12 +6,16 @@ import ir.artlake.lakeconverter.Main;
 import ir.artlake.lakeconverter.ScreenUtils;
 import ir.artlake.lakeconverter.UIUpdater;
 import ir.artlake.lakeconverter.conversion.ConvertButtonStatuses;
+import ir.artlake.lakeconverter.conversion.FileConverterInit;
+import ir.artlake.lakeconverter.conversion.Formats.MP4;
 import ir.artlake.lakeconverter.fileoperations.FileService;
 import ir.artlake.lakeconverter.fileoperations.concurency.AddFiles;
 import ir.artlake.lakeconverter.models.FormatsModel;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,13 +27,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import ir.artlake.lakeconverter.jave.MultimediaObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
 public class MainController implements Initializable {
 
+    @FXML
+    private Button formatsSettings;
     @FXML
     private ProgressBar fileAddProgress;
     @FXML
@@ -68,7 +76,7 @@ public class MainController implements Initializable {
         Stage stage = (Stage) choosingFiles.getScene().getWindow();
         List<File> selectedFiles = fileService.chooseSourceFiles(stage);
         AddFiles addFiles = new AddFiles(selectedFiles, fileService,
-                convertButton, isSelected,
+                convertButton,mergeToggle, isSelected,
                 uiUpdater, fileService.getSemaphore());
         fileAddProgress.progressProperty().bind(addFiles.progressProperty());
         addFiles.start();
@@ -116,18 +124,34 @@ public class MainController implements Initializable {
         deleteAllButton.setVisible(false);
         deleteAllButton.setDisable(true);
     }
+    public static Button convertButtonMirror;
     @FXML
     protected void onConvertAction() {
-        switch (convertButton.getText()) {
-            case ConvertButtonStatuses.CONVERT_ALL:
-                FileService.qConversionManager.startConversions();
-                break;
-            case ConvertButtonStatuses.CANCEL_ALL:
-                FileService.qConversionManager.deleteOrCanselConversions();
-                break;
-            case ConvertButtonStatuses.RESTART_ALL:
-                FileService.qConversionManager.resetConversions();
-                break;
+        if(!FileService.mergeToggle){
+            switch (convertButton.getText()) {
+                case ConvertButtonStatuses.CONVERT_ALL:
+                    FileService.qConversionManager.startConversions();
+                    break;
+                case ConvertButtonStatuses.CANCEL_ALL:
+                    Platform.runLater(() -> convertButton.setDisable(true));
+                    FileService.qConversionManager.deleteOrCanselConversions();
+                    break;
+                case ConvertButtonStatuses.RESTART_ALL:
+                    FileService.qConversionManager.resetConversions();
+                    break;
+            }
+        }else {
+            switch (convertButton.getText()) {
+                case ConvertButtonStatuses.CONVERT_ALL:
+                    FileService.qConversionManager.startMergingConvert();
+                    break;
+                case ConvertButtonStatuses.CANCEL_ALL:
+                    FileService.qConversionManager.deleteOrCanselConversions();
+                    break;
+                case ConvertButtonStatuses.RESTART_ALL:
+                    FileService.qConversionManager.resetConversions();
+                    break;
+            }
         }
     }
 
@@ -136,6 +160,35 @@ public class MainController implements Initializable {
 
         formatChoosStage.showAndWait();
     }
+    @FXML
+    protected void onFormatsSettings(){
+        formatsSettingsFxmlLoader =
+                new FXMLLoader(Main.class.getResource("formatSettings/formatSettings.fxml"));
+        Parent rootFormatSettings = null;
+        try {
+            rootFormatSettings = formatsSettingsFxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        formatsSettingsStage = new Stage();
+        formatsSettingsStage.initModality(Modality.APPLICATION_MODAL);
+        formatsSettingsStage.setScene(new Scene(rootFormatSettings));
+        formatsSettingsStage.setResizable(false);
+        formatsSettingsStage.setOnCloseRequest(event -> {
+
+        });
+        ScreenUtils.lockEdges(formatsSettingsStage);
+        formatsSettingsStage.showAndWait();
+    }
+    @FXML
+    protected void mergeOnSwipeRight(){
+
+    }
+
+    @FXML
+    protected void mergeOnSwipeLeft(){
+
+    }
     public boolean isSelected() {
         return isSelected;
     }
@@ -143,7 +196,7 @@ public class MainController implements Initializable {
     public void setSelected(boolean selected) {
         isSelected = selected;
     }
-    Stage formatChoosStage;
+
     public Stage getFormatChoosStage(){
         return formatChoosStage;
     }
@@ -155,21 +208,81 @@ public class MainController implements Initializable {
         return convListView;
     }
     public static FXMLLoader formatsFxmlLoader;
+    public static FXMLLoader formatsSettingsFxmlLoader;
+    Stage formatChoosStage;
+    Stage formatsSettingsStage;
+    public static Button convertToMirror;
+    public static Button formatSettingsMirror;
+    public static Label allConvertToLabelMirror;
+
+    @FXML
+    private Label allConvertToLabel;
+    @FXML
+    private Label mergeAllLabel;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        convertButtonMirror = convertButton;
+            convertToMirror=convertToButton;
+            formatSettingsMirror = formatsSettings;
+            allConvertToLabelMirror = allConvertToLabel;
+            allConvertToLabel.setVisible(false);
+            convertToButton.setVisible(false);
+            formatsSettings.setVisible(false);
+            FormatsSettingsController.customResolution.addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    convertToButton.setText(newValue);
+                }
+            });
+            convertToButton.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    Platform.runLater(()->FormatsSettingsController.resolutionComboMirror.setValue(FileService.format.getVideoAttributes().getSize().get()));
+                    }
+            });
+            mergeToggle.setDisable(true);
+            mergeToggle.setVisible(false);
+            mergeAllLabel.setVisible(false);
+            mergeToggle.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                for(FileConverterInit fileConverterInit : FileService.fileConverterInitMap){
+                    FileService.mergeList.add(
+                            new MultimediaObject(fileConverterInit.getSource()));
+                }
+                for(ConvertCellWidget cellWidget : UIUpdater.items){
+                    cellWidget.getConvertToButton().setDisable(true);
+                    cellWidget.getConvertCRButton().setDisable(true);
+                    cellWidget.getRemoveButton().setDisable(true);
+                }
 
+                FileService.mergeToggle = true;
+            } else {
+                FileService.mergeList.clear();
+                for(ConvertCellWidget cellWidget : UIUpdater.items){
+                    cellWidget.getConvertToButton().setDisable(false);
+                    cellWidget.getConvertCRButton().setDisable(false);
+                    cellWidget.getRemoveButton().setDisable(false);
+                }
+                FileService.mergeToggle = false;
+            }
+        });
         try {
             // Load the FXML file
-            formatsFxmlLoader = new FXMLLoader(Main.class.getResource("formats/formats.fxml"));
+            formatsFxmlLoader =
+                    new FXMLLoader(Main.class.getResource("formats/formats.fxml"));
 
-            Parent root = formatsFxmlLoader.load();
+            Parent rootFormatChoose = formatsFxmlLoader.load();
+
             // Create a new stage
             formatChoosStage = new Stage();
             formatChoosStage.initModality(Modality.APPLICATION_MODAL);
-            formatChoosStage.setScene(new Scene(root));
+            formatChoosStage.setScene(new Scene(rootFormatChoose));
             formatChoosStage.setResizable(false);
+
+
             // Add an event filter to hide the stage when user clicks outside
             ScreenUtils.lockEdges(formatChoosStage);
+
 
 
             // Show the stage and wait
@@ -256,6 +369,14 @@ public class MainController implements Initializable {
         exportImage.setFitHeight(30);
         // Create a button and set the graphic
         choosingTarget.setGraphic(exportImage);
+        Image formatSettingsImageI = new Image(String.valueOf(Main.class.getResource("icons/settings.png")));
+
+        // Create an ImageView
+        ImageView formatSettingsImage = new ImageView(formatSettingsImageI);
+        formatSettingsImage.setFitWidth(30);
+        formatSettingsImage.setFitHeight(25);
+        // Create a button and set the graphic
+        formatsSettings.setGraphic(formatSettingsImage);
 
         Image toggleImage =
                 new Image(String.valueOf(Main.class.getResource("icons/toggle-left.png")));

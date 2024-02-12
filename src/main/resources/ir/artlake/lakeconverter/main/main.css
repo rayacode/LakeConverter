@@ -69,6 +69,19 @@
     /* Pressed state */
     -fx-background-color: #5C6164;
 }
+#formatSettings{
+    -fx-background-color: #3C3F41;
+    -fx-background-radius: 50;
+}
+#formatSettings:hover {
+    /* Hover state */
+    -fx-background-color: #4C5052;
+}
+
+#formatSettings:pressed {
+    /* Pressed state */
+    -fx-background-color: #5C6164;
+}
 #mergeAllLabel{
     -fx-text-fill: #499C54 ;
 }

@@ -1,8 +1,8 @@
 package ir.artlake.lakeconverter.conversion;
 
 import javafx.application.Platform;
-import ws.schild.jave.info.MultimediaInfo;
-import ws.schild.jave.progress.EncoderProgressListener;
+import ir.artlake.lakeconverter.jave.info.MultimediaInfo;
+import ir.artlake.lakeconverter.jave.progress.EncoderProgressListener;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;

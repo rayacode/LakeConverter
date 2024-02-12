@@ -1,6 +1,7 @@
 package ir.artlake.lakeconverter;
 
 import ir.artlake.lakeconverter.controllers.ConvertCellWidgetFormatSelector;
+import ir.artlake.lakeconverter.controllers.FormatsSettingsController;
 import ir.artlake.lakeconverter.controllers.MainController;
 import ir.artlake.lakeconverter.conversion.Formats.Format;
 import ir.artlake.lakeconverter.conversion.Formats.MP4;
@@ -10,6 +11,8 @@ import ir.artlake.lakeconverter.fileoperations.ThumbnailGenerator;
 import ir.artlake.lakeconverter.conversion.FileConverterInit;
 import ir.artlake.lakeconverter.models.FormatsModel;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,10 +27,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import ws.schild.jave.MultimediaObject;
-import ws.schild.jave.info.AudioInfo;
-import ws.schild.jave.info.MultimediaInfo;
-import ws.schild.jave.info.VideoInfo;
+import ir.artlake.lakeconverter.jave.MultimediaObject;
+import ir.artlake.lakeconverter.jave.info.AudioInfo;
+import ir.artlake.lakeconverter.jave.info.MultimediaInfo;
+import ir.artlake.lakeconverter.jave.info.VideoInfo;
 
 import java.io.File;
 import java.io.IOException;
@@ -120,7 +123,17 @@ public class ConvertCellWidget extends HBox implements Initializable {
     public void setConvertCell(FileConverterInit fileConverterInit, File file) throws Exception {
 
         //convertToButton.textProperty().bind(fileConverterInit.getService().getTargetFormat().getCurrentConfigForTextButton());
-
+        FormatsSettingsController.customResolution.addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(!isSingleFormatSelected){
+                    convertToButton.setText(newValue.substring(7));
+                }
+            }
+        });
+        if(FormatsSettingsController.isCustomResolutionUsed){
+            convertToButton.setText(FormatsSettingsController.customResolution.getValue().substring(7));
+        }
 
         String fileNameBase = file.getName().substring(0, file.getName().lastIndexOf('.'));
         String fileName = String.format("%-18s", fileNameBase).replace(' ', ' ');
@@ -198,6 +211,15 @@ public class ConvertCellWidget extends HBox implements Initializable {
 
         }
     }
+
+    public Button getConvertCRButton() {
+        return convertCRButton;
+    }
+
+    public Button getRemoveButton() {
+        return removeButton;
+    }
+
     Parent root = null;
     @FXML
     protected void onConvertToButtonAction(){

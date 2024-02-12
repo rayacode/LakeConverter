@@ -2,14 +2,14 @@ package ir.artlake.lakeconverter.conversion;
 
 
 import org.jetbrains.annotations.NotNull;
-import ws.schild.jave.Encoder;
-import ws.schild.jave.EncoderException;
-import ws.schild.jave.MultimediaObject;
-import ws.schild.jave.encode.AudioAttributes;
-import ws.schild.jave.encode.EncodingAttributes;
-import ws.schild.jave.encode.VideoAttributes;
-import ws.schild.jave.encode.enums.X264_PROFILE;
-import ws.schild.jave.process.ProcessWrapper;
+import ir.artlake.lakeconverter.jave.Encoder;
+import ir.artlake.lakeconverter.jave.EncoderException;
+import ir.artlake.lakeconverter.jave.MultimediaObject;
+import ir.artlake.lakeconverter.jave.encode.AudioAttributes;
+import ir.artlake.lakeconverter.jave.encode.EncodingAttributes;
+import ir.artlake.lakeconverter.jave.encode.VideoAttributes;
+import ir.artlake.lakeconverter.jave.encode.enums.X264_PROFILE;
+import ir.artlake.lakeconverter.jave.process.ProcessWrapper;
 
 import java.io.File;
 import java.util.Arrays;

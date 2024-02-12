@@ -1,6 +1,8 @@
 package ir.artlake.lakeconverter.fileoperations.concurency;
 
+import ir.artlake.lakeconverter.Main;
 import ir.artlake.lakeconverter.UIUpdater;
+import ir.artlake.lakeconverter.controllers.MainController;
 import ir.artlake.lakeconverter.conversion.FileConverterInit;
 import ir.artlake.lakeconverter.fileoperations.FileService;
 import javafx.application.Platform;
@@ -8,8 +10,9 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import ws.schild.jave.MultimediaObject;
-import ws.schild.jave.info.MultimediaInfo;
+import javafx.scene.control.ToggleButton;
+import ir.artlake.lakeconverter.jave.MultimediaObject;
+import ir.artlake.lakeconverter.jave.info.MultimediaInfo;
 
 import java.io.File;
 import java.util.List;
@@ -24,16 +27,19 @@ public class AddFiles extends Service<Boolean> {
     private Button deleteAllButton;
     private UIUpdater uiUpdater;
     private Label filesCounter;
+    private ToggleButton mergeToggle;
     private boolean isSelected;
     public AddFiles(List<File> selectedFiles,
                     FileService fileService ,
                     Button convertButton,
+                    ToggleButton mergeToggle,
                     boolean isSelected,
                     UIUpdater uiUpdater,
                     Semaphore semaphore) {
       this.selectedFiles = selectedFiles;
       this.fileService = fileService;
       this.convertButton = convertButton;
+      this.mergeToggle = mergeToggle;
       this.isSelected = isSelected;
       this.uiUpdater = uiUpdater;
       this.semaphore = semaphore;
@@ -69,6 +75,10 @@ public class AddFiles extends Service<Boolean> {
                         convertButton.setDisable(false);
                         convertButton.setVisible(true);
                         convertButton.setText("Convert All");
+                        MainController.convertToMirror.setVisible(true);
+                        MainController.formatSettingsMirror.setVisible(true);
+                        MainController.allConvertToLabelMirror.setVisible(true);
+                        //mergeToggle.setDisable(false);
                     });
 
                     for(FileConverterInit fileConverterInit : newFileConverterInit){

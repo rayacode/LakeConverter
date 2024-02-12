@@ -40,3 +40,12 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/src/main/resources/jave/nativebin/ffmpeg-aarch64
+/src/main/resources/jave/nativebin/ffmpeg-aarch64-osx
+/src/main/resources/jave/nativebin/ffmpeg-amd64
+/src/main/resources/jave/nativebin/ffmpeg-amd64.exe
+/src/main/resources/jave/nativebin/ffmpeg-arm
+/src/main/resources/jave/nativebin/ffmpeg-i386
+/src/main/resources/jave/nativebin/ffmpeg-x86.exe
+/src/main/resources/jave/nativebin/ffmpeg-x86_64-osx
+/src/main/resources/jave/ffmpeg-amd64.exe

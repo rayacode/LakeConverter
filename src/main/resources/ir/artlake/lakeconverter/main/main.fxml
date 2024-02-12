@@ -28,7 +28,7 @@
                     <Button id="choosingFiles" fx:id="choosingFiles" mnemonicParsing="false" onAction="#onChoosingFileAction" styleClass="convertButClass" />
                     <Button id="choosingTarget" fx:id="choosingTarget" mnemonicParsing="false" onAction="#onChoosingTargetAction" styleClass="convertButClass" />
                   <Label fx:id="mergeAllLabel" text="Merg All:" />
-                  <ToggleButton id="mergeToggle" fx:id="mergeToggle" mnemonicParsing="false" onAction="#onMergeToggleAction" styleClass="convertButClass" textAlignment="CENTER" />
+                  <ToggleButton id="mergeToggle" fx:id="mergeToggle" mnemonicParsing="false" onAction="#onMergeToggleAction" onSwipeLeft="#mergeOnSwipeLeft" onSwipeRight="#mergeOnSwipeRight" styleClass="convertButClass" textAlignment="CENTER" />
                </items>
             </ToolBar>
             <ListView id="convListView" fx:id="convListView" opacity="1" />
@@ -64,6 +64,11 @@
                      </HBox.margin>
                   </Label>
                   <Button id="convertToButton" fx:id="convertToButton" mnemonicParsing="false" onAction="#onConvertToAction" text="MP4 720P">
+                     <HBox.margin>
+                        <Insets right="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="formatSettings" fx:id="formatsSettings" mnemonicParsing="false" onAction="#onFormatsSettings">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

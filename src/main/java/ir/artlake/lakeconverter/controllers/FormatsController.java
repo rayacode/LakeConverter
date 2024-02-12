@@ -68,9 +68,7 @@ public class FormatsController implements Initializable {
                         case "MP4":
                             FormatsModel.formatAttrs.clear();
                             FormatsModel.formatAttrs.setAll(MP4Attr.getMinimalSettingMap().values());
-                            FileService.format = new MP4();
 
-                            FileService.format.setDefault();
                             break;
 
                     }
@@ -90,30 +88,44 @@ public class FormatsController implements Initializable {
 
                             switch (entry.getKey()){
                                 case "8K":
+                                    FileService.format = new MP4();
+                                    FileService.format.setDefault();
                                     ((MP4) FileService.format).set8K();
                                     updateFormatAndUI(entry, mainController);
                                     break;
                                 case "4K":
+                                    FileService.format = new MP4();
+                                    FileService.format.setDefault();
                                     ((MP4) FileService.format).set4K();
                                     updateFormatAndUI(entry, mainController);
                                     break;
                                 case "UHD2160":
+                                    FileService.format = new MP4();
+                                    FileService.format.setDefault();
                                     ((MP4)FileService.format).setUHD2160();
                                     updateFormatAndUI(entry, mainController);
                                     break;
                                 case "1080p":
+                                    FileService.format = new MP4();
+                                    FileService.format.setDefault();
                                     ((MP4)FileService.format).set1080p();
                                     updateFormatAndUI(entry, mainController);
                                     break;
                                 case "720p":
+                                    FileService.format = new MP4();
+                                    FileService.format.setDefault();
                                     ((MP4)FileService.format).set720p();
                                     updateFormatAndUI(entry, mainController);
                                     break;
                                 case "640p":
+                                    FileService.format = new MP4();
+                                    FileService.format.setDefault();
                                     ((MP4)FileService.format).set640p();
                                     updateFormatAndUI(entry, mainController);
                                     break;
                                 case "480p":
+                                    FileService.format = new MP4();
+                                    FileService.format.setDefault();
                                     ((MP4)FileService.format).set480p();
                                     updateFormatAndUI(entry, mainController);
                                     break;
@@ -124,8 +136,9 @@ public class FormatsController implements Initializable {
 
     }
     private void updateFormatAndUI(Map.Entry<String, String> entry, MainController mainController) {
+        FormatsSettingsController.isCustomResolutionUsed = false;
         FileService.qConversionManager.changeFormats(FileService.format);
-
+        FormatsSettingsController.programInit = false;
         Platform.runLater(() -> {
             String input = entry.getValue();
             String[] parts = input.split(" ");
@@ -146,6 +159,7 @@ public class FormatsController implements Initializable {
 
     public void setConvertCellWidget(ConvertCellWidget convertCellWidget) {
         this.convertCellWidget = convertCellWidget;
+
     }
 
     @Override

@@ -1,14 +1,15 @@
 package ir.artlake.lakeconverter.conversion.Formats;
 
-import ws.schild.jave.encode.AudioAttributes;
-import ws.schild.jave.encode.EncodingAttributes;
-import ws.schild.jave.encode.VideoAttributes;
-import ws.schild.jave.info.VideoSize;
+import ir.artlake.lakeconverter.jave.encode.enums.TuneEnum;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import ir.artlake.lakeconverter.jave.encode.AudioAttributes;
+import ir.artlake.lakeconverter.jave.encode.EncodingAttributes;
+import ir.artlake.lakeconverter.jave.encode.VideoAttributes;
+import ir.artlake.lakeconverter.jave.encode.enums.X264_PROFILE;
+import ir.artlake.lakeconverter.jave.info.VideoSize;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MP4 implements Format{
     AudioAttributes audioAttributes;
@@ -59,9 +60,86 @@ public class MP4 implements Format{
     //HEVC_qsv use Intel Quick Sync Video (hardware embedded in modern Intel CPU)
     public static String HEVC_QSV ="hevc_qsv";
 
-
+    public static ObservableList<String> videoEncoders = FXCollections.observableList(Arrays.asList(AV1, MPEG4,CFHD,
+            LIBX264, LIBX264RGB, H264_AMF, H264_NVENC, H264_QSV,
+            LIBX265, HEVC_AMF, HEVC_NVENC, HEVC_QSV,
+            LIBVPX_VP9));
+    public static ObservableList<String> audioEncoders = FXCollections.observableList(Arrays.asList(AC_3,
+            AC_3_FIXED, AAC, APPLE_LOSSLESS,
+            MP2, MP2_FIXED, MP3));
+    public static ObservableList<VideoSize> videoResolutions = FXCollections.observableArrayList(VideoSize.ntsc
+            ,VideoSize.pal
+            ,VideoSize.qntsc ,VideoSize.qpal ,VideoSize.sntsc ,VideoSize.spal
+            ,VideoSize.film ,VideoSize.ntsc_film ,VideoSize.sqcif ,VideoSize.qcif
+            ,VideoSize.cif ,VideoSize.FOUR_cif ,VideoSize.SIXTEEN_cif ,VideoSize.qqvga
+            ,VideoSize.qvga ,VideoSize.vga ,VideoSize.svga ,VideoSize.xga
+            ,VideoSize.uxga ,VideoSize.qxga ,VideoSize.sxga ,VideoSize.qsxga
+            ,VideoSize.hsxga ,VideoSize.wvga ,VideoSize.wxga ,VideoSize.wsxga
+            ,VideoSize.wuxga ,VideoSize.woxga ,VideoSize.wqsxga ,VideoSize.wquxga
+            ,VideoSize.whsxga ,VideoSize.whuxga ,VideoSize.cga ,VideoSize.ega
+            ,VideoSize.hd480 ,VideoSize.hd720 ,VideoSize.hd1080 ,VideoSize.TWOk
+            ,VideoSize.TWOkflat ,VideoSize.TWOkscope ,VideoSize.FOURk ,VideoSize.FOURkflat
+            ,VideoSize.FOURkscope ,VideoSize.nhd ,VideoSize.hqvga
+            ,VideoSize.wqvga ,VideoSize.fwqvga ,VideoSize.hvga ,VideoSize.qhd
+            ,VideoSize.TWOkdci ,VideoSize.FOURkdci ,VideoSize.uhd2160 ,VideoSize.uhd4320);
+    public static ObservableList<Integer> bitRates =
+            FXCollections.observableArrayList(
+                    512,768,900,1000,1200,1500,2000,
+                    3000,4000,6000,8000,10000,15000,20000,30000);
+    public static ObservableList<Integer> crfValues = FXCollections.observableArrayList(
+            0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,
+            17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,
+            34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51);
+    public static ObservableList<Integer> frameRates = FXCollections.observableArrayList(
+            12,15,20,24,25,30,50,60,80,100,
+            120,140,160,180,200,220,240);
+    public static ObservableList<X264_PROFILE> profiles =FXCollections.observableArrayList(
+            X264_PROFILE.BASELINE,X264_PROFILE.MAIN,
+            X264_PROFILE.HIGH, X264_PROFILE.HIGH10,
+            X264_PROFILE.HIGH422, X264_PROFILE.HIGH444);
     //encoders and equivalent pixelformats
     Map<String, List<String>> encoderPixelFormats = new HashMap<>();
+
+
+    public static ObservableList<String> AV1Pixels = FXCollections.observableArrayList(
+            "yuv420p", "yuv422p", "yuv444p", "gbrp",
+            "yuv420p10le", "yuv422p10le", "yuv444p10le", "yuv420p12le",
+            "yuv422p12le", "yuv444p12le", "gbrp10le", "gbrp12le", "gray",
+            "gray10le", "gray12le");
+    public static ObservableList<String> mpeg4Pixels = FXCollections.observableArrayList(
+            "yuv420p");
+    public static ObservableList<String> LIBX264RGBPixels = FXCollections.observableArrayList(
+            "bgr0", "bgr24", "rgb24");
+    public static ObservableList<String> LIBX264Pixels = FXCollections.observableArrayList(
+            "yuv420p", "yuvj420p", "yuv422p", "yuvj422p", "yuv444p", "yuvj444p", "nv12",
+            "nv16", "nv21", "yuv420p10le", "yuv422p10le", "yuv444p10le", "nv20le", "gray", "gray10le");
+    public static ObservableList<String> H264_AMFPixels = FXCollections.observableArrayList(
+            "nv12", "yuv420p", "d3d11", "dxva2_vld");
+    public static ObservableList<String> H264_NVENCPixels = FXCollections.observableArrayList(
+            "yuv420p", "nv12", "p010le", "yuv444p", "p016le",
+            "yuv444p16le", "bgr0", "rgb0", "cuda", "d3d11");
+    public static ObservableList<String> H264_QSVPixels = FXCollections.observableArrayList(
+            "nv12", "qsv");
+    public static ObservableList<String> LIBX265Pixels = FXCollections.observableArrayList(
+            "yuv420p", "yuvj420p", "yuv422p", "yuvj422p",
+            "yuv444p", "yuvj444p", "gbrp", "yuv420p10le", "yuv422p10le",
+            "yuv444p10le", "gbrp10le", "yuv420p12le", "yuv422p12le",
+            "yuv444p12le", "gbrp12le", "gray", "gray10le", "gray12le");
+    public static ObservableList<String> HEVC_AMFPixels = FXCollections.observableArrayList(
+            "nv12", "yuv420p", "d3d11", "dxva2_vld");
+    public static ObservableList<String> HEVC_NVENCPixels = FXCollections.observableArrayList(
+            "yuv420p", "nv12", "p010le", "yuv444p", "p016le", "yuv444p16le", "bgr0", "rgb0", "cuda", "d3d11");
+    public static ObservableList<String> HEVC_QSVPixels = FXCollections.observableArrayList(
+            "nv12", "p010le", "p012le", "yuyv422", "y210le", "qsv", "bgra", "x2rgb10le", "vuyx", "xv30le");
+    public static ObservableList<String> LIBVPX_VP9Pixels = FXCollections.observableArrayList(
+            "yuv420p", "yuva420p", "yuv422p", "yuv440p", "yuv444p",
+            "yuv420p10le", "yuv422p10le", "yuv440p10le", "yuv444p10le",
+            "yuv420p12le", "yuv422p12le", "yuv440p12le", "yuv444p12le", "gbrp", "gbrp10le", "gbrp12le");
+    public static ObservableList<String> CFHDPixels = FXCollections.observableArrayList(
+            "yuv422p10le", "gbrp12le", "gbrap12le");
+
+
+
 
 
 
@@ -73,15 +151,17 @@ public class MP4 implements Format{
         encoderPixelFormats.put(MP4.LIBX264, Arrays.asList("yuv420p", "yuvj420p", "yuv422p", "yuvj422p", "yuv444p", "yuvj444p", "nv12", "nv16", "nv21", "yuv420p10le", "yuv422p10le", "yuv444p10le", "nv20le", "gray", "gray10le"));
         encoderPixelFormats.put(MP4.H264_AMF, Arrays.asList("nv12", "yuv420p", "d3d11", "dxva2_vld"));
         encoderPixelFormats.put(MP4.H264_NVENC, Arrays.asList("yuv420p", "nv12", "p010le", "yuv444p", "p016le", "yuv444p16le", "bgr0", "rgb0", "cuda", "d3d11"));
-        encoderPixelFormats.put(MP4.H264_QSV, Arrays.asList("nv12", "p010le", "qsv"));
+        encoderPixelFormats.put(MP4.H264_QSV, Arrays.asList("nv12", "qsv"));
         encoderPixelFormats.put(MP4.LIBVPX_VP9, Arrays.asList("yuv420p", "yuva420p", "yuv422p", "yuv440p", "yuv444p", "yuv420p10le", "yuv422p10le", "yuv440p10le", "yuv444p10le", "yuv420p12le", "yuv422p12le", "yuv440p12le", "yuv444p12le", "gbrp", "gbrp10le", "gbrp12le"));
         encoderPixelFormats.put(MP4.LIBX265, Arrays.asList("yuv420p", "yuvj420p", "yuv422p", "yuvj422p", "yuv444p", "yuvj444p", "gbrp", "yuv420p10le", "yuv422p10le", "yuv444p10le", "gbrp10le", "yuv420p12le", "yuv422p12le", "yuv444p12le", "gbrp12le", "gray", "gray10le", "gray12le"));
         encoderPixelFormats.put(MP4.HEVC_AMF, Arrays.asList("nv12", "yuv420p", "d3d11", "dxva2_vld"));
         encoderPixelFormats.put(MP4.HEVC_NVENC, Arrays.asList("yuv420p", "nv12", "p010le", "yuv444p", "p016le", "yuv444p16le", "bgr0", "rgb0", "cuda", "d3d11"));
-        encoderPixelFormats.put(MP4.HEVC_QSV, Arrays.asList("nv12", "p010le", "qsv"));
+        encoderPixelFormats.put(MP4.HEVC_QSV, Arrays.asList( "nv12" /*,"p010le", "p012le", "yuyv422", "y210le", "qsv", "bgra", "x2rgb10le", "vuyx", "xv30le"*/));
+        encoderPixelFormats.put(MP4.CFHD, Arrays.asList( "yuv422p10le", "gbrp12le", "gbrap12le"));
         videoAttributes = new VideoAttributes();
         audioAttributes = new AudioAttributes();
         encodingAttributes = new EncodingAttributes();
+        this.set720p();
 
     }
     public MP4(VideoAttributes videoAttributes,
@@ -139,6 +219,7 @@ public class MP4 implements Format{
         setInitMp4(VideoSize.hd480);
 
 
+
     }
     public  void set640p(){
         resCode="640p";
@@ -184,10 +265,11 @@ public class MP4 implements Format{
         audioAttributes.setChannels(2);
         audioAttributes.setSamplingRate(44100);
         audioAttributes.setBitRate(128000);
+        videoAttributes.setCrf(23);
+        videoAttributes.setCodec(MP4.LIBX264);
 
-        videoAttributes.setCodec(MP4.H264);
-
-
+        videoAttributes.setX264Profile(X264_PROFILE.MAIN);
+        videoAttributes.setBitRate(5000*1000);
         videoAttributes.setFrameRate(30);
         videoAttributes.setSize(videoSize);
 

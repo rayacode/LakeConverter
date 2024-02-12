@@ -22,13 +22,13 @@ public class FileConverterInit {
 
     private ConvertCellWidget convertCellWidget;
 
-
+    private String targetFolder;
 
     public FileConverterInit(String source, String target, Semaphore semaphore, Format format) {
         this.semaphore = semaphore;
 
         service = new ConversionService(source, target, semaphore, format);
-
+        this.targetFolder = target;
         this.source = new File(source);
         service.setExecutor(executorService);
         this.isConverted = false;
@@ -83,5 +83,13 @@ public class FileConverterInit {
 
     public void setConvertCellWidget(ConvertCellWidget convertCellWidget) {
         this.convertCellWidget = convertCellWidget;
+    }
+
+    public String getTargetFolder() {
+        return targetFolder;
+    }
+
+    public void setTargetFolder(String targetFolder) {
+        this.targetFolder = targetFolder;
     }
 }

@@ -3,13 +3,13 @@ package ir.artlake.lakeconverter.conversion;
 import ir.artlake.lakeconverter.conversion.Formats.Format;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import ws.schild.jave.Encoder;
-import ws.schild.jave.EncoderException;
-import ws.schild.jave.MultimediaObject;
-import ws.schild.jave.encode.EncodingAttributes;
-import ws.schild.jave.filters.FilterChain;
-import ws.schild.jave.filters.FilterGraph;
-import ws.schild.jave.filters.MediaConcatFilter;
+import ir.artlake.lakeconverter.jave.Encoder;
+import ir.artlake.lakeconverter.jave.EncoderException;
+import ir.artlake.lakeconverter.jave.MultimediaObject;
+import ir.artlake.lakeconverter.jave.encode.EncodingAttributes;
+import ir.artlake.lakeconverter.jave.filters.FilterChain;
+import ir.artlake.lakeconverter.jave.filters.FilterGraph;
+import ir.artlake.lakeconverter.jave.filters.MediaConcatFilter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -75,8 +75,11 @@ public class ConversionMergeService<T extends Format> extends Service<Boolean> {
 
                 FilterGraph complexFiltergraph= new FilterGraph();
                 FilterChain fc= new FilterChain();
-                fc.addFilter(new MediaConcatFilter(source.size(), true, false));
+                fc.addFilter(new MediaConcatFilter(source.size(), true, true));
                 complexFiltergraph.addChain(fc);
+                for(MultimediaObject multimediaObject : source){
+                    System.out.println(multimediaObject.getFile().getName());
+                }
                 encoder.encode(source, target, attrs, listener);
 
                 return true;

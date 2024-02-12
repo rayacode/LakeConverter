@@ -12,6 +12,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Worker;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import ir.artlake.lakeconverter.jave.MultimediaObject;
 
 import java.io.File;
 import java.util.*;
@@ -19,7 +20,7 @@ import java.util.concurrent.Semaphore;
 
 public class FileService {
     private static final int MAX_CONCURRENT_CONVERSIONS = 3;
-    private final Semaphore semaphore = new Semaphore(MAX_CONCURRENT_CONVERSIONS);
+    public static Semaphore semaphore = new Semaphore(MAX_CONCURRENT_CONVERSIONS);
     private FileSelector fileSelector = new FileSelector();
     private ConversionInitializer conversionInitializer = new ConversionInitializer(semaphore);
     private List<File> selectedFiles = new ArrayList<>();
@@ -32,6 +33,8 @@ public class FileService {
     private UIUpdater uiUpdater = new UIUpdater();
 
     public static Format format = new MP4();
+    public static Boolean mergeToggle = false;
+    public static List<MultimediaObject> mergeList = new ArrayList<>();
 
     public synchronized  List<File> chooseSourceFiles(Stage stage) {
         List<File> tempSelector = fileSelector.chooseSourceFiles(stage);
@@ -54,9 +57,9 @@ public class FileService {
 
 
     public synchronized  List<FileConverterInit> initializeConversions() {
-        if(!ConvertCellWidgetFormatSelector.isUsed){
+        /*if(!ConvertCellWidgetFormatSelector.isUsed){
             format.setDefault();
-        }
+        }*/
         List<FileConverterInit> newFileConverterInitList = conversionInitializer.initializeConversions(selectedFiles, selectedTarget, format);
 
         fileConverterInitMap.addAll(newFileConverterInitList);

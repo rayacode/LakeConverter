@@ -4,17 +4,21 @@ import ir.artlake.lakeconverter.conversion.Formats.Format;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import org.jetbrains.annotations.NotNull;
-import ws.schild.jave.Encoder;
-import ws.schild.jave.EncoderException;
-import ws.schild.jave.MultimediaObject;
-import ws.schild.jave.encode.EncodingAttributes;
+import ir.artlake.lakeconverter.jave.Encoder;
+import ir.artlake.lakeconverter.jave.EncoderException;
+import ir.artlake.lakeconverter.jave.MultimediaObject;
+import ir.artlake.lakeconverter.jave.encode.EncodingAttributes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
 import static ir.artlake.lakeconverter.Main.executorService;
 
 public class ConversionService<T extends Format> extends Service<Boolean> {
+    Logger LOG = LoggerFactory.getLogger(ConversionTask.class);
     private String name;
 
     private File source;
@@ -56,6 +60,7 @@ public class ConversionService<T extends Format> extends Service<Boolean> {
 
                 EncodingAttributes attrs = targetFormat.getEncodingAttributes();
 
+                LOG.info(attrs.toString());
 
 
 
@@ -92,7 +97,7 @@ public class ConversionService<T extends Format> extends Service<Boolean> {
 
             if(encoder != null){
                 encoder.abortEncoding();
-                //converter.setEncoder(new Encoder());
+                encoder = new Encoder();
             }
 
 
