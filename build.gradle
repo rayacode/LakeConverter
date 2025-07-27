@@ -1,12 +1,12 @@
 plugins {
     id 'java'
     id 'application'
-    id 'org.javamodularity.moduleplugin' version '1.8.12'
     id 'org.openjfx.javafxplugin' version '0.1.0'
-    id 'org.beryx.jlink' version '2.25.0'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-group 'ir.artlake'
+
+group 'codes.rayacode'
 version '0.1'
 version = '3.4.0'
 
@@ -18,32 +18,45 @@ ext {
     junitVersion = '5.9.2'
 }
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(23)
+    }
+}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+tasks.withType(JavaExec).configureEach {
+    jvmArgs = [
+            '-Xgcpolicy:gencon',
+            '-Xmn512m',
+            '-Xms1g',
+            '-Xmx12g',
+
+    ]
+}
 application {
 
-    mainModule = 'ir.artlake.lakeconverter'
-    mainClass = 'ir.artlake.lakeconverter.Main'
+
+    mainClass = 'codes.rayacode.lakeconverter.Launcher'
 
 
 }
 
+
+
 javafx {
-    version = '22-ea+16'
-    modules = ['javafx.controls', 'javafx.fxml']
-    platform = 'linux'
-    platform = 'linux-aarch64'
-    platform = 'mac-aarch64'
+    version = "23"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
     platform = 'win'
 
 }
 
 dependencies {
+
+
     //implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
     //implementation 'io.github.mkpaz:atlantafx-base:2.0.1'
     //implementation("ws.schild:jave-all-deps:3.4.0")
@@ -65,15 +78,21 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
-jlink {
-    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
-    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-    launcher {
-        name = 'app'
+processResources {
+    filesMatching("**/*.properties") {
+        expand(project.properties)
     }
 }
 
-jlinkZip {
-    group = 'distribution'
+jar {
+    manifest {
+        attributes('Implementation-Version': project.version)
+    }
 }
+
+shadowJar {
+    manifest.inheritFrom project.tasks.jar.manifest
+    archiveClassifier = 'all'
+}
+
+build.dependsOn(shadowJar)

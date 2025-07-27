@@ -1,6 +1,6 @@
-package ir.artlake.lakeconverter.test;
+package codes.rayacode.lakeconverter.test;
 
-import ir.artlake.lakeconverter.Main;
+import codes.rayacode.lakeconverter.Main;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,13 +15,13 @@ public class MainTest {
 
     @Start
     public void start(Stage stage) throws Exception {
-        // Start your JavaFX application
+        
         new Main().start(stage);
     }
 
     @Test
     public void testMainIsRunning(FxRobot robot) {
-        // Check if the main window is showing
+        
         assertTrue(robot.window(0).isShowing());
     }
 }
