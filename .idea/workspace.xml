@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="67227f8f-360c-4ef6-a8a5-b4521c810411" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/Launcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/AllFormatAttrs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/VideoFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30sal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30sal.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3sal/30sal.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.out" beforeDir="false" afterPath="$PROJECT_DIR$/log.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/ConvertCellWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/ConvertCellWidget.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/ScreenUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/ScreenUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/UIUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/UIUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/ConvertCellWidgetFormatSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/ConvertCellWidgetFormatSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/FormatsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/FormatsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/FormatsSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/controllers/FormatsSettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionMergeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionMergeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionProgressTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionProgressTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionServiceOLD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionServiceOLD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConvertButtonStatuses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConvertButtonStatuses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConvertProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConvertProgressListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConverterImplemention/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConverterImplemention/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/FileConverterInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/FileConverterInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Formats/AAC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/AAC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Formats/Format.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/Format.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Formats/MP4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Formats/MP4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Formats/MP4Attr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/QConversionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/QConversionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/FileSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/ThumbnailGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/ThumbnailGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/concurency/AddFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/concurency/AddFiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/concurency/AddFilesProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/concurency/AddFilesProgressListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/ConversionOutputAnalyzer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/Encoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/EncoderException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/InputFormatException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/MultimediaObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/ScreenExtractor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/Version.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/VideoProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/ArgType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/AudioAttributes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/EncodingArgument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/EncodingAttributes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/PredicateArgument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/SimpleArgument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/ValueArgument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/VideoAttributes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/VideoFilterArgument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/enums/PresetEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/enums/TuneEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/enums/VsyncMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/enums/X264_PROFILE.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filtergraphs/FilterAndWatermark.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filtergraphs/OverlayWatermark.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filtergraphs/TrimAndWatermark.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filtergraphs/TrimFadeAndWatermark.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/AssSubtitlesFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/ColorFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/ConcatFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/CropFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/DrawtextFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/FadeFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/Filter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/FilterChain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/FilterGraph.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/MediaConcatFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/MovieFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/OverlayFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/PadFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/ScaleFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/SetPtsFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/TrimFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/VideoFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/ZoomPanFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/helpers/Color.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/helpers/FadeDirection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/helpers/ForceOriginalAspectRatio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/helpers/OverlayLocation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/info/AudioInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/info/MultimediaInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/info/VideoInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/info/VideoSize.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/process/ProcessKiller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/process/ProcessLocator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/process/ProcessWrapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/process/ffmpeg/DefaultFFMPEGLocator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/process/ffmpeg/FFMPEGProcess.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/progress/EchoingEncoderProgressListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/progress/EchoingProgressListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/progress/EncoderProgressAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/progress/EncoderProgressListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/progress/VideoProgressListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/utils/AutoRemoveableFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/utils/RBufferedReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/utils/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/models/FormatsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/models/FormatsModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/defaultAduio.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/defaultAduio.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/formatSettings/formatSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/formatSettings/formatSettings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/icons/file-export.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/icons/file-export.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/icons/folder-symlink.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/icons/folder-symlink.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/icons/settings.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/icons/settings.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/icons/trash-off.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/icons/trash-off.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/main/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/main/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/main/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ir/artlake/lakeconverter/test/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ir/artlake/lakeconverter/test/MainTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/test">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build setup" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="distribution" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="documentation" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="help" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="test" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LakeConverter" type="f1a62948:ProjectNode" />
+                <item name="test" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:/php-8.3.23-Win32-vs16-x64/php.exe" />
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="30THjpfJkotzZystYPoK1cLzXYe" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.LakeConverter [:ir.artlake.lakeconverter.Main.main()].executor": "Run",
+    "Gradle.LakeConverter [check].executor": "Run",
+    "Gradle.LakeConverter [clean].executor": "Run",
+    "Gradle.LakeConverter [dependencies].executor": "Run",
+    "Gradle.LakeConverter [dependencyInsight].executor": "Run",
+    "Gradle.LakeConverter [run].executor": "Run",
+    "Gradle.LakeConverter [wrapper].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "last_opened_file_path": "D:/projects/java/javafx/LakeConverter",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.43422264",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Gradle.LakeConverter [run]">
+    <configuration name="LakeConverter [check]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="check" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="LakeConverter [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="LakeConverter [dependencyInsight]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencyInsight" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="LakeConverter [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="LakeConverter [wrapper]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="wrapper" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="LakeConverter.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="LakeConverter.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="LakeConverter.main" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="LakeConverter.main" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Autodetect">
+      <module name="LakeConverter.main" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="LakeConverter.main" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.LakeConverter [run]" />
+        <item itemvalue="Gradle.LakeConverter [dependencies]" />
+        <item itemvalue="Gradle.LakeConverter [dependencyInsight]" />
+        <item itemvalue="Gradle.LakeConverter [wrapper]" />
+        <item itemvalue="Gradle.LakeConverter [check]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="67227f8f-360c-4ef6-a8a5-b4521c810411" name="Changes" comment="" />
+      <created>1753644780700</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1753644780700</updated>
+      <workItem from="1753644781979" duration="4110000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
