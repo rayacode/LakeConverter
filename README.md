@@ -8,7 +8,7 @@ This project demonstrates:
 - Solid multithreading practices with JavaFX
 - Integration of JAVE for audio/video processing using FFmpeg
 
-Originally developed two years ago, this project is now being published for reference and possible future development. The main motivation for publishing is to revisit JavaFX concurrency patterns and share a practical example.
+Originally developed two years ago, this project is now being published for reference and possible future development. The main motivation for publishing is to revisit JavaFX concurrency
 
 Further updates are not guaranteed but may happen depending on future exploration.
 
