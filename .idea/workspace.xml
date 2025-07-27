@@ -4,130 +4,119 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67227f8f-360c-4ef6-a8a5-b4521c810411" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/Launcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/AllFormatAttrs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/VideoFormat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="67227f8f-360c-4ef6-a8a5-b4521c810411" name="Changes" comment="come back to project and a fresh start init - just updated to java 23, changed gradle build">
+      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/30sal" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/30sal.mp3" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/3sal/30sal.mp3" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log.out" beforeDir="false" afterPath="$PROJECT_DIR$/log.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/ConvertCellWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/ConvertCellWidget.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/ScreenUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/ScreenUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/UIUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/UIUpdater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/ConvertCellWidgetFormatSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/ConvertCellWidgetFormatSelector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/FormatsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/FormatsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/FormatsSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/controllers/FormatsSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionMergeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionMergeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionProgressTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionProgressTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConversionServiceOLD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionServiceOLD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConvertButtonStatuses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConvertButtonStatuses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConvertProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConvertProgressListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Converter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConverterImplemention/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/ConverterImplemention/Converter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/FileConverterInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/FileConverterInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Formats/AAC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/AAC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Formats/Format.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/Format.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Formats/MP4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Formats/MP4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/Formats/MP4Attr.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/QConversionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/conversion/QConversionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/FileSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileSelector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/ThumbnailGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/ThumbnailGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/concurency/AddFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/concurency/AddFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/fileoperations/concurency/AddFilesProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/concurency/AddFilesProgressListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/ConversionOutputAnalyzer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/Encoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/EncoderException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/InputFormatException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/MultimediaObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/ScreenExtractor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/Version.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/VideoProcessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/ArgType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/AudioAttributes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/EncodingArgument.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/EncodingAttributes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/PredicateArgument.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/SimpleArgument.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/ValueArgument.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/VideoAttributes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/VideoFilterArgument.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/enums/PresetEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/enums/TuneEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/enums/VsyncMethod.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/encode/enums/X264_PROFILE.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filtergraphs/FilterAndWatermark.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filtergraphs/OverlayWatermark.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filtergraphs/TrimAndWatermark.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filtergraphs/TrimFadeAndWatermark.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/AssSubtitlesFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/ColorFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/ConcatFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/CropFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/DrawtextFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/FadeFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/Filter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/FilterChain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/FilterGraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/MediaConcatFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/MovieFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/OverlayFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/PadFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/ScaleFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/SetPtsFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/TrimFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/VideoFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/ZoomPanFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/helpers/Color.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/helpers/FadeDirection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/helpers/ForceOriginalAspectRatio.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/filters/helpers/OverlayLocation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/info/AudioInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/info/MultimediaInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/info/VideoInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/info/VideoSize.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/process/ProcessKiller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/process/ProcessLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/process/ProcessWrapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/process/ffmpeg/DefaultFFMPEGLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/process/ffmpeg/FFMPEGProcess.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/progress/EchoingEncoderProgressListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/progress/EchoingProgressListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/progress/EncoderProgressAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/progress/EncoderProgressListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/progress/VideoProgressListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/utils/AutoRemoveableFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/utils/RBufferedReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/jave/utils/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/artlake/lakeconverter/models/FormatsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/models/FormatsModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/defaultAduio.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/defaultAduio.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/formatSettings/formatSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/formatSettings/formatSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/icons/file-export.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/icons/file-export.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/icons/folder-symlink.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/icons/folder-symlink.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/icons/settings.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/icons/settings.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/icons/trash-off.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/icons/trash-off.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/main/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/main/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ir/artlake/lakeconverter/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/main/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/ConvertCellWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/ConvertCellWidget.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/Launcher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/ScreenUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/ScreenUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/UIUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/UIUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/controllers/ConvertCellWidgetFormatSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/controllers/ConvertCellWidgetFormatSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/controllers/FormatsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/controllers/FormatsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/controllers/FormatsSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/controllers/FormatsSettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionMergeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionMergeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionProgressTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionProgressTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionServiceOLD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConversionServiceOLD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConvertButtonStatuses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConvertButtonStatuses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConvertProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConvertProgressListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConverterImplemention/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/ConverterImplemention/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/FileConverterInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/FileConverterInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/AAC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/AAC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/AllFormatAttrs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/AllFormatAttrs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/Format.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/Format.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/MP4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/MP4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/VideoFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/Formats/VideoFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/QConversionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/conversion/QConversionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/ThumbnailGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/ThumbnailGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/concurency/AddFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/concurency/AddFiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/concurency/AddFilesProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/fileoperations/concurency/AddFilesProgressListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/ConversionOutputAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/ConversionOutputAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/Encoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/Encoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/EncoderException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/EncoderException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/InputFormatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/InputFormatException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/MultimediaObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/MultimediaObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/ScreenExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/ScreenExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/Version.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/Version.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/VideoProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/VideoProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/ArgType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/ArgType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/AudioAttributes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/AudioAttributes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/EncodingArgument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/EncodingArgument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/EncodingAttributes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/EncodingAttributes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/PredicateArgument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/PredicateArgument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/SimpleArgument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/SimpleArgument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/ValueArgument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/ValueArgument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/VideoAttributes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/VideoAttributes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/VideoFilterArgument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/VideoFilterArgument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/enums/PresetEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/enums/PresetEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/enums/TuneEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/enums/TuneEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/enums/VsyncMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/enums/VsyncMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/enums/X264_PROFILE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/encode/enums/X264_PROFILE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filtergraphs/FilterAndWatermark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filtergraphs/FilterAndWatermark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filtergraphs/OverlayWatermark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filtergraphs/OverlayWatermark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filtergraphs/TrimAndWatermark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filtergraphs/TrimAndWatermark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filtergraphs/TrimFadeAndWatermark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filtergraphs/TrimFadeAndWatermark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/AssSubtitlesFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/AssSubtitlesFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/ColorFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/ColorFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/ConcatFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/ConcatFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/CropFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/CropFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/DrawtextFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/DrawtextFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/FadeFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/FadeFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/Filter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/Filter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/FilterChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/FilterChain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/FilterGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/FilterGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/MediaConcatFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/MediaConcatFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/MovieFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/MovieFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/OverlayFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/OverlayFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/PadFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/PadFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/ScaleFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/ScaleFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/SetPtsFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/SetPtsFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/TrimFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/TrimFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/VideoFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/VideoFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/ZoomPanFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/ZoomPanFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/helpers/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/helpers/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/helpers/FadeDirection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/helpers/FadeDirection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/helpers/ForceOriginalAspectRatio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/helpers/ForceOriginalAspectRatio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/helpers/OverlayLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/filters/helpers/OverlayLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/info/AudioInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/info/AudioInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/info/MultimediaInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/info/MultimediaInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/info/VideoInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/info/VideoInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/info/VideoSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/info/VideoSize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/process/ProcessKiller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/process/ProcessKiller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/process/ProcessLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/process/ProcessLocator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/process/ProcessWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/process/ProcessWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/process/ffmpeg/DefaultFFMPEGLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/process/ffmpeg/DefaultFFMPEGLocator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/process/ffmpeg/FFMPEGProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/process/ffmpeg/FFMPEGProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/progress/EchoingEncoderProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/progress/EchoingEncoderProgressListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/progress/EchoingProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/progress/EchoingProgressListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/progress/EncoderProgressAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/progress/EncoderProgressAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/progress/EncoderProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/progress/EncoderProgressListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/progress/VideoProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/progress/VideoProgressListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/utils/AutoRemoveableFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/utils/AutoRemoveableFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/utils/RBufferedReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/utils/RBufferedReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/jave/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/models/FormatsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/codes/rayacode/lakeconverter/models/FormatsModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/ConvertWidgetBox/ConvertCellWidget.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/ConvertWidgetBox/ConvertCellWidget.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/formatSettings/formatSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/formatSettings/formatSettings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/formats/ConvertCellWidgetFormatSelector.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/formats/ConvertCellWidgetFormatSelector.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/formats/formats.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/formats/formats.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/codes/rayacode/lakeconverter/main/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ir/artlake/lakeconverter/test/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ir/artlake/lakeconverter/test/MainTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -248,9 +237,9 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="30THjpfJkotzZystYPoK1cLzXYe" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -258,6 +247,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Download Sources.executor": "Run",
     "Gradle.LakeConverter [:ir.artlake.lakeconverter.Main.main()].executor": "Run",
     "Gradle.LakeConverter [check].executor": "Run",
     "Gradle.LakeConverter [clean].executor": "Run",
@@ -281,6 +271,16 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\projects\java\javafx\LakeConverter" />
+      <recent name="D:\projects\java\javafx\LakeConverter\src\main\java\codes\rayacode\lakeconverter\conversion\Formats\enum" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\projects\java\javafx\LakeConverter\src\main\java\codes\rayacode\lakeconverter" />
+      <recent name="D:\projects\java\javafx\LakeConverter\src\main\java\codes\rayacode\lakeconverter\conversion\Formats" />
+    </key>
+  </component>
   <component name="RunManager" selected="Gradle.LakeConverter [run]">
     <configuration name="LakeConverter [check]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -497,10 +497,26 @@
       <option name="presentableId" value="Default" />
       <updated>1753644780700</updated>
       <workItem from="1753644781979" duration="4110000" />
+      <workItem from="1753650028942" duration="6168000" />
     </task>
+    <task id="LOCAL-00001" summary="come back to project and a fresh start init - just updated to java 23, changed gradle build">
+      <option name="closed" value="true" />
+      <created>1753652303277</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1753652303277</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="come back to project and a fresh start init - just updated to java 23, changed gradle build" />
+    <option name="LAST_COMMIT_MESSAGE" value="come back to project and a fresh start init - just updated to java 23, changed gradle build" />
   </component>
 </project>
