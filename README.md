@@ -12,6 +12,8 @@ Originally developed two years ago, this project is now being published for refe
 
 Further updates are not guaranteed but may happen depending on future exploration.
 
+Updates *DECIDED TO COntinue THE PROJECT* soon there will be a stable version, supporting more formats. please give me ideas of what you most likely would like to be present in such a project!
+
 ## Licensing
 
 This project is licensed under the GNU General Public License v3.0 (GNUv3).
